@@ -1,0 +1,9 @@
+c1.mp4: 4,0 s · 24 fps · 1920×1080
+c2.mp4: 4,0 s · 24 fps · 1920×1080
+c1.mp4 quadros 97, mediana 1.00, piores [(77, 0.99), (90, 0.99)] ok
+c2.mp4 quadros 97, mediana 1.00, piores [(1, 0.99), (95, 0.99)] ok
+cortes: 0
+site: 191 quadros, 3.4 MB, cor da emenda #050605
+continuidade — site/frames: 48 quadros (a cada 4), mediana 0.983
+PASSA — um movimento só
+saída: 0

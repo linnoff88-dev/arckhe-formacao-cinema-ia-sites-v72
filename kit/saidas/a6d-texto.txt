@@ -1,0 +1,8 @@
+✓ ~/projetos/formacao-cinema-ia-sites-v72/kit/site/index.html — texto limpo
+saída: 0
+✗ ~/projetos/formacao-cinema-ia-sites-v72/kit/exemplos/texto-ruim-pt.html — 3 defeito(s)
+  manda a pessoa rolar
+    …Aurora 35 Role para baixo e veja a lente de perto.…
+  narra a câmera
+    …e de perto. Um plano-sequência A câmera avança pelo vidro até o diafragma…
+saída: 1

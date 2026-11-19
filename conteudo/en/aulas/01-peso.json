@@ -1,0 +1,310 @@
+{
+ "slug": "peso",
+ "num": 1,
+ "menu": "Weight",
+ "titulo": "What a cinematic site is and when it's worth the weight",
+ "titulo_curto": "When it's worth the weight",
+ "minutos": 15,
+ "lead": "A cinematic site looks like a film that moves with the scroll. Underneath, there's no 3D and no video playing: there are frames from a clip drawn on a canvas, one per scroll position. That's heavy. In this lesson you run the kit's example page, measure how much it weighs for each visitor, and decide, with a number, whether your product calls for one.",
+ "objetivo": "run the kit's example site, measure its weight, and decide, with a budget in MB, whether your product calls for one.",
+ "competencias": [
+  "explain-film-on-scroll",
+  "measure-weight-per-visitor",
+  "decide-with-a-budget"
+ ],
+ "aprende": [
+  {
+   "icone": "camadas",
+   "t": "The path clip → frames → canvas → scroll, and why it isn't a video playing"
+  },
+  {
+   "icone": "terminal",
+   "t": "Install the kit and watch the example page pass the checker"
+  },
+  {
+   "icone": "grafico",
+   "t": "Measure the weight per visitor: computer, phone, and first paint"
+  },
+  {
+   "icone": "alvo",
+   "t": "Decide with a budget in MB, before spending on a generator"
+  }
+ ],
+ "hero_alt": "Precision scale on a dark table with a stack of printed film frames and a phone next to it.",
+ "secoes": [
+  {
+   "tipo": "diagrama",
+   "titulo": "The film that moves with the scroll",
+   "sub": "Click each step. The loop back is the question that decides everything: how much does this weigh?",
+   "nos": [
+    {
+     "icone": "video",
+     "titulo": "Clip",
+     "sub": "one movement",
+     "detalhe": "A short clip with one continuous movement, no cuts: the camera moves closer, rotates, or passes through. It can come from a video generator (course 1) or, in the rehearsal, from a still photo animated with ffmpeg (lesson 2)."
+    },
+    {
+     "icone": "pasta",
+     "titulo": "Frames",
+     "sub": "JPEG",
+     "detalhe": "The clip becomes a folder of images, one per frame: f_0001.jpg, f_0002.jpg… These are what the visitor downloads. This is where the weight lives."
+    },
+    {
+     "icone": "camadas",
+     "titulo": "Canvas",
+     "sub": "draws",
+     "detalhe": "A canvas element pinned to the top of the screen draws one frame at a time. It isn't a video playing: seeking to a point in the video on every scroll movement stutters; drawing an already decoded frame doesn't."
+    },
+    {
+     "icone": "seta",
+     "titulo": "Scroll",
+     "sub": "picks",
+     "detalhe": "A tall section (the track) passes beneath the canvas. The scroll position inside the track becomes a number from 0 to 1, and that number picks the frame: 0 = first, 1 = last."
+    },
+    {
+     "icone": "arquivo",
+     "titulo": "Page",
+     "sub": "text and sections",
+     "forte": true,
+     "detalhe": "On top of the film, short phrases appear at points along the scroll; after the film comes the regular page: features, spec sheet, button. The film opens the door; the text does the selling."
+    }
+   ],
+   "volta": "weight decides if it's worth it",
+   "legenda": "The \"3D\" effect comes from the clip, not from a 3D engine. Depth drawn in code is lesson 4."
+  },
+  {
+   "tipo": "passos",
+   "titulo": "When it's worth it and when it isn't",
+   "sub": "The film costs the visitor bandwidth and costs you time. It pays off in only a few cases.",
+   "passos": [
+    {
+     "titulo": "Worth it",
+     "texto": [
+      "A product with a shape, material, or mechanism that is easier to understand in motion: a lens, a watch, a machine part, a dish.",
+      "A launch page, which the visitor opens once and looks at calmly."
+     ]
+    },
+    {
+     "titulo": "Not worth it",
+     "texto": [
+      "A page people read in a hurry: service, pricing, article, dashboard. The film delays what they came for.",
+      "When the product doesn't change at all as it rotates or comes closer: well-written text sells better."
+     ]
+    },
+    {
+     "titulo": "No generator",
+     "texto": [
+      "The two INEMA skills (lessons 3 and 6) have a code-only path: shapes, light, and text animated by scrolling, with no video generation. Zero credits.",
+      "This entire course runs that way: the rehearsal clips are made from a photo with ffmpeg."
+     ]
+    },
+    {
+     "titulo": "With a generator",
+     "texto": [
+      "Clips from your generator become frames. How much it costs depends on the generator: the site-movimento pilot spent 300 Kling 3.0 credits (kling-video-v3_0) at 720p (project README, 10/18/2026).",
+      "Which generator and which version: course 1 of the program."
+     ]
+    }
+   ]
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Install the kit",
+   "sub": "The kit lives inside this course's repository. Clone it once and install; it uses Node 20.10+, ffmpeg, and Playwright's Chromium.",
+   "blocos": [
+    {
+     "rot": "Once · clone the course",
+     "icone": "git",
+     "conteudo": "cd ~/projetos && git clone https://github.com/inematds/formacao-cinema-ia-sites-v72"
+    },
+    {
+     "rot": "Terminal · install the kit",
+     "icone": "terminal",
+     "conteudo": "cd ~/projetos/formacao-cinema-ia-sites-v72/kit\nnpm ci --no-audit --no-fund > ${TMPDIR:-/tmp}/npm-sites.log 2>&1; echo \"npm ci: $?\"\nnpx playwright install chromium > ${TMPDIR:-/tmp}/pw-sites.log 2>&1; echo \"chromium: $?\"\nnpx playwright --version\nnpm ls --depth=0 | tail -2\nffmpeg -version | head -1 | cut -d' ' -f1-3"
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Captured output (10/19/2026)",
+      "html": "<pre>npm ci: 0\nchromium: 0\nVersion 1.64.0\n└── three@0.186.1\n\nffmpeg version 6.1.1-3ubuntu5</pre><p>Playwright is pinned to 1.64.0 and three to 0.186.1 in the kit's <code>package.json</code>: what you install is what was tested.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "See the example page working",
+   "sub": "The kit's server picks a free port and writes the URL to a file; the loop waits for the URL to respond before testing.",
+   "blocos": [
+    {
+     "rot": "Terminal · serve and check the kit's page",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a1; rm -rf \"$E\"; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"$U\"; echo \"saída: $?\"\nkill $S"
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Captured output (10/19/2026)",
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nquadros: 144 (frames/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: não\nOK: 3 de 3 posições\nsaída: 0</pre><p>The checker opens the page at three scroll points and verifies the frame and the screen. To look with your own eyes, run only the 1st line of the server and open the URL in your browser.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Measure the weight per visitor",
+   "sub": "Each visitor downloads just one film: the horizontal one on a computer or the vertical one on a phone held upright.",
+   "blocos": [
+    {
+     "rot": "Terminal · weight with a 6 MB budget",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\npython3 \"$K/scripts/peso.py\" \"$K/site\" --orcamento 6 --inicial 0.5; echo \"saída: $?\""
+    },
+    {
+     "rot": "Terminal · common mistake: 2 MB budget",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\npython3 \"$K/scripts/peso.py\" \"$K/site\" --orcamento 2 | tail -1; echo \"saída: ${PIPESTATUS[0]}\""
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Captured output (10/19/2026)",
+      "html": "<pre>PESO: quadros-v 3,49 · quadros 1,50 · js 0,02 · html/css 0,01 (MB)\ncomputador: tudo 1,54 MB · primeira pintura 0,05 MB · rascunho (1 em 8) 0,22 MB\ncelular: tudo 3,52 MB · primeira pintura 0,06 MB · rascunho (1 em 8) 0,47 MB\nprimeira pintura 0,06 MB · teto 0,5 MB: DENTRO\nvisitante mais pesado 3,52 MB · orçamento 6,0 MB: DENTRO do orçamento\nsaída: 0</pre><p>First paint is a ceiling on what arrives before the first frame: it counts every file in the folder that is not a frame. The phone weighs more than the desktop here: lesson 7 fixes that.</p>"
+     },
+     {
+      "rot": "Common mistake: budget exceeded",
+      "html": "<pre>visitante mais pesado 3,52 MB · orçamento 2,0 MB: ACIMA do orçamento\nsaída: 1</pre><p>With a 2 MB budget, the phone goes over the ceiling and the script exits with 1. This is the code an automatic gate reads.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "pratica",
+   "titulo": "Practice",
+   "sub": "From the installed kit to your written decision.",
+   "exercicios": [
+    {
+     "id": "e1",
+     "titulo": "E1 · Install",
+     "min": "10 min",
+     "texto": "Clone the course and run the \"instalar o kit\" block.",
+     "pronto": "The output shows <code>npm ci: 0</code>, <code>chromium: 0</code> and <code>Version 1.64.0</code>."
+    },
+    {
+     "id": "e2",
+     "titulo": "E2 · See it working",
+     "min": "5 min",
+     "texto": "Run the \"servir e verificar a página do kit\" block. Then open the URL in your browser and scroll the page.",
+     "pronto": "<code>OK: 3 de 3 posições</code> and <code>saída: 0</code>."
+    },
+    {
+     "id": "e3",
+     "titulo": "E3 · Your decision, with a number",
+     "min": "10 min",
+     "texto": "Pick one of your products. In a file called decisao.txt, write three lines: <code>Produto: …</code>, <code>Visitante mais pesado: … MB</code> (the kit's number, or your own if you already have frames) and <code>Decisão: …</code> (movie, code only, or a regular page, with the reason).",
+     "pronto": "<code>grep -c -E \"^(Produto|Visitante mais pesado|Decisão):\" decisao.txt</code> returns <code>3</code>."
+    }
+   ]
+  },
+  {
+   "tipo": "quiz",
+   "titulo": "Lesson quiz",
+   "sub": "The explanation appears after you answer.",
+   "perguntas": [
+    {
+     "p": "Why is the scroll film drawn frame by frame on a canvas, instead of using a video and currentTime?",
+     "opcoes": [
+      "Because the browser can't play an MP4 file inside a page with a long scroll.",
+      "Seeking to a point in the video on every step stutters; drawing a ready-made frame doesn't.",
+      "Because the canvas makes the final file smaller than the video.",
+      "Because video doesn't work on phones."
+     ],
+     "certa": 1,
+     "explica": "Seeking in the video has a delay, and the result stutters. The canvas draws an image that's already decoded. The price is weight: one image per frame.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "peso.py says \"computador 1,54 MB · celular 3,52 MB\". Which number goes into the budget?",
+     "opcoes": [
+      "The sum of the two, 5.06 MB.",
+      "The computer's, since that's the most common visitor.",
+      "The heaviest visitor's, 3.52 MB.",
+      "The average, 2.5 MB."
+     ],
+     "certa": 2,
+     "explica": "Each visitor downloads only one film. The budget applies to whoever pays the most, here the phone. Adding both counts a visitor who doesn't exist.",
+     "ref": "codigo"
+    },
+    {
+     "p": "For which of these pages is the scroll film least likely to be worth the weight?",
+     "opcoes": [
+      "Launch of a watch with an exposed movement.",
+      "Reveal of a new lens.",
+      "Page for a dish that spins and gives off steam.",
+      "A service's pricing table."
+     ],
+     "certa": 3,
+     "explica": "Someone opening a pricing table wants the number, fast. The film delays what the person came for. A product with shape and material is the classic case.",
+     "ref": "passos"
+    },
+    {
+     "p": "What is the \"first paint\" in peso.py?",
+     "opcoes": [
+      "What arrives before the first frame appears: HTML, CSS, JS, images, and frame 1.",
+      "The size of the first frame at high resolution.",
+      "The entire desktop film.",
+      "The time, in seconds, until the page opens."
+     ],
+     "certa": 0,
+     "explica": "It's a weight, not a time: what has to arrive for the screen to stop being black. Load time and Core Web Vitals belong to the inemaSEO course.",
+     "ref": "codigo"
+    }
+   ]
+  },
+  {
+   "tipo": "resumo",
+   "titulo": "In three sentences",
+   "itens": [
+    {
+     "t": "Mechanics",
+     "texto": "A clip becomes frames; scrolling picks the frame; the canvas draws."
+    },
+    {
+     "t": "Cost",
+     "texto": "Weight per visitor: computer, phone, and first paint."
+    },
+    {
+     "t": "Decision",
+     "texto": "With a budget in MB, before spending on a generator."
+    }
+   ]
+  },
+  {
+   "tipo": "links",
+   "titulo": "Going further",
+   "links": [
+    {
+     "t": "Course 1 of the program: video generators and versions (Oct/2026)",
+     "href": "https://inematds.github.io/formacao-cinema-ia-geracao-v72/en/",
+     "icone": "video"
+    },
+    {
+     "t": "site-movimento: guide and published pilot",
+     "href": "https://inematds.github.io/site-movimento/guia/",
+     "icone": "camadas"
+    },
+    {
+     "t": "This course's kit on GitHub",
+     "href": "https://github.com/inematds/formacao-cinema-ia-sites-v72/tree/main/kit",
+     "icone": "git"
+    }
+   ]
+  }
+ ]
+}

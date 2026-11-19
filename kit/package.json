@@ -1,0 +1,15 @@
+{
+  "name": "kit-sites-cinematograficos",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Kit do curso Sites cinematográficos (Formação Cinema com IA, curso 5 de 6, INEMA.CLUB). Página de exemplo com filme na rolagem, cena Three.js e scripts de conferência. Versões fixadas em 19/10/2026.",
+  "scripts": {
+    "servir": "node scripts/servir.mjs site"
+  },
+  "devDependencies": {
+    "playwright": "1.64.0",
+    "three": "0.186.1"
+  },
+  "engines": { "node": ">=20" }
+}

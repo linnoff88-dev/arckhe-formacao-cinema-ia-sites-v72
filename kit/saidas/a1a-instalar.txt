@@ -1,0 +1,6 @@
+npm ci: 0
+chromium: 0
+Version 1.64.0
+└── three@0.186.1
+
+ffmpeg version 6.1.1-3ubuntu5

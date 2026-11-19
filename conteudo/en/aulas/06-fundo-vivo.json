@@ -1,0 +1,320 @@
+{
+ "slug": "fundo-vivo",
+ "num": 6,
+ "menu": "Live background",
+ "titulo": "Live background: video generated inside the site",
+ "titulo_curto": "Live background",
+ "minutos": 18,
+ "lead": "A long opening film comes from several short clips chained together, each starting on the last real frame of the one before. The risk is a hidden cut in the middle of a clip. The site-movimento skill has gates that catch it. You run them on rehearsal clips, one continuous and one with a cut, without spending credits.",
+ "objetivo": "chain clips into a continuous film and prove with the site-movimento gates that there is no hidden cut.",
+ "competencias": [
+  "chain-clips",
+  "detect-hidden-cut",
+  "assemble-site-film"
+ ],
+ "aprende": [
+  {
+   "icone": "camadas",
+   "t": "The seven steps of the site-movimento skill and where the gates come in"
+  },
+  {
+   "icone": "robo",
+   "t": "The engine contract (Kling, Agnes, Kie, your own) tested without spending, with DRY_RUN"
+  },
+  {
+   "icone": "check",
+   "t": "Assemble the film and prove continuity; catch the hidden cut"
+  },
+  {
+   "icone": "portao",
+   "t": "The copy gate in Portuguese, English, and Spanish"
+  }
+ ],
+ "hero_alt": "Wide monitor in a dark room showing a page whose background is a mountain landscape with mist at dawn.",
+ "secoes": [
+  {
+   "tipo": "diagrama",
+   "titulo": "Chained clips, no jump",
+   "sub": "Step 4 of the skill (video). Click each stage.",
+   "nos": [
+    {
+     "icone": "arquivo",
+     "titulo": "Keyframes",
+     "sub": "start and end",
+     "detalhe": "Chained key images, one small camera step at a time. A step that's too big makes the generator cut to get there. vetor.py checks the direction of the prompts before spending."
+    },
+    {
+     "icone": "video",
+     "titulo": "Engine",
+     "sub": "one clip at a time",
+     "detalhe": "Every engine follows the same contract: start, end, prompt, seconds, output. Clip 2 starts on the REAL last frame of clip 1 (extracted pixels, never the keyframe). In order, never in parallel."
+    },
+    {
+     "icone": "lupa",
+     "titulo": "Gates",
+     "sub": "per clip",
+     "detalhe": "fixacao.py: did the engine respect the start frame and the end frame? cortes.py: is there a hidden cut in the middle? A clip with a cut never goes in: bring the keyframes closer together and redo it. Don't hide it with a fade."
+    },
+    {
+     "icone": "camadas",
+     "titulo": "Assemble",
+     "sub": "montar.py",
+     "detalhe": "Joins the clips (from the 2nd on, starting at frame 1, because frame 0 repeats the last one of the previous clip), writes film/master.mp4, extracts all the frames, and the manifest.json."
+    },
+    {
+     "icone": "check",
+     "titulo": "Continuity",
+     "sub": "the whole film",
+     "forte": true,
+     "detalhe": "continuidade.py compares each pair of frames against the LOCAL median: smooth motion passes even when fast; a cut is a sudden drop; frozen is a dead zone in the scroll. PASSA = one single movement."
+    }
+   ],
+   "volta": "cut? bring them closer and redo",
+   "legenda": "Without a video engine, the skill makes the film in code (steps 1, 2, 5, 6, and 7 are the same). Pilot numbers: 300 Kling 3.0 credits at 720p, 285 frames in the horizontal film and 361 in the vertical one (README, 10/18/2026)."
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "The engine contract, without spending",
+   "sub": "With DRY_RUN=1 each engine only shows what it would do. The test checks all four.",
+   "blocos": [
+    {
+     "rot": "Terminal · download site-movimento and test the engines",
+     "icone": "terminal",
+     "conteudo": "E=${TMPDIR:-/tmp}/ensaio-sites/a6; rm -rf \"$E\"; mkdir -p \"$E\"; cd \"$E\"\ngit clone -q https://github.com/inematds/site-movimento && git -C site-movimento checkout -q d9a43a4; echo \"clone: $?\"\nbash site-movimento/skill/site-movimento/tests/motores-contrato.sh; echo \"saída: $?\""
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Captured output (10/19/2026)",
+      "html": "<pre>clone: 0\nOK kling\nOK agnes\nOK kie\nOK custom\n4/4 motores OK\nsaída: 0</pre><p>No service was called: DRY_RUN exits before reading any key. Actually generating uses the account and credits of the engine you choose; the course doesn't do that.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Two chained clips become the site's film",
+   "sub": "The rehearsal imitates the chaining: clip 2 starts at the zoom where clip 1 ended.",
+   "blocos": [
+    {
+     "rot": "Terminal · chain, assemble, and prove continuity",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a6; SM=$E/site-movimento/skill/site-movimento/scripts\n# dois clipes encadeados: o 2º começa exatamente onde o 1º terminou (zoom 1,25)\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/c1.mp4\" 4 1.0 1.25\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/c2.mp4\" 4 1.25 1.5\npython3 \"$SM/cortes.py\" \"$E/c1.mp4\" \"$E/c2.mp4\" | sed \"s#$E/##\"; echo \"cortes: ${PIPESTATUS[0]}\"\nrm -rf \"$E/site\"; cp -r \"$K/site\" \"$E/site\"\npython3 \"$SM/montar.py\" \"$E/site\" \"$E/c1.mp4:0:-1\" \"$E/c2.mp4:1:-1\" | head -1 | sed \"s#$E/##\"\npython3 \"$SM/continuidade.py\" \"$E/site/frames\" | sed \"s#$E/##\"; echo \"saída: ${PIPESTATUS[0]}\""
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Captured output (10/19/2026)",
+      "html": "<pre>c1.mp4: 4,0 s · 24 fps · 1920×1080\nc2.mp4: 4,0 s · 24 fps · 1920×1080\nc1.mp4 quadros 97, mediana 1.00, piores [(77, 0.99), (90, 0.99)] ok\nc2.mp4 quadros 97, mediana 1.00, piores [(1, 0.99), (95, 0.99)] ok\ncortes: 0\nsite: 191 quadros, 3.4 MB, cor da emenda #050605\ncontinuidade — site/frames: 48 quadros (a cada 4), mediana 0.983\nPASSA — um movimento só\nsaída: 0</pre><p>4 s + 4 s = 191 frames (frame 0 of clip 2 is dropped so it isn't repeated). montar.py writes to site/frames, the folder the kit page already reads.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "The hidden cut",
+   "sub": "A clip that jumps scenes in the middle: the lens in the dark studio and, suddenly, on the light background.",
+   "blocos": [
+    {
+     "rot": "Terminal · a clip with a cut",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a6; SM=$E/site-movimento/skill/site-movimento/scripts\n# a clip with a hidden cut in the middle: the lens in the dark studio and, suddenly, on the light background\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/a.mp4\" 2 1.0 1.1\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente-clara.jpg\" \"$E/b.mp4\" 2 1.1 1.2\nffmpeg -v error -y -i \"$E/a.mp4\" -i \"$E/b.mp4\" -filter_complex \"[0:v][1:v]concat=n=2:v=1[v]\" -map \"[v]\" -c:v libx264 -crf 18 \"$E/c3.mp4\"\npython3 \"$SM/cortes.py\" \"$E/c3.mp4\" | sed \"s#$E/##\"; echo \"saída: ${PIPESTATUS[0]}\""
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Captured output (10/19/2026)",
+      "html": "<pre>a.mp4: 2,0 s · 24 fps · 1920×1080\nb.mp4: 2,0 s · 24 fps · 1920×1080\nc3.mp4 quadros 97, mediana 1.00, piores [(48, 0.46), (72, 0.99)] CORTE no(s) quadro(s) [48]\nsaída: 1</pre><p>The frame pair at 48 drops to 0.46 against a median of 1.00: a cut. A cut between two dark, similar frames can slip past cortes.py; that's why the skill also runs continuidade.py and you watch the film.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "simfila",
+   "titulo": "The clip queue",
+   "sub": "Paid clips go out in order, one at a time. Run it, interrupt it, and run it again: only what's missing comes back.",
+   "tarefas": [
+    "clip 1 + gates",
+    "clip 2 + gates",
+    "clip 3 + gates",
+    "montar.py",
+    "continuidade.py"
+   ],
+   "falha": 2,
+   "rot": {
+    "entrada": "fila/",
+    "rodando": "rodando/",
+    "feito": "pronto/",
+    "falhou": "falhou/",
+    "rodar": "Run the queue",
+    "parar": "Interrupt (Ctrl+C)",
+    "zerar": "Start over"
+   },
+   "msg": {
+    "inicio": "5 steps in fila/. Click \"Run the queue\".",
+    "rodando": "One step at a time: the next clip depends on the real last frame of the previous one.",
+    "parou": "Interrupted. The middle step stayed in rodando/. Run again to see the resume.",
+    "retoma": "Resume: what was in rodando/ went back to the queue. A clip that's already done isn't generated again (or charged again).",
+    "fim": "Queue empty: clips, assembly, and continuity done.",
+    "fimfalha": "Queue empty. Clip 3 went to falhou/ (hidden cut): bring the keyframes closer and redo only that one."
+   },
+   "legenda": "Simulation in the browser: nothing is generated. The failure is on purpose, to show that only the clip with the cut comes back."
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "The copy gate in three languages",
+   "sub": "The site-movimento version of lesson 3's gate: it reads Portuguese, English, and Spanish.",
+   "blocos": [
+    {
+     "rot": "Terminal · copy gate on the kit page and on the bad example",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nP=${TMPDIR:-/tmp}/ensaio-sites/a6/site-movimento/skill/site-movimento/scripts/portao-texto.js\nnode \"$P\" \"$K/site/index.html\"; echo \"saída: $?\"\nnode \"$P\" \"$K/exemplos/texto-ruim-pt.html\" 2>&1 | head -5; echo \"saída: ${PIPESTATUS[0]}\""
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Captured output (10/19/2026)",
+      "html": "<pre>✓ ~/projetos/formacao-cinema-ia-sites-v72/kit/site/index.html — texto limpo\nsaída: 0\n✗ ~/projetos/formacao-cinema-ia-sites-v72/kit/exemplos/texto-ruim-pt.html — 3 defeito(s)\n  manda a pessoa rolar\n    …Aurora 35 Role para baixo e veja a lente de perto.…\n  narra a câmera\n    …e de perto. Um plano-sequência A câmera avança pelo vidro até o diafragma…\nsaída: 1</pre><p>The gate also fails an em dash, AI jargon (\"revolucionário\"), placeholder text, and the film frame repeated as an image right below it.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "pratica",
+   "titulo": "Practice",
+   "sub": "The film's gates, without generating anything.",
+   "exercicios": [
+    {
+     "id": "e1",
+     "titulo": "E1 · Engines",
+     "min": "5 min",
+     "texto": "Run \"download site-movimento and test the engines\".",
+     "pronto": "<code>4/4 motores OK</code> and <code>saída: 0</code>."
+    },
+    {
+     "id": "e2",
+     "titulo": "E2 · Continuous film",
+     "min": "10 min",
+     "texto": "Run \"chain, assemble, and prove continuity\". Then serve the ensaio's site/ folder and run verificar.mjs in it.",
+     "pronto": "<code>PASSA — um movimento só</code> with <code>saída: 0</code>, and the verifier answers <code>quadros: 191 (frames/)</code> and <code>OK: 3 de 3 posições</code>."
+    },
+    {
+     "id": "e3",
+     "titulo": "E3 · Catch the cut",
+     "min": "10 min",
+     "texto": "Run \"a clip with a cut\". Then swap lente-clara.jpg for lente2.jpg (another dark photo) and run it again: note the worst pair and say why it passed.",
+     "pronto": "With the light lens: <code>CORTE no(s) quadro(s) [48]</code> and <code>saída: 1</code>."
+    },
+    {
+     "id": "e4",
+     "titulo": "E4 · Your copy",
+     "min": "10 min",
+     "texto": "Run the copy gate on the page you're building.",
+     "pronto": "<code>texto limpo</code> and <code>saída: 0</code>."
+    }
+   ]
+  },
+  {
+   "tipo": "quiz",
+   "titulo": "Lesson quiz",
+   "sub": "The explanation appears after you answer.",
+   "perguntas": [
+    {
+     "p": "Where should clip 2 start from?",
+     "opcoes": [
+      "From the keyframe you approved for the end of clip 1, without changing anything.",
+      "From any similar image.",
+      "From the last real frame of clip 1, extracted from the video.",
+      "From the first frame of clip 1."
+     ],
+     "certa": 2,
+     "explica": "The engine never ends exactly on the keyframe. Starting from the last real frame (extracted pixels) makes the seam match by construction.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "cortes.py found a cut in the middle of clip 3. What does the skill tell you to do?",
+     "opcoes": [
+      "Hide the cut with a fade.",
+      "Bring the keyframes closer together and redo clip 3.",
+      "Buy a bridge clip that leads from one side of the cut to the other.",
+      "Move on: nobody notices it while scrolling."
+     ],
+     "certa": 1,
+     "explica": "The person stops scrolling exactly at the cut. A fade or a flash draws attention; a bridge cuts again. Use a smaller camera step and redo it.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "Why does continuidade.py compare against the local median instead of a fixed threshold?",
+     "opcoes": [
+      "Because a fast, smooth tracking shot scores low and a cut between similar frames scores high; the shape of the curve tells the two apart.",
+      "Because the fixed threshold is slow.",
+      "Because each generator uses a different scale.",
+      "Because ffmpeg does not compute SSIM."
+     ],
+     "certa": 0,
+     "explica": "Smooth motion: each pair looks like its neighbors, however low the score. Cut: a sharp drop below the median of its neighbors. That is what the script itself explains in its header.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "What does DRY_RUN=1 guarantee in the engine test?",
+     "opcoes": [
+      "That the clip comes out cheaper.",
+      "That the engine uses the test key.",
+      "That the video is generated at low resolution.",
+      "That no service is called: the engine only shows the command."
+     ],
+     "certa": 3,
+     "explica": "The script exits before reading a key or calling the network. It is the way to test the contract without spending anything.",
+     "ref": "codigo"
+    }
+   ]
+  },
+  {
+   "tipo": "resumo",
+   "titulo": "In three sentences",
+   "itens": [
+    {
+     "t": "Chain",
+     "texto": "Clip N starts on the last real frame of the previous one, in order."
+    },
+    {
+     "t": "Gates",
+     "texto": "pinning, cuts, continuity; a cut never gets in."
+    },
+    {
+     "t": "No spend",
+     "texto": "DRY_RUN and rehearsal clips prove the path before the generator."
+    }
+   ]
+  },
+  {
+   "tipo": "links",
+   "titulo": "Going further",
+   "links": [
+    {
+     "t": "site-movimento: usage guide",
+     "href": "https://inematds.github.io/site-movimento/guia/",
+     "icone": "camadas"
+    },
+    {
+     "t": "site-movimento: published pilot (eventos home with film)",
+     "href": "https://inematds.github.io/site-movimento/piloto/eventos/",
+     "icone": "video"
+    },
+    {
+     "t": "Course 1 of the track: first and last frame in the generators",
+     "href": "https://inematds.github.io/formacao-cinema-ia-geracao-v72/en/",
+     "icone": "seta"
+    }
+   ]
+  }
+ ]
+}

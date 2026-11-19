@@ -1,0 +1,6 @@
+QUADROS: 144 · 1024×576 · 1,5 MB · 24 fps
+f_0001.jpg
+f_0002.jpg
+f_0003.jpg
+OK: 144 quadros · 24 fps · 1024 px · 1,5 MB
+saída: 0

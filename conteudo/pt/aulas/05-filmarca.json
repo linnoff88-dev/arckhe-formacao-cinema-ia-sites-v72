@@ -1,0 +1,283 @@
+{
+ "slug": "filmarca",
+ "num": 5,
+ "menu": "filmarca",
+ "titulo": "Filme da marca a partir do próprio site",
+ "titulo_curto": "Filme da marca",
+ "minutos": 18,
+ "lead": "Até aqui o vídeo virou página. Agora o caminho inverso: a página vira vídeo. O filmarca (INEMA) lê cores, fontes, logo, textos e prints de um site e monta um filme da marca em HyperFrames. Você roda o caminho inteiro contra a página do kit sem chamar modelo nenhum, com as cenas-modelo do próprio filmarca, e depois põe o filme na página.",
+ "objetivo": "ler o DNA do site do kit com o filmarca e renderizar um filme da marca com cenas-modelo, sem chamar modelo.",
+ "competencias": [
+  "ler-dna-do-site",
+  "renderizar-filme-da-marca",
+  "embutir-video-leve"
+ ],
+ "aprende": [
+  {
+   "icone": "lupa",
+   "t": "O DNA: o que o filmarca lê de um site e onde ele erra"
+  },
+  {
+   "icone": "lista",
+   "t": "Roteiro com fatos da página e as seis cenas-modelo (abertura, título, número, print, lista, chamada)"
+  },
+  {
+   "icone": "video",
+   "t": "Render local, sem modelo: o ensaio que prova o caminho antes de gastar"
+  },
+  {
+   "icone": "arquivo",
+   "t": "O filme de volta na página, sem pesar na primeira pintura"
+  }
+ ],
+ "hero_alt": "Dois monitores numa mesa escura: à esquerda uma página com amostras de cor, à direita uma linha do tempo de vídeo; uma claquete fechada na mesa.",
+ "secoes": [
+  {
+   "tipo": "diagrama",
+   "titulo": "Do site ao filme da marca",
+   "sub": "As etapas do filmarca. Clique em cada uma.",
+   "nos": [
+    {
+     "icone": "lupa",
+     "titulo": "dna",
+     "sub": "Playwright",
+     "detalhe": "Abre o site num Chromium sem tela e grava marca.json: cores por papel (fundo, texto, primária), fontes, logo, títulos, números e prints do topo, de três faixas e do celular. Sem modelo."
+    },
+    {
+     "icone": "caneta",
+     "titulo": "roteiro",
+     "sub": "fatos do site",
+     "detalhe": "O diretor (o modelo da sua assinatura, pelo claude -p ou codex exec) escreve o conceito e as cenas só com fatos do marca.json. No ensaio, você escreve o roteiro.json à mão."
+    },
+    {
+     "icone": "camadas",
+     "titulo": "cenas",
+     "sub": "HTML + GSAP",
+     "detalhe": "Cada cena vira HTML, CSS e GSAP num contrato fechado. A conferência roda cada cena nos três formatos e recusa rede, relógio, acaso, animação CSS, texto fora do quadro e palavra partida. Recusada duas vezes, entra a cena-modelo."
+    },
+    {
+     "icone": "video",
+     "titulo": "render",
+     "sub": "HyperFrames",
+     "detalhe": "Uma composição por idioma e formato (16:9, 9:16, 1:1), lint e MP4 renderizado na sua máquina."
+    },
+    {
+     "icone": "arquivo",
+     "titulo": "Na página",
+     "sub": "vídeo leve",
+     "forte": true,
+     "detalhe": "O MP4 entra numa seção comum, com preload=\"none\" e pôster: não pesa na primeira pintura e só baixa quando a pessoa aperta play."
+    }
+   ],
+   "volta": "o filme volta para o site",
+   "legenda": "O filmarca fixa hyperframes 0.8.134 no package-lock dele (19/10/2026); o curso 3 ensina a 0.8.176. Use o lock do projeto: é o que os testes dele passaram."
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Instalar o filmarca",
+   "sub": "Numa pasta de ensaio, no commit testado. O npm test do projeto roda sem modelo.",
+   "blocos": [
+    {
+     "rot": "Terminal · clonar, instalar e testar",
+     "icone": "terminal",
+     "conteudo": "E=${TMPDIR:-/tmp}/ensaio-sites/a5; rm -rf \"$E\"; mkdir -p \"$E\"; cd \"$E\"\ngit clone -q https://github.com/inematds/filmarca && cd filmarca && git checkout -q 0c0356c; echo \"clone: $?\"\nnpm ci --no-audit --no-fund > npm.log 2>&1; echo \"npm ci: $?\"\nnode -p \"'hyperframes ' + require('hyperframes/package.json').version + ' · playwright ' + require('playwright/package.json').version\"\nnpx playwright install chromium > pw.log 2>&1; echo \"chromium: $?\"\nnpm test 2>&1 | grep -E \"^ℹ (pass|fail)\""
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Saída capturada (19/10/2026)",
+      "html": "<pre>clone: 0\nnpm ci: 0\nhyperframes 0.8.134 · playwright 1.63.0\nchromium: 0\nℹ pass 5\nℹ fail 0</pre><p>Os 5 testes provam que uma cena quebrada é recusada e que a cena-modelo entra no lugar.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Ler o DNA da página do kit",
+   "sub": "O servidor do kit serve a página da lente; o filmarca lê como leria qualquer site.",
+   "blocos": [
+    {
+     "rot": "Terminal · dna do site do kit",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a5; cd \"$E/filmarca\"\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode bin/filmarca.mjs dna \"$U\" --out \"$E/filme\"; echo \"dna: $?\"\nkill $S\nls \"$E/filme/assets\""
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Saída capturada (19/10/2026)",
+      "html": "<pre>  lendo http://127.0.0.1:&lt;porta&gt;/\n  marca: Aurora 35 · cores #0c0c10 #f3efe7 #e2a23b #e2a23b #0b0b0d · fontes Georgia / system-ui · logo assets/logo.svg\ndna: 0\nfonts\nlogo.svg\nprint-1.png\nprint-2.png\nprint-3.png\nprint-celular.png\nprint-topo.png</pre><p>Repare na cor primária: <code>#e2a23b</code> é o amarelo da chave de movimento (Parado / Ligado), não o detalhe da marca. O DNA lê o que aparece na tela. Confira o marca.json antes de gerar e corrija à mão o que estiver errado.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Render sem modelo",
+   "sub": "Um roteiro com fatos da página (kit/filmarca/roteiro.json) e as cenas-modelo do filmarca no lugar do passo cenas.",
+   "blocos": [
+    {
+     "rot": "Terminal · cenas-modelo, render e conferir",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a5; cd \"$E/filmarca\"\nexport HYPERFRAMES_NO_TELEMETRY=1\ncp \"$K/filmarca/roteiro.json\" \"$E/filme/\"\nnode \"$K/scripts/cenas-modelo.mjs\" . \"$E/filme\"\nnode bin/filmarca.mjs render \"$E/filme\" --formatos 16x9 --rascunho; echo \"render: $?\"\npython3 \"$K/scripts/conferir-video.py\" \"$E/filme/renders/aurora-35-pt-16x9.mp4\" 17.5 1920x1080; echo \"saída: $?\""
+    },
+    {
+     "rot": "Arquivo · kit/filmarca/roteiro.json",
+     "icone": "arquivo",
+     "conteudo": "{\n  \"titulo\": \"Aurora 35\",\n  \"conceito\": \"a lente apresentada só com o que a página dela diz: luz baixa, abertura, ficha e reserva\",\n  \"lang\": \"pt\",\n  \"cenas\": [\n    { \"id\": \"c1\", \"tipo\": \"abertura\", \"duracao\": 3.5, \"textos\": { \"frase\": \"Feita para a cena que acontece com pouca luz.\" }, \"direcao\": \"\", \"midia\": null },\n    { \"id\": \"c2\", \"tipo\": \"numero\", \"duracao\": 3, \"textos\": { \"numero\": \"f/1.4\", \"legenda\": \"para filmar no fim da tarde sem subir o ISO\" }, \"direcao\": \"\", \"midia\": null },\n    { \"id\": \"c3\", \"tipo\": \"print\", \"duracao\": 3.5, \"textos\": { \"legenda\": \"Lente prime de 35 mm\" }, \"direcao\": \"\", \"midia\": \"assets/print-topo.png\" },\n    { \"id\": \"c4\", \"tipo\": \"lista\", \"duracao\": 4, \"textos\": { \"titulo\": \"Ficha técnica\", \"itens\": [\"35 mm\", \"f/1.4 a f/16\", \"Encaixe PL e EF\", \"780 g\"] }, \"direcao\": \"\", \"midia\": null },\n    { \"id\": \"c5\", \"tipo\": \"cta\", \"duracao\": 3.5, \"textos\": { \"chamada\": \"Reserve a sua\", \"botao\": \"Reservar a Aurora 35\" }, \"direcao\": \"\", \"midia\": null }\n  ]\n}"
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Saída capturada (19/10/2026)",
+      "html": "<pre>cenas-modelo: 5 cenas · 17,5 s · marca Aurora 35 · logo assets/logo.svg\n  ✓ renders/aurora-35-pt-16x9.mp4 · 8 s (lint com avisos)\n/tmp/ensaio-sites/a5/filme/renders/aurora-35-pt-16x9.mp4\nrender: 0\nOK: 17,5 s · 1920×1080 · 30 fps · sem áudio\nsaída: 0</pre><p>Cinco cenas, 17,5 s, render de rascunho em segundos. \"lint com avisos\" é aviso, não erro: o MP4 saiu e passou no conferidor.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Com o modelo da sua assinatura, e de volta na página",
+   "sub": "O passo real troca o roteiro escrito à mão e as cenas-modelo pelo diretor e pelas cenas animadas pelo modelo. Depois, o MP4 entra na página.",
+   "blocos": [
+    {
+     "rot": "Com o modelo · roteiro, cenas e render",
+     "icone": "robo",
+     "conteudo": "cd <pasta-do-filmarca>\nnode bin/filmarca.mjs roteiro <pasta-do-filme> --pedido \"filme de apresentação da lente para a página\" --motor claude\nnode bin/filmarca.mjs cenas <pasta-do-filme> --motor claude\nnode bin/filmarca.mjs render <pasta-do-filme> --formatos 16x9,9x16 --rascunho"
+    },
+    {
+     "rot": "Arquivo · kit/exemplos/video-da-marca.html",
+     "icone": "arquivo",
+     "conteudo": "<!-- O filme da marca numa seção comum da página: só baixa e toca quando a pessoa pede. -->\n<section class=\"secao\" id=\"filme-da-marca\">\n  <h2>A Aurora 35 em 17 segundos</h2>\n  <video src=\"filme/aurora-35-pt-16x9.mp4\" poster=\"filme/poster.jpg\"\n         controls muted playsinline preload=\"none\" width=\"1280\" height=\"720\"\n         style=\"width:100%;height:auto;border-radius:14px\"></video>\n</section>"
+    }
+   ]
+  },
+  {
+   "tipo": "pratica",
+   "titulo": "Prática",
+   "sub": "O ensaio inteiro, e o filme na página.",
+   "exercicios": [
+    {
+     "id": "e1",
+     "titulo": "E1 · Instalar",
+     "min": "10 min",
+     "texto": "Rode \"clonar, instalar e testar\".",
+     "pronto": "<code>npm ci: 0</code>, <code>hyperframes 0.8.134</code> e <code>ℹ fail 0</code>."
+    },
+    {
+     "id": "e2",
+     "titulo": "E2 · DNA e filme sem modelo",
+     "min": "10 min",
+     "texto": "Rode \"dna do site do kit\" e depois \"cenas-modelo, render e conferir\".",
+     "pronto": "<code>dna: 0</code>, <code>render: 0</code> e <code>OK: 17,5 s · 1920×1080</code> com <code>saída: 0</code>."
+    },
+    {
+     "id": "e3",
+     "titulo": "E3 · O filme na página",
+     "min": "15 min",
+     "texto": "Numa cópia da página do kit, crie a pasta filme/, copie o MP4 e tire o pôster (<code>ffmpeg -ss 2 -i filme/aurora-35-pt-16x9.mp4 -frames:v 1 filme/poster.jpg</code>). Cole a seção de kit/exemplos/video-da-marca.html antes da ficha técnica e rode o peso.py com <code>--inicial 0.5</code>.",
+     "pronto": "O peso.py mostra <code>vídeo</code> na linha PESO e <code>primeira pintura … DENTRO</code>."
+    }
+   ]
+  },
+  {
+   "tipo": "quiz",
+   "titulo": "Teste da aula",
+   "sub": "A explicação aparece depois da sua resposta.",
+   "perguntas": [
+    {
+     "p": "Qual etapa do filmarca roda sem modelo nenhum?",
+     "opcoes": [
+      "O roteiro.",
+      "O dna.",
+      "As cenas animadas.",
+      "A tradução dos textos."
+     ],
+     "certa": 1,
+     "explica": "O dna é Playwright lendo a página: cores, fontes, logo, textos e prints. Roteiro, cenas e tradução usam o modelo da sua assinatura; no ensaio, o roteiro é escrito à mão e as cenas são as cenas-modelo.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "O DNA deu a cor primária #e2a23b, que é a cor da chave de movimento. O que fazer?",
+     "opcoes": [
+      "Rodar o dna até acertar.",
+      "Apagar a chave de movimento do site.",
+      "Gerar o filme assim mesmo; o modelo percebe a cor errada e corrige sozinho.",
+      "Conferir o marca.json e corrigir a cor à mão antes de gerar."
+     ],
+     "certa": 3,
+     "explica": "O DNA lê o que aparece na tela, e um botão colorido conta como cor. O marca.json é seu: corrigir uma linha custa menos que refazer cenas.",
+     "ref": "codigo"
+    },
+    {
+     "p": "Uma cena escrita pelo modelo foi recusada duas vezes pela conferência. O que o filmarca faz?",
+     "opcoes": [
+      "Põe a cena-modelo do mesmo tipo no lugar.",
+      "Para o filme inteiro.",
+      "Publica a cena recusada com um aviso.",
+      "Pede uma terceira, uma quarta e uma quinta tentativa ao modelo."
+     ],
+     "certa": 0,
+     "explica": "Recusada, o modelo corrige uma vez; falhou de novo, entra a cena-modelo. O filme sempre sai, e a página de revisão mostra qual cena é modelo.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "Por que o vídeo da marca entra na página com preload=\"none\"?",
+     "opcoes": [
+      "Porque sem preload=\"none\" o vídeo não toca no celular em nenhum navegador.",
+      "Porque o GitHub Pages não serve MP4 grande.",
+      "Para só baixar o MP4 quando a pessoa pedir, fora da primeira pintura.",
+      "Para o vídeo tocar sozinho ao abrir."
+     ],
+     "certa": 2,
+     "explica": "Com preload=\"none\" e pôster, o navegador só baixa o vídeo no play. A primeira pintura continua a mesma; o peso.py conta o vídeo no total, não no início.",
+     "ref": "codigo"
+    }
+   ]
+  },
+  {
+   "tipo": "resumo",
+   "titulo": "Em três frases",
+   "itens": [
+    {
+     "t": "DNA",
+     "texto": "O filmarca lê o site sem modelo; confira o marca.json."
+    },
+    {
+     "t": "Ensaio",
+     "texto": "Roteiro à mão + cenas-modelo + render local = filme sem gastar nada."
+    },
+    {
+     "t": "De volta",
+     "texto": "MP4 com pôster e preload=\"none\" numa seção da página."
+    }
+   ]
+  },
+  {
+   "tipo": "links",
+   "titulo": "Para ir além",
+   "links": [
+    {
+     "t": "filmarca: guia de uso e o filme do inema.club feito por ele",
+     "href": "https://inematds.github.io/filmarca/guia/",
+     "icone": "video"
+    },
+    {
+     "t": "Curso 3 da formação: HyperFrames por dentro",
+     "href": "https://inematds.github.io/formacao-cinema-ia-motion-v72/",
+     "icone": "seta"
+    },
+    {
+     "t": "MDN: o elemento video e o atributo preload",
+     "href": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video",
+     "icone": "arquivo"
+    }
+   ]
+  }
+ ]
+}

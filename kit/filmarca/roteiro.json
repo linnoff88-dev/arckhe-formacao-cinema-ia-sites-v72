@@ -1,0 +1,12 @@
+{
+  "titulo": "Aurora 35",
+  "conceito": "a lente apresentada só com o que a página dela diz: luz baixa, abertura, ficha e reserva",
+  "lang": "pt",
+  "cenas": [
+    { "id": "c1", "tipo": "abertura", "duracao": 3.5, "textos": { "frase": "Feita para a cena que acontece com pouca luz." }, "direcao": "", "midia": null },
+    { "id": "c2", "tipo": "numero", "duracao": 3, "textos": { "numero": "f/1.4", "legenda": "para filmar no fim da tarde sem subir o ISO" }, "direcao": "", "midia": null },
+    { "id": "c3", "tipo": "print", "duracao": 3.5, "textos": { "legenda": "Lente prime de 35 mm" }, "direcao": "", "midia": "assets/print-topo.png" },
+    { "id": "c4", "tipo": "lista", "duracao": 4, "textos": { "titulo": "Ficha técnica", "itens": ["35 mm", "f/1.4 a f/16", "Encaixe PL e EF", "780 g"] }, "direcao": "", "midia": null },
+    { "id": "c5", "tipo": "cta", "duracao": 3.5, "textos": { "chamada": "Reserve a sua", "botao": "Reservar a Aurora 35" }, "direcao": "", "midia": null }
+  ]
+}

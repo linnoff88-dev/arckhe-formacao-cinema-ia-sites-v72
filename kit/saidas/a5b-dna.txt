@@ -1,0 +1,10 @@
+  lendo http://127.0.0.1:<porta>/
+  marca: Aurora 35 · cores #0c0c10 #f3efe7 #e2a23b #e2a23b #0b0b0d · fontes Georgia / system-ui · logo assets/logo.svg
+dna: 0
+fonts
+logo.svg
+print-1.png
+print-2.png
+print-3.png
+print-celular.png
+print-topo.png

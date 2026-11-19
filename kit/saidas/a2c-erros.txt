@@ -1,0 +1,6 @@
+FALHA: 36 quadros = 6 fps (fonte 24): esperava 144
+FALHA: sem manifest.json
+saída: 1
+FALHA: nomes sem zeros à esquerda (f_109.jpg vem antes de f_11.jpg na ordem alfabética)
+FALHA: sem manifest.json
+saída: 1

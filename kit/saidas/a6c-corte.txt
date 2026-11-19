@@ -1,0 +1,4 @@
+a.mp4: 2,0 s · 24 fps · 1920×1080
+b.mp4: 2,0 s · 24 fps · 1920×1080
+c3.mp4 quadros 97, mediana 1.00, piores [(48, 0.46), (72, 0.99)] CORTE no(s) quadro(s) [48]
+saída: 1

@@ -1,0 +1,333 @@
+{
+ "slug": "seu-site",
+ "num": 8,
+ "menu": "Your site",
+ "titulo": "Your site: a product page with cinematic scroll, published",
+ "titulo_curto": "Your site, published",
+ "minutos": 20,
+ "lead": "Time to put it all together on a page of your own. You start from the kit's template, swap the photo and the text for those of your product, redo the two films, pass the four-check gate and publish to GitHub Pages. The same checker that ran on your machine runs against the public URL: it is what says you are live.",
+ "objetivo": "build your page from the kit's template, pass gate 4 of 4 and publish to GitHub Pages.",
+ "competencias": [
+  "montar-pagina-de-produto",
+  "passar-no-portao",
+  "publicar-e-verificar"
+ ],
+ "aprende": [
+  {
+   "icone": "pasta",
+   "t": "The kit template as a starting point, with your photo and your text"
+  },
+  {
+   "icone": "portao",
+   "t": "The 4/4 gate: weight, computer, phone, and reduced motion"
+  },
+  {
+   "icone": "nuvem",
+   "t": "Publish on GitHub Pages and check the public URL"
+  },
+  {
+   "icone": "calendario",
+   "t": "Your plan with dates and the map of the whole program"
+  }
+ ],
+ "hero_alt": "A desk at night with a large monitor showing a blurred product page, a phone, a tablet, and a mug.",
+ "secoes": [
+  {
+   "tipo": "mapa",
+   "titulo": "The map of your page",
+   "sub": "The four deliverables the page brings together. Click a step to see the \"done when\".",
+   "degraus": [
+    {
+     "aula": "quadros",
+     "icone": "pasta",
+     "quando": "Step 1",
+     "titulo": "Frames",
+     "sub": "your clip",
+     "saida": "Frames folder checked, horizontal and vertical.",
+     "passo": "Clip of your product (generator or rehearsal with clipe.sh) and frames at the native rate, checked by conferir-quadros.py."
+    },
+    {
+     "aula": "rolagem",
+     "icone": "seta",
+     "quando": "Step 2",
+     "titulo": "Scroll",
+     "sub": "contract",
+     "saida": "A page that passes the checker at the three points.",
+     "passo": "The frames in the kit engine, with the ?jump and __ready contract. If you asked the skill for the page from kit/site, the same checker verifies it."
+    },
+    {
+     "aula": "fundo-vivo",
+     "icone": "video",
+     "quando": "Step 3",
+     "titulo": "Film",
+     "sub": "optional",
+     "saida": "Chained film with continuity PASSA.",
+     "passo": "If your film has more than one clip, chain them and run the site-movimento gates before assembling."
+    },
+    {
+     "aula": "celular",
+     "icone": "escudo",
+     "quando": "Step 4",
+     "titulo": "Mobile",
+     "sub": "and reduce",
+     "saida": "Light vertical and a still film with reduced motion.",
+     "passo": "Vertical film within budget and the page still for anyone who asked for less motion."
+    }
+   ],
+   "resultado": {
+    "titulo": "At the end of the course",
+    "texto": "A product page of your own, with a scroll film, published and checked at the public URL.",
+    "total": "8 lessons"
+   },
+   "legenda": "Lessons 1, 4, and 5 come in when the page asks for them: the weight decision, a Three.js scene, and the brand film."
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "From the template to your page, with the gate",
+   "sub": "The rehearsal swaps the front-facing lens for the lens lying down; in yours, swap in your product photo and rewrite the texts in index.html.",
+   "blocos": [
+    {
+     "rot": "Terminal · build the page and pass the gate",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a8; rm -rf \"$E\"; mkdir -p \"$E\"\n# your site starts as a copy of the template; swap the product photo for yours (here: the lens lying down)\ncp -r \"$K/site\" \"$E/meu-site\"; rm -f \"$E/meu-site\"/erro-*.html\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente2.jpg\" \"$E/h.mp4\" 6 1.0 1.3\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente2.jpg\" \"$E/v.mp4\" 6 1.0 1.3 1080x1920\nbash \"$K/scripts/quadros.sh\" \"$E/h.mp4\" \"$E/meu-site/frames\" 1024 6\nbash \"$K/scripts/quadros.sh\" \"$E/v.mp4\" \"$E/meu-site/frames-v\" 600 8\nbash \"$K/scripts/portao.sh\" \"$E/meu-site\"; echo \"saída: $?\""
+    },
+    {
+     "rot": "File · kit/scripts/portao.sh",
+     "icone": "arquivo",
+     "conteudo": "#!/usr/bin/env bash\n# portao.sh — o portão final da página: 4 conferências, uma por vez, sem modelo e sem serviço pago.\n#   1. peso       visitante mais pesado ≤ ORCAMENTO MB (padrão 6) e primeira pintura ≤ 0,5 MB\n#   2. computador 1366×768: rolagem em 0 %, 50 % e 100 % com o quadro certo e tela pintada\n#   3. celular    390×844 em pé: filme vertical (frames-v/), sem transbordo\n#   4. reduzir    com \"reduzir movimento\": o filme fica parado\n# Uso: bash portao.sh <pasta-do-site>          (ORCAMENTO=8 bash portao.sh … muda o teto)\nset -uo pipefail\nK=$(cd \"$(dirname \"$0\")/..\" && pwd)\nSITE=$(cd \"$1\" && pwd)\nT=$(mktemp -d); trap 'kill $S 2>/dev/null; rm -rf \"$T\"' EXIT\nnode \"$K/scripts/servir.mjs\" \"$SITE\" > \"$T/url\" & S=$!\nuntil U=$(cat \"$T/url\" 2>/dev/null) && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nok=0\npython3 \"$K/scripts/peso.py\" \"$SITE\" --orcamento \"${ORCAMENTO:-6}\" --inicial 0.5 > \"$T/1\" && ok=$((ok+1)) && echo \"1 peso: OK\" || { echo \"1 peso: FALHA\"; grep -E \"ACIMA\" \"$T/1\"; }\nfor n in \"2 computador:\" \"3 celular:--celular\" \"4 reduzir:--reduzir\"; do\n  rot=${n%%:*}; op=${n#*:}\n  node \"$K/scripts/verificar.mjs\" \"$U\" $op > \"$T/v\" && ok=$((ok+1)) && echo \"$rot: OK\" || { echo \"$rot: FALHA\"; grep \"^FALHA\" \"$T/v\"; }\ndone\necho \"PORTÃO: $ok/4 $([ $ok -eq 4 ] && echo OK || echo FALHOU)\"\n[ $ok -eq 4 ]"
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Captured output (10/19/2026)",
+      "html": "<pre>h.mp4: 6,0 s · 24 fps · 1920×1080\nv.mp4: 6,0 s · 24 fps · 1080×1920\nQUADROS: 144 · 1024×576 · 2,2 MB · 24 fps\nQUADROS: 144 · 600×1066 · 3,5 MB · 24 fps\n1 peso: OK\n2 computador: OK\n3 celular: OK\n4 reduzir: OK\nPORTÃO: 4/4 OK\nsaída: 0</pre><p>The gate runs the four checks one at a time and exits with 0 only if all four pass.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Publish and check it live",
+   "sub": "A public repository with the page at the root, GitHub Pages on the main branch. Then, the checker against the public URL.",
+   "blocos": [
+    {
+     "rot": "Once · publish the folder on GitHub Pages",
+     "icone": "git",
+     "conteudo": "cd <your-site-folder>\ngit init -b main && git add . && git commit -m \"my page with a scroll film\"\ngh repo create <your-user>/<repo-name> --public --source . --push\ngh api -X POST repos/<your-user>/<repo-name>/pages -f 'source[branch]=main' -f 'source[path]=/'"
+    },
+    {
+     "rot": "Terminal · check a published page",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\ncurl -s -o /dev/null -w \"%{http_code}\\n\" https://inematds.github.io/formacao-cinema-ia-sites-v72/kit/site/\nnode \"$K/scripts/verificar.mjs\" https://inematds.github.io/formacao-cinema-ia-sites-v72/kit/site/; echo \"saída: $?\""
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Captured output (10/19/2026)",
+      "html": "<pre>200\nChromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nquadros: 144 (frames/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: não\nOK: 3 de 3 posições\nsaída: 0</pre><p>This is the kit page published along with the course. Run the same block with your page's URL, which usually ends up at https://[seu-usuario].github.io/[nome-do-repo]/ a few minutes after the push.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "pratica",
+   "titulo": "Practice",
+   "sub": "Your page, from the template to live.",
+   "exercicios": [
+    {
+     "id": "e1",
+     "titulo": "E1 · Gate on the rehearsal",
+     "min": "10 min",
+     "texto": "Run \"build the page and pass the gate\".",
+     "pronto": "<code>PORTÃO: 4/4 OK</code> and <code>saída: 0</code>."
+    },
+    {
+     "id": "e2",
+     "titulo": "E2 · Your page",
+     "min": "60 min",
+     "dias": "1–2 dias",
+     "texto": "Copy kit/site to a folder of your own, delete the erro-*.html copies, swap the photo (clipe.sh in both formats), redo the frames, rewrite the index.html text using only facts about your product, and run the lesson 6 copy gate and portao.sh.",
+     "pronto": "The copy gate answers <code>texto limpo</code> and portao.sh answers <code>PORTÃO: 4/4 OK</code> with <code>saída: 0</code>."
+    },
+    {
+     "id": "e3",
+     "titulo": "E3 · Live",
+     "min": "15 min",
+     "texto": "Publish using the \"publicar a pasta no GitHub Pages\" block and run the checker with your URL.",
+     "pronto": "<code>curl -s -o /dev/null -w \"%{http_code}\" [your URL]</code> answers <code>200</code> and the checker answers <code>OK: 3 de 3 posições</code> with <code>saída: 0</code>."
+    }
+   ]
+  },
+  {
+   "tipo": "gerador",
+   "titulo": "Generate your plan with dates",
+   "sub": "Pick a start date and how much time you have per week.",
+   "curso": "Cinematic websites",
+   "horas_padrao": 4,
+   "degraus": [
+    {
+     "titulo": "Lesson 1 · When the weight is worth it",
+     "aula": "peso"
+    },
+    {
+     "titulo": "Lesson 2 · From video to frames",
+     "aula": "quadros"
+    },
+    {
+     "titulo": "Lesson 3 · Scroll and skill",
+     "aula": "rolagem"
+    },
+    {
+     "titulo": "Lesson 4 · Three.js without freezing",
+     "aula": "three"
+    },
+    {
+     "titulo": "Lesson 5 · Brand film",
+     "aula": "filmarca"
+    },
+    {
+     "titulo": "Lesson 6 · Living background",
+     "aula": "fundo-vivo"
+    },
+    {
+     "titulo": "Lesson 7 · Phone and reduced motion",
+     "aula": "celular"
+    },
+    {
+     "titulo": "Lesson 8 · Your published site",
+     "aula": "seu-site"
+    }
+   ],
+   "txt": {
+    "titulo": "Plan — Cinematic sites",
+    "inicio": "Start",
+    "ritmo": "Pace",
+    "termino": "Expected finish",
+    "ate": "by",
+    "pronto": "done when",
+    "semanas": "weeks",
+    "travou": "## What got stuck and the rule I created",
+    "h": "h per week",
+    "exs": "exercises"
+   }
+  },
+  {
+   "tipo": "quiz",
+   "titulo": "Lesson quiz",
+   "sub": "The explanation appears after you answer.",
+   "perguntas": [
+    {
+     "p": "portao.sh returned \"PORTÃO: 3/4 FALHOU\" with \"1 peso: FALHA\". What do you do first?",
+     "opcoes": [
+      "Publish anyway and fix the weight after the page is live.",
+      "Raise the ORCAMENTO until it passes.",
+      "See which visitor went over the limit and redo that visitor's frames lighter.",
+      "Delete the vertical film."
+     ],
+     "certa": 2,
+     "explica": "The gate tells you which check failed, and the line ABOVE tells you what is heavy. Raising the limit hides the problem; deleting the vertical makes the phone worse.",
+     "ref": "codigo"
+    },
+    {
+     "p": "Why run the checker against the public URL too?",
+     "opcoes": [
+      "Because once it is live, the file paths, the repository folder and the server are different, and only a test there proves the page works for whoever visits.",
+      "Because the local checker does not open canvas.",
+      "Because GitHub Pages requires it.",
+      "Because the public URL is faster."
+     ],
+     "certa": 0,
+     "explica": "A frame with the wrong name on the server, a folder that did not upload, an absolute path: all of that passes locally and breaks live. The same checker, a different URL.",
+     "ref": "codigo"
+    },
+    {
+     "p": "What text goes in your page's index.html?",
+     "opcoes": [
+      "The film script, to explain what the camera does.",
+      "A customer testimonial written by you, to build trust with visitors.",
+      "Market numbers the agent finds.",
+      "Only short facts about your product that say what the image does not."
+     ],
+     "certa": 3,
+     "explica": "The copy gate rejects camera scripts; an invented testimonial and a number without a source do not go anywhere. The text sells with what is true.",
+     "ref": "pratica"
+    },
+    {
+     "p": "Which of these is NOT one of the four checks in portao.sh?",
+     "opcoes": [
+      "Weight per visitor.",
+      "Desktop scroll at 0, 50, and 100%.",
+      "Core Web Vitals score.",
+      "Reduced motion."
+     ],
+     "certa": 2,
+     "explica": "The four are weight, desktop, mobile, and reduced motion. Core Web Vitals belongs to the inemaSEO Formation.",
+     "ref": "codigo"
+    }
+   ]
+  },
+  {
+   "tipo": "resumo",
+   "titulo": "In three sentences",
+   "itens": [
+    {
+     "t": "Template",
+     "texto": "Start from the kit; swap the photo, frames, and copy."
+    },
+    {
+     "t": "Gate",
+     "texto": "Weight, desktop, mobile, and reduced motion: 4/4 before you publish."
+    },
+    {
+     "t": "Live",
+     "texto": "GitHub Pages and the same checker on the public URL."
+    }
+   ]
+  },
+  {
+   "tipo": "links",
+   "titulo": "End of the Cinema with AI Formation: the 6 courses",
+   "links": [
+    {
+     "t": "Course 0 · Direction: think like a director before you generate",
+     "href": "https://inematds.github.io/formacao-cinema-ia-direcao-v72/en/",
+     "icone": "video"
+    },
+    {
+     "t": "Course 1 · Generation: image and video with AI in Oct 2026",
+     "href": "https://inematds.github.io/formacao-cinema-ia-geracao-v72/en/",
+     "icone": "video"
+    },
+    {
+     "t": "Course 2 · Production: from script to finished film",
+     "href": "https://inematds.github.io/formacao-cinema-ia-producao-v72/en/",
+     "icone": "video"
+    },
+    {
+     "t": "Course 3 · Motion by code with an agent",
+     "href": "https://inematds.github.io/formacao-cinema-ia-motion-v72/en/",
+     "icone": "terminal"
+    },
+    {
+     "t": "Course 4 · The video factory with agents",
+     "href": "https://inematds.github.io/formacao-cinema-ia-fabrica-v72/en/",
+     "icone": "robo"
+    },
+    {
+     "t": "Course 5 · Cinematic sites (this course)",
+     "href": "https://inematds.github.io/formacao-cinema-ia-sites-v72/en/",
+     "icone": "camadas"
+    },
+    {
+     "t": "INEMA Videos area",
+     "href": "https://eventos.inema.pro/videos/",
+     "icone": "seta"
+    }
+   ]
+  }
+ ]
+}

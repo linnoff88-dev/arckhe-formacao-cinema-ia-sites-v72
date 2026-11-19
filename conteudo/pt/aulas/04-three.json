@@ -1,0 +1,268 @@
+{
+ "slug": "three",
+ "num": 4,
+ "menu": "Three.js",
+ "titulo": "Profundidade com Three.js sem travar a página",
+ "titulo_curto": "Three.js sem travar",
+ "minutos": 15,
+ "lead": "Quadros de vídeo dão o filme; Three.js dá uma cena desenhada em código, que muda de ângulo conforme a rolagem. O risco é a cena desenhar sem parar, mesmo parada ou fora da tela, e esquentar o celular. Aqui você mede, num Chromium sem tela, quantas vezes a cena desenha em cada situação, e vê o erro comum falhar.",
+ "objetivo": "medir uma cena Three.js que só desenha quando a rolagem muda, para fora da tela e respeita reduzir movimento.",
+ "competencias": [
+  "desenhar-sob-demanda",
+  "limitar-densidade",
+  "medir-cena-3d"
+ ],
+ "aprende": [
+  {
+   "icone": "relogio",
+   "t": "Desenhar sob demanda: só quando o progresso da rolagem mudou"
+  },
+  {
+   "icone": "camadas",
+   "t": "Teto de densidade (1,5) e pausa fora da tela com IntersectionObserver"
+  },
+  {
+   "icone": "lupa",
+   "t": "Contar os desenhos com Playwright: parado, rolando, fora da tela e reduzir movimento"
+  },
+  {
+   "icone": "grafico",
+   "t": "Quanto o Three.js pesa na página"
+  }
+ ],
+ "hero_alt": "Monitor numa mesa escura mostrando uma cena 3D em arame com formas geométricas e uma grade em perspectiva.",
+ "secoes": [
+  {
+   "tipo": "diagrama",
+   "titulo": "Quando a cena desenha",
+   "sub": "Desenho sob demanda: cada pergunta é um motivo para NÃO desenhar. Clique em cada etapa.",
+   "nos": [
+    {
+     "icone": "seta",
+     "titulo": "Rolagem",
+     "sub": "evento",
+     "detalhe": "O evento de rolagem não desenha nada: só agenda uma checagem para o próximo quadro do navegador (requestAnimationFrame), e no máximo uma por quadro."
+    },
+    {
+     "icone": "lupa",
+     "titulo": "Na tela?",
+     "sub": "observador",
+     "detalhe": "Um IntersectionObserver diz se o canvas está visível. Fora da tela, a checagem para aqui: nada de desenhar o que ninguém vê."
+    },
+    {
+     "icone": "grafico",
+     "titulo": "Mudou?",
+     "sub": "progresso",
+     "detalhe": "Calcula o progresso da rolagem dentro da cena (0 a 1). Igual ao último desenhado? Para aqui. Página parada = zero desenhos."
+    },
+    {
+     "icone": "camadas",
+     "titulo": "render()",
+     "sub": "um desenho",
+     "detalhe": "Posiciona a câmera e os objetos pelo progresso e chama renderer.render uma vez. O kit conta em window.__renders para o teste ler."
+    },
+    {
+     "icone": "chip",
+     "titulo": "Placa",
+     "sub": "densidade ≤ 1,5",
+     "forte": true,
+     "detalhe": "renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5)). Num celular com densidade 3, desenhar em 3 é quatro vezes mais pixels que em 1,5, sem diferença que se veja na rolagem."
+    }
+   ],
+   "volta": "reduzir movimento: um quadro só",
+   "legenda": "O erro comum é o laço do tutorial: requestAnimationFrame chamando render() 60 vezes por segundo, para sempre."
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "O coração da cena do kit",
+   "sub": "Página kit/site-three/index.html: quatro anéis em profundidades diferentes; a câmera anda com a rolagem. Three.js 0.186.1 (npm, 19/10/2026), copiado em vendor/.",
+   "blocos": [
+    {
+     "rot": "Trecho · kit/site-three/index.html",
+     "icone": "arquivo",
+     "conteudo": "      // Sob demanda: só desenha quando a rolagem mudou o progresso e a cena está na tela.\n      const talvez = () => {\n        pedido = false;\n        if (!visivel) return;\n        const p = progresso();\n        if (Math.abs(p - ultimo) < 1e-4) return;\n        ultimo = p; desenhar(p);\n      };\n      const agendar = () => { if (!pedido) { pedido = true; requestAnimationFrame(talvez); } };"
+    }
+   ]
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Medir os desenhos",
+   "sub": "O three-medir.mjs rola a página num Chromium sem tela e lê window.__renders em cada situação.",
+   "blocos": [
+    {
+     "rot": "Terminal · medir a cena e o peso",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a4; rm -rf \"$E\"; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site-three\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/three-medir.mjs\" \"$U\"; echo \"saída: $?\"\nkill $S\npython3 \"$K/scripts/peso.py\" \"$K/site-three\" | head -1\necho \"three.js com gzip -9: $(cat \"$K\"/site-three/vendor/*.js | gzip -9 | wc -c) bytes\""
+    },
+    {
+     "rot": "Terminal · erro comum: desenhar sempre",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a4; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site-three\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/three-medir.mjs\" \"${U}?sempre=1\" | grep \"^FALHA\"; echo \"saída: ${PIPESTATUS[0]}\"\nkill $S"
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Saída capturada (19/10/2026)",
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0)\nparado 0 · rolando 30 · fora da tela 0 · reduzir 1 · DPR 1,5 (tela com densidade 3)\nOK: parado 0 · rolando 30 · fora da tela 0 · reduzir 1 · DPR 1,5\nsaída: 0\nPESO: js 2,12 · html/css 0,00 (MB)\nthree.js com gzip -9: 415205 bytes</pre><p>Parado e fora da tela: zero. Com reduzir movimento: um quadro só. As duas últimas linhas são o peso: 2,12 MB brutos (sem minificar), 0,42 MB com gzip -9. Servidores costumam comprimir JS; JPEG quase não comprime. Meça o que vai trafegar antes de comparar com o filme.</p>"
+     },
+     {
+      "rot": "Erro comum: desenhar sempre",
+      "html": "<pre>FALHA: desenhou 103 vezes parado (devia ser 0)\nFALHA: desenhou 81 vezes fora da tela (devia ser 0)\nFALHA: com reduzir movimento desenhou 83 vezes (devia ser 1)\nsaída: 1</pre><p>Com <code>?sempre=1</code> a página liga o laço do tutorial. Os números variam a cada execução; o que não varia é a falha.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "passos",
+   "titulo": "Quadros de vídeo ou Three.js?",
+   "sub": "Os dois cabem na mesma página; cada um faz uma coisa bem.",
+   "passos": [
+    {
+     "titulo": "Quadros",
+     "texto": [
+      "Foto real, material, luz difícil: o que um gerador ou uma câmera fazem melhor que código.",
+      "O peso cresce com a duração do filme."
+     ]
+    },
+    {
+     "titulo": "Three.js",
+     "texto": [
+      "Formas, diagramas, partículas, peças que reagem ao mouse ou mudam de cor: tudo desenhado na hora.",
+      "O peso é a biblioteca (2,12 MB brutos, 0,42 MB com gzip aqui) e o trabalho da placa a cada desenho."
+     ]
+    },
+    {
+     "titulo": "Juntos",
+     "texto": [
+      "Filme de quadros na abertura e uma peça Three.js numa seção abaixo. Cada um com a sua regra: quadros na janela de bitmaps, cena sob demanda.",
+      "A biblioteca certa para cada peça de motion está no curso 3 (aula 6)."
+     ]
+    }
+   ]
+  },
+  {
+   "tipo": "pratica",
+   "titulo": "Prática",
+   "sub": "Medir, quebrar e consertar.",
+   "exercicios": [
+    {
+     "id": "e1",
+     "titulo": "E1 · Medir",
+     "min": "5 min",
+     "texto": "Rode o bloco \"medir a cena e o peso\".",
+     "pronto": "A linha começa com <code>OK: parado 0 · rolando</code> (o número de desenhos ao rolar varia com a máquina), termina com <code>fora da tela 0 · reduzir 1 · DPR 1,5</code>, e vem <code>saída: 0</code>."
+    },
+    {
+     "id": "e2",
+     "titulo": "E2 · O erro",
+     "min": "5 min",
+     "texto": "Rode o mesmo medidor com <code>?sempre=1</code> no fim da URL (bloco \"erro comum: desenhar sempre\").",
+     "pronto": "Três linhas <code>FALHA: desenhou …</code> e <code>saída: 1</code>."
+    },
+    {
+     "id": "e3",
+     "titulo": "E3 · Sua cena",
+     "min": "20 min",
+     "texto": "Copie kit/site-three para uma pasta sua e troque os anéis por outra forma (TorusKnotGeometry, por exemplo) e a cor do material. Mantenha a função talvez e o teto de densidade. Sirva a pasta e meça.",
+     "pronto": "O three-medir.mjs na sua pasta responde <code>OK: parado 0</code> … <code>reduzir 1</code> com <code>saída: 0</code>."
+    }
+   ]
+  },
+  {
+   "tipo": "quiz",
+   "titulo": "Teste da aula",
+   "sub": "A explicação aparece depois da sua resposta.",
+   "perguntas": [
+    {
+     "p": "A página está parada, com a cena Three.js na tela. Quantas vezes por segundo ela deve desenhar?",
+     "opcoes": [
+      "Nenhuma: nada mudou, não há o que desenhar.",
+      "60, para ficar liso.",
+      "30, metade do monitor.",
+      "Uma vez por segundo, para não perder nenhuma mudança."
+     ],
+     "certa": 0,
+     "explica": "Desenho sob demanda: só quando o progresso da rolagem mudou. Desenhar a mesma imagem 60 vezes por segundo gasta bateria e esquenta o celular.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "Num celular com devicePixelRatio 3, o kit desenha com densidade 1,5. Por quê?",
+     "opcoes": [
+      "Porque o Three.js não aceita densidade maior que 1,5 em nenhum aparelho.",
+      "Porque o celular não mostra densidade 3.",
+      "Porque o canvas fica borrado acima de 1,5.",
+      "Porque 3 dá quatro vezes os pixels de 1,5, sem ganho visível."
+     ],
+     "certa": 3,
+     "explica": "O trabalho da placa cresce com o quadrado da densidade: (3 ÷ 1,5)² = 4. O teto é escolha de engenharia, não limite da biblioteca.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "O medidor mostra \"fora da tela 85\". O que falta na página?",
+     "opcoes": [
+      "Um teto de densidade.",
+      "Parar de desenhar quando o canvas sai da tela (IntersectionObserver).",
+      "Reduzir a quantidade de anéis.",
+      "Trocar o WebGL por canvas 2D, que gasta menos placa de vídeo no celular."
+     ],
+     "certa": 1,
+     "explica": "Fora da tela ninguém vê o desenho. O observador diz quando o canvas saiu, e a checagem para antes do render.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "O que a página do kit faz com \"reduzir movimento\" ligado?",
+     "opcoes": [
+      "Desenha mais devagar, a 30 quadros por segundo, para cansar menos a vista.",
+      "Esconde a cena.",
+      "Desenha um quadro só e a rolagem não mexe mais na cena.",
+      "Mostra um aviso pedindo para desligar."
+     ],
+     "certa": 2,
+     "explica": "Quem pediu menos movimento recebe a cena parada, inteira. O medidor confere: reduzir 1.",
+     "ref": "codigo"
+    }
+   ]
+  },
+  {
+   "tipo": "resumo",
+   "titulo": "Em três frases",
+   "itens": [
+    {
+     "t": "Sob demanda",
+     "texto": "Desenha só quando o progresso mudou e a cena está na tela."
+    },
+    {
+     "t": "Teto",
+     "texto": "Densidade até 1,5; reduzir movimento = um quadro."
+    },
+    {
+     "t": "Medir",
+     "texto": "window.__renders contado pelo three-medir.mjs, e o peso da biblioteca no peso.py."
+    }
+   ]
+  },
+  {
+   "tipo": "links",
+   "titulo": "Para ir além",
+   "links": [
+    {
+     "t": "Three.js: documentação do WebGLRenderer",
+     "href": "https://threejs.org/docs/#api/en/renderers/WebGLRenderer",
+     "icone": "arquivo"
+    },
+    {
+     "t": "MDN: IntersectionObserver",
+     "href": "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver",
+     "icone": "lupa"
+    },
+    {
+     "t": "Curso 3 da formação: qual biblioteca para cada peça (aula 6)",
+     "href": "https://inematds.github.io/formacao-cinema-ia-motion-v72/",
+     "icone": "seta"
+    }
+   ]
+  }
+ ]
+}

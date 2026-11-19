@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aurora 35 | profundidade em Three.js</title>
+  <style>
+    :root { --fundo: #0c0c10; --tinta: #f3efe7; --suave: #a9a39a; }
+    * { box-sizing: border-box; margin: 0; }
+    html { background: var(--fundo); color: var(--tinta); font: 400 17px/1.55 system-ui, sans-serif; }
+    body { overflow-x: hidden; }
+    h1, h2 { font-family: Georgia, serif; font-weight: 600; line-height: 1.1; }
+    .texto { min-height: 100vh; display: grid; place-content: center; padding: 0 clamp(16px, 6vw, 80px); max-width: 760px; }
+    .texto h1 { font-size: clamp(40px, 7vw, 80px); }
+    .texto p { color: var(--suave); margin-top: 14px; }
+    /* A cena: 300vh de rolagem com o canvas preso no topo. */
+    .cena { position: relative; height: 300vh; }
+    .cena canvas { position: sticky; top: 0; width: 100%; height: 100vh; display: block; }
+    .fim { min-height: 160vh; }
+  </style>
+</head>
+<body>
+  <section class="texto"><h1>Aurora 35</h1><p>Nove lâminas, quatro grupos de vidro. A peça abaixo é desenhada em código, sem quadros de vídeo.</p></section>
+  <section class="cena" id="cena"><canvas id="c3" aria-hidden="true"></canvas></section>
+  <section class="texto fim"><h2>Ficha técnica</h2><p>35 mm · f/1.4 · 780 g. Produto fictício, página de exemplo do curso Sites cinematográficos (INEMA.CLUB).</p></section>
+
+  <script type="module">
+    import * as THREE from './vendor/three.module.js';
+
+    // ?sempre=1 liga o erro comum: desenhar a cada quadro do navegador, parado ou fora da tela.
+    const SEMPRE = new URLSearchParams(location.search).has('sempre');
+    const reduzido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const canvas = document.getElementById('c3');
+    const cena = document.getElementById('cena');
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'low-power' });
+    // Teto de densidade: 1,5 já fica nítido; 2 ou 3 (celular) multiplica o trabalho da placa sem ganho visível.
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+    renderer.setClearColor(0x0c0c10);
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+
+    // Os quatro "grupos de vidro": anéis em profundidades diferentes, para a perspectiva aparecer quando a câmera anda.
+    const material = new THREE.MeshStandardMaterial({ color: 0x9aa3ad, metalness: 0.85, roughness: 0.32 });
+    const aneis = [];
+    for (let i = 0; i < 4; i++) {
+      const anel = new THREE.Mesh(new THREE.TorusGeometry(1.2 - i * 0.18, 0.07, 24, 96), material);
+      anel.position.z = -i * 1.6;
+      scene.add(anel); aneis.push(anel);
+    }
+    scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+    const luz = new THREE.DirectionalLight(0xffffff, 2.2); luz.position.set(2, 3, 4); scene.add(luz);
+
+    let renders = 0;
+    function desenhar(p) {
+      camera.position.set(Math.sin(p * Math.PI) * 1.6, 0.4 - p * 0.6, 6 - p * 6.5);
+      camera.lookAt(0, 0, -3);
+      aneis.forEach((a, i) => { a.rotation.x = 0.3 + p * (1 + i * 0.3); a.rotation.y = p * 0.8; });
+      renderer.render(scene, camera);
+      window.__renders = ++renders;
+    }
+    function tamanho() {
+      const r = canvas.getBoundingClientRect();
+      renderer.setSize(r.width, r.height, false);
+      camera.aspect = r.width / r.height; camera.updateProjectionMatrix();
+    }
+    function progresso() {
+      const r = cena.getBoundingClientRect();
+      return Math.max(0, Math.min(1, -r.top / (r.height - innerHeight)));
+    }
+
+    tamanho();
+    window.__dpr = renderer.getPixelRatio();
+    let visivel = true, ultimo = -1, pedido = false;
+    new IntersectionObserver((es) => { visivel = es[0].isIntersecting; }).observe(canvas);
+
+    if (SEMPRE) {
+      // O erro: um laço que desenha ~60 vezes por segundo para sempre.
+      (function laco() { desenhar(progresso()); requestAnimationFrame(laco); })();
+    } else if (reduzido) {
+      desenhar(0.5);                       // reduzir movimento: um quadro só, e a rolagem não mexe na cena
+    } else {
+      // Sob demanda: só desenha quando a rolagem mudou o progresso e a cena está na tela.
+      const talvez = () => {
+        pedido = false;
+        if (!visivel) return;
+        const p = progresso();
+        if (Math.abs(p - ultimo) < 1e-4) return;
+        ultimo = p; desenhar(p);
+      };
+      const agendar = () => { if (!pedido) { pedido = true; requestAnimationFrame(talvez); } };
+      addEventListener('scroll', agendar, { passive: true });
+      addEventListener('resize', () => { tamanho(); ultimo = -1; agendar(); });
+      desenhar(progresso()); ultimo = progresso();
+    }
+    window.__ready = true;
+  </script>
+</body>
+</html>

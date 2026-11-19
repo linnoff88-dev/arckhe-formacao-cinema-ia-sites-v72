@@ -1,0 +1,4 @@
+FALHA: desenhou 103 vezes parado (devia ser 0)
+FALHA: desenhou 81 vezes fora da tela (devia ser 0)
+FALHA: com reduzir movimento desenhou 83 vezes (devia ser 1)
+saída: 1

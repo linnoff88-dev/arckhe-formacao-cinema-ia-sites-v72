@@ -1,0 +1,185 @@
+{
+ "id": "formacao-cinema-ia-sites-v72",
+ "lang": "pt-BR",
+ "url": "https://inematds.github.io/formacao-cinema-ia-sites-v72/",
+ "nome": "Sites cinematográficos",
+ "sub": "Formação Cinema com IA · curso 5",
+ "volta": {
+  "t": "Área Vídeos do INEMA",
+  "href": "https://eventos.inema.pro/videos/"
+ },
+ "lado_card": {
+  "rot": "Fim da formação",
+  "t": "Os 6 cursos da Formação Cinema com IA",
+  "texto": "Este é o último. Da direção ao site: volte a qualquer curso pela área Vídeos do INEMA.",
+  "link": "Abrir a área Vídeos",
+  "href": "https://eventos.inema.pro/videos/"
+ },
+ "rodape": "INEMA.CLUB · conteúdo aberto e gratuito · formato INEMA Learning v7.2 · Formação Cinema com IA, curso 5 de 6 · <a href=\"https://eventos.inema.pro/videos/\">eventos.inema.pro/videos</a> · <a href=\"https://inema.club/\">inema.club</a>",
+ "videos": {},
+ "inicio": {
+  "kicker": "Formação Cinema com IA · curso 5 de 6 · 8 aulas",
+  "titulo": "Sites cinematográficos: o vídeo vira página, e a página abre rápido",
+  "lead": "Um clipe vira quadros, a rolagem escolhe o quadro e a página parece um filme. Aqui você monta isso com agente, mede o peso, põe profundidade com Three.js, faz o filme da marca a partir do site, encadeia clipes sem corte e confere no celular e com reduzir movimento. Tudo local, sem crédito.",
+  "cta": "Começar pela aula 1",
+  "cta2": {
+   "t": "Ver o curso anterior (A fábrica)",
+   "href": "https://inematds.github.io/formacao-cinema-ia-fabrica-v72/"
+  },
+  "capa_alt": "Mesa de edição escura com um monitor de código, outro com uma página web aberta numa paisagem enevoada e um celular em pé mostrando a mesma página.",
+  "numeros": [
+   {
+    "v": "8",
+    "t": "aulas"
+   },
+   {
+    "v": "25",
+    "t": "blocos de terminal testados"
+   },
+   {
+    "v": "4/4",
+    "t": "portão final"
+   },
+   {
+    "v": "0",
+    "t": "crédito gasto"
+   }
+  ],
+  "aulas_titulo": "As aulas",
+  "aulas_sub": "Uma página de produto fictícia, a lente Aurora 35, atravessa o curso. O kit traz a página, os scripts de conferência e clipes de ensaio feitos com ffmpeg: nenhum gerador de vídeo é necessário.",
+  "blocos": [
+   {
+    "t": "Para quem é",
+    "itens": [
+     "Quem faz sites com Claude Code ou Codex e usa o terminal.",
+     "Quem já tem um clipe (ou vai gerar um) e quer que ele vire a abertura de uma página.",
+     "Quem fez o curso 3 (motion por código) e quer levar o movimento para o navegador."
+    ]
+   },
+   {
+    "t": "O que você sai fazendo",
+    "itens": [
+     "Transformar um clipe em quadros e ligar os quadros à rolagem.",
+     "Medir o peso por visitante e decidir se a página merece o filme.",
+     "Pôr profundidade com Three.js sem desenhar à toa.",
+     "Conferir celular e reduzir movimento antes de publicar."
+    ]
+   },
+   {
+    "t": "A formação (6 cursos)",
+    "itens": [
+     "0 · Direção: pensar como diretor",
+     "1 · Geração: imagem e vídeo com IA",
+     "2 · Produção: do roteiro ao filme",
+     "3 · Motion por código com agente",
+     "4 · A fábrica de vídeo com agentes",
+     "5 · Sites cinematográficos (este curso)"
+    ]
+   }
+  ]
+ },
+ "ui": {
+  "pular": "Pular para o conteúdo",
+  "aulas": "Aulas",
+  "concluido": "concluído",
+  "aula": "Aula",
+  "nesta_aula": "Nesta aula, você vai aprender:",
+  "objetivo": "Objetivo:",
+  "proxima_aula": "Próxima aula",
+  "aula_anterior": "Aula anterior",
+  "voltar_inicio": "Voltar ao início do curso",
+  "marcar_concluida": "Marcar aula como concluída",
+  "dg_dica": "Clique em cada bloco do diagrama para ver o que ele faz.",
+  "copiar": "Copiar",
+  "copiado": "Copiado",
+  "selo_simulacao": "Simulação: exemplo ilustrativo",
+  "selo_real": "Exemplo do repositório",
+  "pronto_quando": "Pronto quando:",
+  "fiz": "Fiz este exercício",
+  "video_pagina": "Página do vídeo com roteiro",
+  "pergunta": "Pergunta",
+  "de": "de",
+  "cert_tag": "competência",
+  "correto": "Correto",
+  "errado": "Não é essa",
+  "quiz_aguarda": "Escolha uma alternativa. A explicação aparece depois da sua tentativa.",
+  "proxima_pergunta": "Próxima pergunta",
+  "quiz_ver": "Ver resultado",
+  "quiz_fim": "Teste concluído",
+  "quiz_total": "Você acertou {a} de {n}. Acertando todas, a aula é marcada como concluída.",
+  "aparencia": "Aparência",
+  "tamanho_texto": "Tamanho do texto",
+  "tema": "Tema",
+  "tema_escuro": "Escuro",
+  "tema_papel": "Papel claro",
+  "role_dica": "Role a página: cada etapa abaixo acende a sua parte do diagrama.",
+  "pre_requisito": "requer",
+  "ver_aula": "Ver a aula",
+  "mapa_dica": "Clique num exercício para ver o que fazer e o \"pronto quando\".",
+  "etapas": "Etapas",
+  "exercicios": "exercícios",
+  "rever": "Rever:",
+  "revisar_erradas": "Revisar as erradas",
+  "refazer": "Refazer o teste",
+  "h_semana": "h por semana",
+  "data_inicio": "Data de início",
+  "ritmo": "Tempo disponível",
+  "gerar_plano": "Gerar meu plano",
+  "baixar_md": "Baixar plano.md",
+  "baixar_ics": "Baixar para o calendário (.ics)",
+  "ind_estudo": "Estudo (aulas)",
+  "ind_pratica": "Prática declarada",
+  "ind_nota": "Prática = exercícios que você marcou como feitos. A comprovação vem na prova da certificação.",
+  "estudo": {
+   "titulo": "Seu estudo",
+   "continuar": "Continuar de onde parei",
+   "comecar": "Começar pela aula 1",
+   "cta_continuar": "Continuar a aula {n}",
+   "hoje": "hoje",
+   "ontem": "ontem",
+   "ha_dias": "há {n} dias",
+   "desempenho": "Desempenho nos testes",
+   "notas": "Minhas anotações",
+   "dados": "Copiar meus dados",
+   "sem_testes": "Nenhum teste feito ainda. O teste fica no fim de cada aula.",
+   "nao_fez": "teste ainda não feito",
+   "ultimo": "Último",
+   "melhor": "Melhor",
+   "tentativas": "tentativas",
+   "tentativa": "tentativa",
+   "tudo_certo": "Acertou tudo no último teste.",
+   "rever": "Para rever",
+   "resposta": "Resposta certa:",
+   "ir_teste": "Refazer o teste",
+   "sem_notas": "Nenhuma anotação ainda. Na aula, selecione um trecho do texto e toque em Marcar ou Anotar.",
+   "so_marcado": "(só marcado)",
+   "marcar": "Marcar",
+   "anotar": "Anotar",
+   "salvar": "Salvar",
+   "apagar": "Apagar marca",
+   "fechar": "Fechar",
+   "nota_ph": "Escreva sua anotação sobre este trecho…",
+   "um_bloco": "Marque dentro de um parágrafo só.",
+   "nao_marca": "Este trecho não pode ser marcado.",
+   "dados_exp": "Seu progresso, suas anotações e as notas dos testes ficam só neste navegador. Baixe uma cópia (.json) para guardar ou para continuar em outro computador ou navegador; lá, carregue a cópia. Carregar soma com o que já existe e não apaga nada.",
+   "exportar": "Baixar cópia",
+   "importar": "Carregar cópia",
+   "import_ok": "Cópia carregada ({n} itens). Atualizando a página…",
+   "import_erro": "Arquivo não reconhecido. Nada foi alterado.",
+   "import_outro": "Esta cópia é de outro curso. Nada foi alterado.",
+   "export_ok": "Cópia baixada."
+  },
+  "conv_dica": "Escolha a sua resposta. O comentário aparece logo depois e a conversa segue conforme a escolha.",
+  "conv_voce": "Você",
+  "conv_escolha": "Sua resposta",
+  "conv_boa": "Boa escolha",
+  "conv_meio": "Dá para melhorar",
+  "conv_ruim": "Escolha fraca",
+  "conv_fim": "Fim da conversa",
+  "conv_placar": "Você fez {p} de {m} pontos possíveis.",
+  "conv_licao": "Lição:",
+  "conv_recomecar": "Recomeçar a conversa",
+  "conv_feita": "Seu melhor placar: {p} de {m} pontos."
+ },
+ "icone": "camadas"
+}

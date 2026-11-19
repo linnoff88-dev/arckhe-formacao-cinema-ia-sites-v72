@@ -1,0 +1,8 @@
+Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768
+quadros: 144 (frames/)
+rolagem 0% → quadro 0 · tela pintada
+rolagem 50% → quadro 72 · tela pintada
+rolagem 100% → quadro 143 · tela pintada
+transbordo horizontal: não
+OK: 3 de 3 posições
+saída: 0

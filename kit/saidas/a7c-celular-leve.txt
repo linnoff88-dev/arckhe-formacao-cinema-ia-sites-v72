@@ -1,0 +1,8 @@
+celular: tudo 3,52 MB · primeira pintura 0,06 MB · rascunho (1 em 8) 0,47 MB
+visitante mais pesado 3,52 MB · orçamento 3,0 MB: ACIMA do orçamento
+v.mp4: 6,0 s · 24 fps · 1080×1920
+QUADROS: 144 · 600×1066 · 2,2 MB · 24 fps
+celular: tudo 2,28 MB · primeira pintura 0,05 MB · rascunho (1 em 8) 0,32 MB
+primeira pintura 0,05 MB · teto 0,5 MB: DENTRO
+visitante mais pesado 2,28 MB · orçamento 3,0 MB: DENTRO do orçamento
+saída: 0

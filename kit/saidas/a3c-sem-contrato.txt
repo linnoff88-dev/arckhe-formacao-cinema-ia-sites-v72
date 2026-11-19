@@ -1,0 +1,3 @@
+Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768
+FALHA: a página não marcou window.__ready em 15 s (falta o contrato ?jump + __ready)
+saída: 1

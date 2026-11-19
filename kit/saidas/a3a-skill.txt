@@ -1,0 +1,22 @@
+clone: 0
+agents
+references
+scripts
+SKILL.md
+references:
+engine.md
+finishing.md
+playbook.md
+
+scripts:
+assemble.sh
+chain-step.sh
+continuity-gate.sh
+copy-gate.js
+kie-chain.py
+package.json
+package-lock.json
+shot.js
+vector-check.py
+verify.js
+name: scroll-film-studio

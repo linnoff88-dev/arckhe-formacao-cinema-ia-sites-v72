@@ -1,0 +1,265 @@
+{
+ "slug": "quadros",
+ "num": 2,
+ "menu": "Frames",
+ "titulo": "From video to frames: extract, compress, and order the sequence",
+ "titulo_curto": "From video to frames",
+ "minutos": 15,
+ "lead": "The quality of the scroll motion is decided here. Too few frames and the film turns into a slideshow; frames that are too big and the page won't open on a phone; names without zeros and the film jumps. You make a rehearsal clip with ffmpeg from a photo, extract every frame, and check count, order, and weight with a script.",
+ "objetivo": "turn a clip into frames at the native rate, with names in order and weight checked, ready for scroll.",
+ "competencias": [
+  "extract-frames-at-native-rate",
+  "choose-width-and-quality",
+  "check-order-and-count"
+ ],
+ "aprende": [
+  {
+   "icone": "video",
+   "t": "A rehearsal clip from a photo, no generator"
+  },
+  {
+   "icone": "pasta",
+   "t": "Extract every frame, at the clip's rate, with the width and quality you chose"
+  },
+  {
+   "icone": "lista",
+   "t": "Why f_0001.jpg and not f_1.jpg, and what manifest.json does"
+  },
+  {
+   "icone": "check",
+   "t": "Check count, order, and weight before taking it to the page"
+  }
+ ],
+ "hero_alt": "Strip of cinema negatives on a light table, with a magnifying glass over it.",
+ "secoes": [
+  {
+   "tipo": "diagrama",
+   "titulo": "From the clip to the folder the page reads",
+   "sub": "Click each step.",
+   "nos": [
+    {
+     "icone": "video",
+     "titulo": "Clip",
+     "sub": "MP4",
+     "detalhe": "One continuous motion, no cuts. In the rehearsal, the kit's clipe.sh animates a photo with ffmpeg (zoompan): the camera slowly moves in. With a generator, it's the clip the generator returns."
+    },
+    {
+     "icone": "lupa",
+     "titulo": "ffprobe",
+     "sub": "native rate",
+     "detalhe": "Before extracting, read the clip's rate (24, 25, 30 frames per second). quadros.sh does this on its own and extracts one JPEG per frame, without skipping or duplicating."
+    },
+    {
+     "icone": "camadas",
+     "titulo": "Extract",
+     "sub": "width and -q:v",
+     "detalhe": "Width of 1024 to 1280 px on desktop and 600 to 720 px on the phone's vertical film. JPEG -q:v: 6 on desktop and up to 8 on the phone's vertical film (lesson 7); lower number = sharper and heavier. Smooth motion shows more than sharpness in each frame."
+    },
+    {
+     "icone": "lista",
+     "titulo": "Names",
+     "sub": "f_0001.jpg",
+     "detalhe": "Leading zeros make alphabetical order the film's order. Without them, f_10.jpg comes before f_2.jpg in any listing, and a script that sorts by name builds the film with jumps."
+    },
+    {
+     "icone": "arquivo",
+     "titulo": "manifest.json",
+     "sub": "count",
+     "forte": true,
+     "detalhe": "A file with the number of frames and the rate. The page reads the manifest and knows how many frames to request, without listing the folder (the static server doesn't even allow that)."
+    }
+   ],
+   "legenda": "Rule from INEMA's two skills: extract at the native rate. A 72 s film at 24 frames per second has 1,728 frames; taking \"about 300\" becomes 4 frames per second on scroll (scroll-film-studio, references/engine.md)."
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "A rehearsal clip, no generator",
+   "sub": "6 s, 24 frames per second, the camera going from 1.0 to 1.35 zoom over the kit's lens photo.",
+   "blocos": [
+    {
+     "rot": "Terminal · make the rehearsal clip",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a2; rm -rf \"$E\"; mkdir -p \"$E\"\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/clipe.mp4\" 6 1.0 1.35"
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Captured output (10/19/2026)",
+      "html": "<pre>clipe.mp4: 6,0 s · 24 fps · 1920×1080</pre><p>Swap the photo for one of your product and you have a clip to practice the whole path without spending anything.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Extract and check",
+   "sub": "quadros.sh extracts; conferir-quadros.py compares the folder with the clip.",
+   "blocos": [
+    {
+     "rot": "Terminal · extract the frames and check",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a2\nbash \"$K/scripts/quadros.sh\" \"$E/clipe.mp4\" \"$E/quadros\" 1024 6\nls \"$E/quadros\" | head -3\npython3 \"$K/scripts/conferir-quadros.py\" \"$E/quadros\" \"$E/clipe.mp4\"; echo \"saída: $?\""
+    },
+    {
+     "rot": "File · kit/scripts/quadros.sh",
+     "icone": "arquivo",
+     "conteudo": "#!/usr/bin/env bash\n# quadros.sh — extrai TODOS os quadros de um clipe, na taxa nativa dele, para o site rolar.\n# Uso: bash quadros.sh <clipe.mp4> <pasta> [largura=1024] [qualidade=6]\n#   largura: 1024–1280 px no computador, 720 px no filme vertical do celular.\n#   qualidade: -q:v do JPEG (2 = melhor e mais pesado, 31 = pior); 5–6 é o ponto do curso.\n# Grava <pasta>/f_0001.jpg, f_0002.jpg… (zeros à esquerda: a ordem alfabética é a ordem do filme)\n# e <pasta>/manifest.json {count, fps, largura}, que a página lê para saber quantos quadros pedir.\nset -euo pipefail\nCLIPE=$1; PASTA=$2; LARG=${3:-1024}; Q=${4:-6}\nFPS=$(ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of csv=p=0 \"$CLIPE\" | python3 -c \"import sys; n,d=sys.stdin.read().strip().split('/'); print(round(int(n)/int(d)))\")\nmkdir -p \"$PASTA\"; rm -f \"$PASTA\"/f_*.jpg\n# -fps_mode passthrough: um JPEG por quadro do clipe, sem duplicar nem pular.\nffmpeg -v error -i \"$CLIPE\" -vf \"scale=${LARG}:-2\" -fps_mode passthrough -q:v \"$Q\" \"$PASTA/f_%04d.jpg\"\npython3 - \"$PASTA\" \"$FPS\" \"$LARG\" <<'PY'\nimport glob, json, os, sys\nfrom PIL import Image\npasta, fps, larg = sys.argv[1], int(sys.argv[2]), int(sys.argv[3])\nq = sorted(glob.glob(os.path.join(pasta, 'f_*.jpg')))\njson.dump({'count': len(q), 'fps': fps, 'largura': larg}, open(os.path.join(pasta, 'manifest.json'), 'w'))\nw, h = Image.open(q[0]).size\nmb = f\"{sum(os.path.getsize(f) for f in q) / 1e6:.1f}\".replace('.', ',')\nprint(f\"QUADROS: {len(q)} · {w}×{h} · {mb} MB · {fps} fps\")\nPY"
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Captured output (10/19/2026)",
+      "html": "<pre>QUADROS: 144 · 1024×576 · 1,5 MB · 24 fps\nf_0001.jpg\nf_0002.jpg\nf_0003.jpg\nOK: 144 quadros · 24 fps · 1024 px · 1,5 MB\nsaída: 0</pre><p>144 frames = 6 s × 24. The folder weighs 1.5 MB at 1024 px with -q:v 6.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "The two mistakes that ruin the film the most",
+   "sub": "Too few frames and names without zeros. Both go unnoticed when you just look at the folder.",
+   "blocos": [
+    {
+     "rot": "Terminal · extract wrong on purpose",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a2; mkdir -p \"$E/poucos\" \"$E/sem-zero\"\n# mistake 1: \"a few frames per second is enough\" (6 per second from a 24 fps clip)\nffmpeg -v error -i \"$E/clipe.mp4\" -vf \"fps=6,scale=1024:-2\" -q:v 6 \"$E/poucos/f_%04d.jpg\"\npython3 \"$K/scripts/conferir-quadros.py\" \"$E/poucos\" \"$E/clipe.mp4\"; echo \"saída: $?\"\n# mistake 2: names without leading zeros (f_%d instead of f_%04d)\nffmpeg -v error -i \"$E/clipe.mp4\" -vf \"scale=1024:-2\" -q:v 6 \"$E/sem-zero/f_%d.jpg\"\npython3 \"$K/scripts/conferir-quadros.py\" \"$E/sem-zero\" \"$E/clipe.mp4\"; echo \"saída: $?\""
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Captured output (10/19/2026)",
+      "html": "<pre>FALHA: 36 quadros = 6 fps (fonte 24): esperava 144\nFALHA: sem manifest.json\nsaída: 1\nFALHA: nomes sem zeros à esquerda (f_109.jpg vem antes de f_11.jpg na ordem alfabética)\nFALHA: sem manifest.json\nsaída: 1</pre><p>Both exit with code 1. The checker also demands the manifest.json, which only quadros.sh writes.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "pratica",
+   "titulo": "Practice",
+   "sub": "From the clip to the checked folder, and a version of your own.",
+   "exercicios": [
+    {
+     "id": "e1",
+     "titulo": "E1 · Rehearsal clip",
+     "min": "5 min",
+     "texto": "Run the \"make the rehearsal clip\" block.",
+     "pronto": "<code>clipe.mp4: 6,0 s · 24 fps · 1920×1080</code>."
+    },
+    {
+     "id": "e2",
+     "titulo": "E2 · Checked frames",
+     "min": "5 min",
+     "texto": "Run the \"extract the frames and check\" block.",
+     "pronto": "<code>OK: 144 quadros · 24 fps · 1024 px</code> and <code>saída: 0</code>."
+    },
+    {
+     "id": "e3",
+     "titulo": "E3 · Your own photo",
+     "min": "15 min",
+     "texto": "Make an 8 s clip from a photo of yourself (<code>bash clipe.sh sua-foto.jpg seu.mp4 8</code>), extract at 1280 px with -q:v 5 and check it. Note the folder's weight.",
+     "pronto": "The checker answers <code>OK: 192 quadros · 24 fps · 1280 px</code> with <code>saída: 0</code>."
+    }
+   ]
+  },
+  {
+   "tipo": "quiz",
+   "titulo": "Lesson quiz",
+   "sub": "The explanation appears after you answer.",
+   "perguntas": [
+    {
+     "p": "A 6 s clip at 24 frames per second. How many frames should the folder have?",
+     "opcoes": [
+      "36, one every 4 frames, to weigh less.",
+      "72, half.",
+      "144, all of them.",
+      "300, a round number."
+     ],
+     "certa": 2,
+     "explica": "At the native rate: 6 × 24 = 144. Fewer frames makes the page lighter, but the scroll turns into a slideshow. To weigh less, reduce the width or raise the -q:v.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "The folder has f_1.jpg … f_144.jpg. What goes wrong?",
+     "opcoes": [
+      "f_10.jpg comes before f_2.jpg in alphabetical order, and the film jumps around.",
+      "The browser won't open a file whose number has no leading zeros in the name.",
+      "The JPEG gets bigger.",
+      "Nothing: the number is right."
+     ],
+     "certa": 0,
+     "explica": "Listings and scripts sort by text. With leading zeros (f_0001.jpg) the text order is the film's order.",
+     "ref": "codigo"
+    },
+    {
+     "p": "The phone page weighs too much. What should you change first?",
+     "opcoes": [
+      "Remove half of the frames.",
+      "Switch JPEG to PNG.",
+      "Raise the rate to 60 frames per second, so the motion is smoother.",
+      "Reduce the width of the vertical frames or raise the -q:v."
+     ],
+     "certa": 3,
+     "explica": "Width and -q:v cut the weight without removing frames. PNG weighs more than JPEG for a photo, and more frames per second than the clip has just duplicates images.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "What is the manifest.json for?",
+     "opcoes": [
+      "To store the server password.",
+      "So the page knows how many frames to request, without listing the folder.",
+      "So ffmpeg knows the clip's rate.",
+      "So the browser caches all the frames before the first scroll."
+     ],
+     "certa": 1,
+     "explica": "A static server (GitHub Pages, for example) doesn't list folders. The manifest gives the count and the rate, and the page builds the names f_0001.jpg onward.",
+     "ref": "diagrama"
+    }
+   ]
+  },
+  {
+   "tipo": "resumo",
+   "titulo": "In three sentences",
+   "itens": [
+    {
+     "t": "Native rate",
+     "texto": "One JPEG per frame of the clip; to weigh less, adjust width and -q:v."
+    },
+    {
+     "t": "Order",
+     "texto": "f_0001.jpg with leading zeros and manifest.json with the count."
+    },
+    {
+     "t": "Check",
+     "texto": "conferir-quadros.py before taking them to the page."
+    }
+   ]
+  },
+  {
+   "tipo": "links",
+   "titulo": "Going further",
+   "links": [
+    {
+     "t": "scroll-film-studio: frame recipes and fit (references/engine.md)",
+     "href": "https://github.com/inematds/scroll-film-studio/blob/main/skills/scroll-film-studio/references/engine.md",
+     "icone": "arquivo"
+    },
+    {
+     "t": "ffmpeg: zoompan filter documentation",
+     "href": "https://ffmpeg.org/ffmpeg-filters.html#zoompan",
+     "icone": "video"
+    },
+    {
+     "t": "Course 1 of the program: generating the real clip",
+     "href": "https://inematds.github.io/formacao-cinema-ia-geracao-v72/en/",
+     "icone": "seta"
+    }
+   ]
+  }
+ ]
+}

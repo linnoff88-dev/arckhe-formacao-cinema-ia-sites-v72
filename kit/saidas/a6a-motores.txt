@@ -1,0 +1,7 @@
+clone: 0
+OK kling
+OK agnes
+OK kie
+OK custom
+4/4 motores OK
+saída: 0

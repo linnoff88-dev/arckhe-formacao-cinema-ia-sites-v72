@@ -1,0 +1,10 @@
+h.mp4: 6,0 s · 24 fps · 1920×1080
+v.mp4: 6,0 s · 24 fps · 1080×1920
+QUADROS: 144 · 1024×576 · 2,2 MB · 24 fps
+QUADROS: 144 · 600×1066 · 3,5 MB · 24 fps
+1 peso: OK
+2 computador: OK
+3 celular: OK
+4 reduzir: OK
+PORTÃO: 4/4 OK
+saída: 0

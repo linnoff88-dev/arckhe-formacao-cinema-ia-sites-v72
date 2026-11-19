@@ -1,0 +1,319 @@
+{
+ "slug": "rolagem",
+ "num": 3,
+ "menu": "Scroll",
+ "titulo": "Scroll que controla el tiempo: la skill de scroll cinemático",
+ "titulo_curto": "Scroll y skill",
+ "minutos": 18,
+ "lead": "El motor que conecta el scroll con los cuadros tiene pocas piezas, y cada una resuelve un tropiezo medido. Ves las piezas, cambias los cuadros de la página del kit por los tuyos de la clase 2, pruebas con el contrato de prueba que el cuadro correcto aparece en cada punto y le pides la página nueva a la skill scroll-film-studio, de INEMA.",
+ "objetivo": "conectar tus cuadros al motor de scroll del kit, probar con el contrato ?jump y __ready y pedir la página a la skill.",
+ "competencias": [
+  "leer-motor-de-scroll",
+  "aplicar-contrato-de-prueba",
+  "pedir-pagina-a-la-skill"
+ ],
+ "aprende": [
+  {
+   "icone": "camadas",
+   "t": "Las piezas del motor: carril (scroll driver), progreso, cabezal suavizado, ventana de bitmaps"
+  },
+  {
+   "icone": "check",
+   "t": "El contrato de prueba ?jump=[y] + window.__ready, y por qué sin él no hay verificación"
+  },
+  {
+   "icone": "robo",
+   "t": "Instalar la skill scroll-film-studio y pedir la página por la Lane A, sin generador"
+  },
+  {
+   "icone": "portao",
+   "t": "La puerta de texto: la página vende, no narra la cámara"
+  }
+ ],
+ "hero_alt": "Mouse con rueda de scroll en primer plano sobre una mesa oscura, con un monitor al fondo mostrando una página con una lente.",
+ "secoes": [
+  {
+   "tipo": "diagrama",
+   "titulo": "El motor de scroll por dentro",
+   "sub": "Las piezas de motor-rolagem.js (site-movimento, INEMA). Haz clic en cada una.",
+   "nos": [
+    {
+     "icone": "seta",
+     "titulo": "Carril (scroll driver)",
+     "sub": "sección alta",
+     "detalhe": "Una sección de 400vh (cuatro pantallas) con un escenario fijo en la parte superior (position: sticky). Mientras el carril pasa, el escenario queda quieto y el canvas cambia de cuadro."
+    },
+    {
+     "icone": "grafico",
+     "titulo": "Progreso",
+     "sub": "0 a 1",
+     "detalhe": "progreso = −tope del carril ÷ (altura del carril − altura de la pantalla), limitado entre 0 y 1. Cuadro objetivo = progreso × (cuadros − 1)."
+    },
+    {
+     "icone": "relogio",
+     "titulo": "Cabezal",
+     "sub": "suavizado",
+     "detalhe": "En cada cuadro del navegador, el cuadro actual avanza 14% del camino hasta el objetivo (lerp 0,14). Conectarlo directo al objetivo se siente mecánico; con la suavización la película se desliza."
+    },
+    {
+     "icone": "memoria",
+     "titulo": "Ventana",
+     "sub": "de bitmaps",
+     "detalhe": "Dibujar un JPEG que aún no se ha decodificado traba la página. El motor decodifica fuera del hilo principal (createImageBitmap) los cuadros de 2 s hacia adelante y 1,4 s hacia atrás, y suelta el resto. La ventana se mide en segundos de película, no en cuadros."
+    },
+    {
+     "icone": "carregar",
+     "titulo": "Carga",
+     "sub": "1 de cada 8 primero",
+     "detalhe": "Primero baja un cuadro de cada 8: cualquier punto del scroll ya tiene un cuadro cerca para mostrar, nunca pantalla negra. Después el resto, máximo 10 a la vez. ¿Falta un cuadro? Dibuja el más cercano."
+    },
+    {
+     "icone": "camadas",
+     "titulo": "Canvas",
+     "sub": "encaje",
+     "forte": true,
+     "detalhe": "Cubre la pantalla mientras el recorte es pequeño (hasta 22% del cuadro); si pasa de eso, encaja entero con franjas. Densidad 1 (dpr: 1): el cuadro de 1024 px dibujado 1:1, sin ampliar."
+    }
+   ],
+   "volta": "?jump posiciona; __ready avisa",
+   "legenda": "En site-movimento, la corrección de la ventana de bitmaps llevó la traba máxima en el scroll de 150–315 ms a 33–36 ms (README y comentario del motor, 18/10/2026)."
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "La página del kit con tus cuadros",
+   "sub": "Copia la página a una carpeta de ensayo, cambia frames/ por los cuadros de la clase 2 y verifica.",
+   "blocos": [
+    {
+     "rot": "Terminal · tus cuadros en la página y verificar",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a3; rm -rf \"$E/site\"\ncp -r \"$K/site\" \"$E/site\"; rm -rf \"$E/site/frames\"\ncp -r \"${TMPDIR:-/tmp}/ensaio-sites/a2/quadros\" \"$E/site/frames\"\nnode \"$K/scripts/servir.mjs\" \"$E/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"$U\"; echo \"saída: $?\"\nkill $S"
+    },
+    {
+     "rot": "Fragmento · kit/site/site.js",
+     "icone": "arquivo",
+     "conteudo": "    filme = MotionEngine.Scrub({\n      canvas: document.getElementById('tela'), driver: secao, count: m.count, fps: m.fps || 24, dpr: 1,\n      maxCrop: VERT ? 0.8 : 0.22, bg: '#0c0c10',\n      frozen: parado,\n      src: function (i) { return m.dir + '/f_' + String(i + 1).padStart(4, '0') + '.jpg'; },"
+    },
+    {
+     "rot": "Terminal · error común: página sin el contrato",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a3\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"${U}erro-sem-contrato.html\"; echo \"saída: $?\"\nkill $S"
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Salida capturada (19/10/2026)",
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nquadros: 144 (frames/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: não\nOK: 3 de 3 posições\nsaída: 0</pre><p>El verificador abre la página tres veces con <code>?jump=</code> al inicio, en medio y al final del carril y lee el cuadro del motor.</p>"
+     },
+     {
+      "rot": "Error común: sin el contrato",
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nFALHA: a página não marcou window.__ready em 15 s (falta o contrato ?jump + __ready)\nsaída: 1</pre><p>La copia <code>erro-sem-contrato.html</code> no llama a <code>MotionEngine.ready</code>: la página funciona para quien hace scroll con la mano, pero ningún test sabe cuándo mirar.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "passos",
+   "titulo": "El contrato de prueba",
+   "sub": "Dos líneas que las dos skills de INEMA piden en toda página que construyen.",
+   "passos": [
+    {
+     "titulo": "?jump=[y]",
+     "texto": [
+      "La página lee el parámetro jump de la URL y hace scroll hasta y píxeles antes que cualquier otra cosa, sin scroll suave. Abrir la página al 50% se vuelve una URL.",
+      "El motor del kit hace esto en MotionEngine.ready."
+     ]
+    },
+    {
+     "titulo": "__ready",
+     "texto": [
+      "Después de posicionar y dibujar, la página marca window.__ready = true. La prueba espera esa marca en lugar de esperar un tiempo fijo.",
+      "Esperar 2 s \"para dar tiempo\" pasa en tu máquina y falla en una máquina cargada."
+     ]
+    },
+    {
+     "titulo": "Lo que te da",
+     "texto": [
+      "Captura de pantalla, verificador y el agente revisando su propio trabajo, todos por el mismo camino.",
+      "El verify.js de la skill se niega a capturar la pantalla si __ready nunca llega."
+     ]
+    }
+   ]
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "La skill scroll-film-studio",
+   "sub": "Skill de INEMA para Codex y Claude Code. Dos rutas: Lane A solo código (sin costo) y Lane B con película de tu generador. El verificar.mjs lee los ganchos del kit (sección [data-filme], canvas #tela, window.__filme, window.__filmeInfo) además del contrato; por eso el prompt parte de kit/site. Una página hecha desde cero por la skill se verifica con su verify.js.",
+   "blocos": [
+    {
+     "rot": "Terminal · bajar la skill y ver lo que trae",
+     "icone": "terminal",
+     "conteudo": "E=${TMPDIR:-/tmp}/ensaio-sites/a3; rm -rf \"$E\"; mkdir -p \"$E\"; cd \"$E\"\ngit clone -q https://github.com/inematds/scroll-film-studio && git -C scroll-film-studio checkout -q 9d64875; echo \"clone: $?\"\ncd scroll-film-studio/skills/scroll-film-studio\nls; ls references scripts\nsed -n 2p SKILL.md"
+    },
+    {
+     "rot": "Una vez · instalar en tu agente",
+     "icone": "robo",
+     "conteudo": "git clone https://github.com/inematds/scroll-film-studio ~/projetos/scroll-film-studio\nmkdir -p ~/.claude/skills ~/.codex/skills\nln -s ~/projetos/scroll-film-studio/skills/scroll-film-studio ~/.claude/skills/scroll-film-studio\nln -s ~/projetos/scroll-film-studio/skills/scroll-film-studio ~/.codex/skills/scroll-film-studio\n# Si Codex no encuentra la skill en ~/.codex/skills: usa ~/.agents/skills"
+    },
+    {
+     "rot": "Prompt · pedirle la página a la skill (Lane A)",
+     "icone": "chat",
+     "conteudo": "Usa la skill scroll-film-studio en la Lane A (solo código, sin generar video).\nProducto: <nombre y una frase de lo que es>.\nPara quién: <quién compra>.\nLa película de apertura usa los cuadros que ya están en frames/ (manifest.json con la cantidad).\nTexto: solo lo que está en este archivo: <ruta de tu texto>. No inventes números ni testimonios.\nReglas fijas: página estática, sin build; parte de kit/site (motor-rolagem.js y site.js) y cambia solo lo visual y el texto, manteniendo la sección [data-filme], el canvas #tela, window.__filme, window.__filmeInfo, el contrato ?jump=<y> + window.__ready y el modo quieto con reducir movimiento.\nListo cuando: node ~/projetos/formacao-cinema-ia-sites-v72/kit/scripts/verificar.mjs <url> responde OK: 3 de 3 posições."
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Salida capturada (19/10/2026)",
+      "html": "<pre>clone: 0\nagents\nreferences\nscripts\nSKILL.md\nreferences:\nengine.md\nfinishing.md\nplaybook.md\n\nscripts:\nassemble.sh\nchain-step.sh\ncontinuity-gate.sh\ncopy-gate.js\nkie-chain.py\npackage.json\npackage-lock.json\nshot.js\nvector-check.py\nverify.js\nname: scroll-film-studio</pre><p>La skill fue escrita en jul/2026 y cita generadores por el nombre de aquella época para la Lane B. Qué generador usar hoy es tema del curso 1; aquí basta la Lane A.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "La puerta de texto de la skill",
+   "sub": "El texto sobre la película vende el producto. Si narra la cámara (\"la cámara avanza\") o manda a hacer scroll, es guion de rodaje filtrándose a la página. El copy-gate.js lo reprueba.",
+   "blocos": [
+    {
+     "rot": "Terminal · texto limpio y texto que narra la cámara",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nG=${TMPDIR:-/tmp}/ensaio-sites/a3/scroll-film-studio/skills/scroll-film-studio/scripts/copy-gate.js\nnode \"$G\" \"$K/site/index.html\"; echo \"saída: $?\"\nnode \"$G\" \"$K/exemplos/texto-ruim.html\" 2>&1 | head -5; echo \"saída: ${PIPESTATUS[0]}\""
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Salida capturada (19/10/2026)",
+      "html": "<pre>✓ ~/projetos/formacao-cinema-ia-sites-v72/kit/site/index.html — copy clean\nsaída: 0\n✗ ~/projetos/formacao-cinema-ia-sites-v72/kit/exemplos/texto-ruim.html — 5 copy defect(s)\n  line 6: narrates the scroll instead of performing it\n    …ction class=\"beat\"&gt;Aurora 35As you scroll, the camera pushes in through the glass…\n  line 7: instructs the visitor to scroll\n    …s=\"beat\"&gt;One continuous takeKeep scrolling to see the reveal. &lt;/body…\nsaída: 1</pre><p>El copy-gate.js lee inglés. Para páginas en portugués y español, site-movimento tiene una puerta de texto equivalente, que corres en la lección 6.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "pratica",
+   "titulo": "Práctica",
+   "sub": "Tus cuadros en la página, el contrato probado y la skill instalada.",
+   "exercicios": [
+    {
+     "id": "e1",
+     "titulo": "E1 · Tus cuadros",
+     "min": "10 min",
+     "texto": "Corre el bloque \"tus cuadros en la página y verificar\" (necesita la carpeta de cuadros de la lección 2).",
+     "pronto": "<code>quadros: 144 (frames/)</code>, <code>OK: 3 de 3 posições</code> y <code>saída: 0</code>."
+    },
+    {
+     "id": "e2",
+     "titulo": "E2 · Sin contrato",
+     "min": "5 min",
+     "texto": "Corre el verificador contra <code>erro-sem-contrato.html</code> (bloque \"error común: página sin el contrato\") y después abre <code>kit/site/site.js</code> y encuentra la línea que llama a <code>MotionEngine.ready</code>.",
+     "pronto": "<code>FALHA: a página não marcou window.__ready em 15 s</code> con <code>saída: 1</code>."
+    },
+    {
+     "id": "e3",
+     "titulo": "E3 · La skill",
+     "min": "15 min",
+     "texto": "Corre \"bajar la skill\" e instálala en tu agente. Corre la puerta de texto. Opcional: pide la página con el prompt de la Lane A usando tu producto, en una carpeta nueva.",
+     "pronto": "<code>ls ~/.claude/skills/scroll-film-studio/SKILL.md</code> (o <code>~/.codex/skills/…</code>) muestra el archivo, y el bloque de la puerta de texto muestra <code>copy clean</code> y después <code>saída: 1</code>."
+    }
+   ]
+  },
+  {
+   "tipo": "quiz",
+   "titulo": "Prueba de la clase",
+   "sub": "La explicación aparece después de tu respuesta.",
+   "perguntas": [
+    {
+     "p": "El scroll se traba cuando haces scroll rápido por primera vez. ¿Qué pieza del motor resuelve eso?",
+     "opcoes": [
+      "Aumentar la densidad del canvas a 2.",
+      "Precargar todos los cuadros antes de mostrar la página.",
+      "Cambiar el canvas por un video.",
+      "La ventana de bitmaps: decodificar antes los cuadros cercanos al cabezal."
+     ],
+     "certa": 3,
+     "explica": "El tirón es la decodificación del JPEG en el momento de dibujar. La ventana decodifica antes, fuera del hilo principal. Precargar todo pesa y no evita la decodificación; densidad 2 duplica el trabajo.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "¿Por qué el verificador espera window.__ready en lugar de esperar 2 segundos?",
+     "opcoes": [
+      "Porque 2 s es poco para que abra Chromium.",
+      "Porque la página sabe cuándo terminó de posicionar y dibujar; un tiempo fijo pasa en una máquina y falla en otra.",
+      "Porque GitHub Pages bloquea la espera fija.",
+      "Porque ?jump solo funciona con __ready."
+     ],
+     "certa": 1,
+     "explica": "Un tiempo fijo es una apuesta: en una máquina cargada el dibujo se atrasa y la prueba lee la pantalla negra. La marca __ready dice exactamente cuándo mirar.",
+     "ref": "passos"
+    },
+    {
+     "p": "¿Cuál de estas frases reprueba la puerta de texto sobre la película de un lente?",
+     "opcoes": [
+      "\"La cámara avanza por el vidrio hasta el diafragma.\"",
+      "\"Nueve láminas de diafragma.\"",
+      "\"Hecha para la escena que ocurre con poca luz.\"",
+      "\"780 g, cabe en un estabilizador de mano.\""
+     ],
+     "certa": 0,
+     "explica": "Narrar la cámara es guion de filmación, no texto para quien compra. La persona ya está viendo la película; el texto dice lo que la imagen no dice.",
+     "ref": "codigo"
+    },
+    {
+     "p": "En la skill scroll-film-studio, ¿qué cambia entre la Lane A y la Lane B?",
+     "opcoes": [
+      "La Lane A está hecha para celular en vertical y la Lane B para pantalla de computadora.",
+      "La Lane B no necesita cuadros.",
+      "La Lane A es solo código; la Lane B usa clips de tu generador.",
+      "La Lane A usa Three.js y la B usa canvas 2D."
+     ],
+     "certa": 2,
+     "explica": "Lane A: movimiento en código, costo cero. Lane B: película generada en clips encadenados, con la cuenta y los créditos de tu generador.",
+     "ref": "codigo"
+    }
+   ]
+  },
+  {
+   "tipo": "resumo",
+   "titulo": "En tres frases",
+   "itens": [
+    {
+     "t": "Motor",
+     "texto": "Carril (scroll driver), progreso, cabezal suavizado, ventana de bitmaps, carga 1 de cada 8."
+    },
+    {
+     "t": "Contrato",
+     "texto": "?jump=[y] posiciona, window.__ready avisa: sin él no hay prueba."
+    },
+    {
+     "t": "Skill",
+     "texto": "scroll-film-studio por la Lane A, con puerta de texto."
+    }
+   ]
+  },
+  {
+   "tipo": "links",
+   "titulo": "Para ir más allá",
+   "links": [
+    {
+     "t": "scroll-film-studio: guía de uso",
+     "href": "https://inematds.github.io/scroll-film-studio/guia/",
+     "icone": "robo"
+    },
+    {
+     "t": "site-movimento: el motor de scroll (runtime/motor-rolagem.js)",
+     "href": "https://github.com/inematds/site-movimento/blob/main/skill/site-movimento/runtime/motor-rolagem.js",
+     "icone": "git"
+    },
+    {
+     "t": "MDN: createImageBitmap",
+     "href": "https://developer.mozilla.org/en-US/docs/Web/API/Window/createImageBitmap",
+     "icone": "arquivo"
+    }
+   ]
+  }
+ ]
+}

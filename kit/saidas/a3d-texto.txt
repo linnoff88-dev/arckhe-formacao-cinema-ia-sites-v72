@@ -1,0 +1,8 @@
+✓ ~/projetos/formacao-cinema-ia-sites-v72/kit/site/index.html — copy clean
+saída: 0
+✗ ~/projetos/formacao-cinema-ia-sites-v72/kit/exemplos/texto-ruim.html — 5 copy defect(s)
+  line 6: narrates the scroll instead of performing it
+    …ction class="beat">Aurora 35As you scroll, the camera pushes in through the glass…
+  line 7: instructs the visitor to scroll
+    …s="beat">One continuous takeKeep scrolling to see the reveal. </body…
+saída: 1

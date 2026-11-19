@@ -1,0 +1,52 @@
+/* Página de exemplo do kit: preto dominante, texto claro, amarelo só em detalhe. */
+:root { --fundo: #0c0c10; --tinta: #f3efe7; --suave: #a9a39a; --acento: #E9B949; --linha: rgba(243,239,231,.14); }
+* { box-sizing: border-box; margin: 0; }
+html { background: var(--fundo); color: var(--tinta); font: 400 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+body { overflow-x: hidden; }
+h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 600; line-height: 1.1; }
+a { color: inherit; }
+
+.topo { position: fixed; inset: 0 0 auto; z-index: 10; display: flex; align-items: center; justify-content: space-between;
+  padding: 14px clamp(16px, 4vw, 40px); background: linear-gradient(rgba(12,12,16,.85), rgba(12,12,16,0)); }
+.logo { width: 110px; height: 22px; color: var(--tinta); display: block; }
+.topo nav { display: flex; gap: clamp(10px, 3vw, 28px); font-size: 14px; }
+.topo nav a { text-decoration: none; opacity: .8; }
+.botao-topo { border: 1px solid var(--linha); padding: 6px 12px; border-radius: 999px; }
+
+/* O trilho do filme: 400vh de rolagem; o palco fica preso no topo enquanto o trilho passa. */
+.filme { position: relative; height: 400vh; }
+.palco { position: sticky; top: 0; height: 100vh; overflow: hidden;
+  background: var(--fundo) url(frames/f_0001.jpg) center / cover no-repeat; }
+#tela { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity .3s; }
+#tela[data-pronto] { opacity: 1; }
+.batida { position: absolute; left: clamp(16px, 6vw, 80px); bottom: 14vh; max-width: min(520px, 86vw); opacity: 0; }
+.batida h1 { font-size: clamp(44px, 8vw, 96px); }
+.batida h2 { font-size: clamp(30px, 5vw, 56px); }
+.batida p { margin-top: 12px; color: var(--suave); font-size: clamp(16px, 2vw, 20px); }
+.selo { color: var(--acento) !important; font-size: 13px !important; letter-spacing: .12em; text-transform: uppercase; }
+.carregando { position: absolute; right: 18px; top: 64px; font: 12px ui-monospace, monospace; color: var(--suave); }
+
+.secao { max-width: 1040px; margin: 0 auto; padding: 96px clamp(16px, 4vw, 40px); border-top: 1px solid var(--linha); }
+.secao h2 { font-size: clamp(30px, 4vw, 44px); margin-bottom: 28px; }
+.cartoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.cartoes article { border: 1px solid var(--linha); border-radius: 14px; padding: 22px; }
+.cartoes h3 { font-size: 22px; margin-bottom: 8px; }
+.cartoes p, .fim p { color: var(--suave); }
+.ficha { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.ficha div { border-bottom: 1px solid var(--linha); padding: 10px 0; }
+.ficha dt { color: var(--suave); font-size: 14px; }
+.ficha dd { font-size: 22px; font-family: Georgia, serif; }
+.botao { display: inline-block; margin-top: 22px; padding: 14px 22px; border-radius: 999px; background: var(--tinta); color: var(--fundo); text-decoration: none; font-weight: 600; }
+.aviso { margin-top: 40px; font-size: 13px; }
+
+/* Parado (reduzir movimento ou chave em "Parado"): o filme vira uma foto e o texto fica embaixo, sem rolagem presa. */
+html.parado .filme { height: auto; }
+html.parado .palco { position: relative; height: auto; padding: 62vh 0 48px; background-size: 100% 60vh; background-position: top center; }
+html.parado #tela { height: 60vh; bottom: auto; }
+html.parado .batida { position: static; opacity: 1 !important; transform: none !important; max-width: 680px; padding: 24px clamp(16px, 6vw, 80px) 0; }
+
+/* Celular em pé: filme vertical (frames-v/). */
+@media (max-width: 719px) and (orientation: portrait) {
+  .palco { background-image: url(frames-v/f_0001.jpg); }
+  .batida { bottom: 10vh; }
+}

@@ -1,0 +1,12 @@
+Chromium 156.0.8078.4 (Playwright 1.64.0) · 390×844
+quadros: 144 (frames-v/)
+rolagem 0% → quadro 0 · tela pintada
+rolagem 50% → quadro 72 · tela pintada
+rolagem 100% → quadro 143 · tela pintada
+transbordo horizontal: não
+celular: frames-v (filme vertical) · 390×844
+OK: 3 de 3 posições
+saída: 0
+reduzir movimento: parado (quadro 0 em 0%, 50% e 100%)
+OK: 3 de 3 posições
+saída: 0

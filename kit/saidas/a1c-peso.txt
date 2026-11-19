@@ -1,0 +1,6 @@
+PESO: quadros-v 3,49 · quadros 1,50 · js 0,02 · html/css 0,01 (MB)
+computador: tudo 1,54 MB · primeira pintura 0,05 MB · rascunho (1 em 8) 0,22 MB
+celular: tudo 3,52 MB · primeira pintura 0,06 MB · rascunho (1 em 8) 0,47 MB
+primeira pintura 0,06 MB · teto 0,5 MB: DENTRO
+visitante mais pesado 3,52 MB · orçamento 6,0 MB: DENTRO do orçamento
+saída: 0

@@ -1,0 +1,268 @@
+{
+ "slug": "three",
+ "num": 4,
+ "menu": "Three.js",
+ "titulo": "Profundidad con Three.js sin trabar la página",
+ "titulo_curto": "Three.js sin trabarse",
+ "minutos": 15,
+ "lead": "Los cuadros de video dan la película; Three.js da una escena dibujada en código, que cambia de ángulo según el scroll. El riesgo es que la escena dibuje sin parar, incluso quieta o fuera de la pantalla, y caliente el celular. Aquí mides, en un Chromium sin pantalla, cuántas veces dibuja la escena en cada situación, y ves fallar el error común.",
+ "objetivo": "medir una escena Three.js que solo dibuja cuando el scroll cambia, se detiene fuera de la pantalla y respeta reducir movimiento.",
+ "competencias": [
+  "desenhar-sob-demanda",
+  "limitar-densidade",
+  "medir-cena-3d"
+ ],
+ "aprende": [
+  {
+   "icone": "relogio",
+   "t": "Dibujar bajo demanda: solo cuando el progreso del scroll cambió"
+  },
+  {
+   "icone": "camadas",
+   "t": "Tope de densidad (1,5) y pausa fuera de la pantalla con IntersectionObserver"
+  },
+  {
+   "icone": "lupa",
+   "t": "Contar los dibujos con Playwright: quieto, haciendo scroll, fuera de la pantalla y reducir movimiento"
+  },
+  {
+   "icone": "grafico",
+   "t": "Cuánto pesa Three.js en la página"
+  }
+ ],
+ "hero_alt": "Monitor sobre una mesa oscura que muestra una escena 3D en alambre con formas geométricas y una cuadrícula en perspectiva.",
+ "secoes": [
+  {
+   "tipo": "diagrama",
+   "titulo": "Cuándo dibuja la escena",
+   "sub": "Dibujo bajo demanda: cada pregunta es un motivo para NO dibujar. Haz clic en cada etapa.",
+   "nos": [
+    {
+     "icone": "seta",
+     "titulo": "Scroll",
+     "sub": "evento",
+     "detalhe": "El evento de scroll no dibuja nada: solo programa una revisión para el próximo cuadro del navegador (requestAnimationFrame), y como máximo una por cuadro."
+    },
+    {
+     "icone": "lupa",
+     "titulo": "¿En pantalla?",
+     "sub": "observador",
+     "detalhe": "Un IntersectionObserver dice si el canvas está visible. Fuera de la pantalla, la revisión se detiene aquí: nada de dibujar lo que nadie ve."
+    },
+    {
+     "icone": "grafico",
+     "titulo": "¿Cambió?",
+     "sub": "progreso",
+     "detalhe": "Calcula el progreso del scroll dentro de la escena (0 a 1). ¿Igual al último dibujado? Se detiene aquí. Página quieta = cero dibujos."
+    },
+    {
+     "icone": "camadas",
+     "titulo": "render()",
+     "sub": "un dibujo",
+     "detalhe": "Posiciona la cámara y los objetos según el progreso y llama a renderer.render una vez. El kit cuenta en window.__renders para que la prueba lo lea."
+    },
+    {
+     "icone": "chip",
+     "titulo": "GPU",
+     "sub": "densidad ≤ 1,5",
+     "forte": true,
+     "detalhe": "renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5)). En un celular con densidad 3, dibujar a 3 son cuatro veces más píxeles que a 1,5, sin una diferencia que se note al hacer scroll."
+    }
+   ],
+   "volta": "reducir movimiento: un cuadro solo",
+   "legenda": "El error común es el bucle del tutorial: requestAnimationFrame llamando a render() 60 veces por segundo, para siempre."
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "El corazón de la escena del kit",
+   "sub": "Página kit/site-three/index.html: cuatro anillos a distintas profundidades; la cámara avanza con el scroll. Three.js 0.186.1 (npm, 19/10/2026), copiado en vendor/.",
+   "blocos": [
+    {
+     "rot": "Fragmento · kit/site-three/index.html",
+     "icone": "arquivo",
+     "conteudo": "      // Bajo demanda: solo dibuja cuando el scroll cambió el progreso y la escena está en pantalla.\n      const talvez = () => {\n        pedido = false;\n        if (!visivel) return;\n        const p = progresso();\n        if (Math.abs(p - ultimo) < 1e-4) return;\n        ultimo = p; desenhar(p);\n      };\n      const agendar = () => { if (!pedido) { pedido = true; requestAnimationFrame(talvez); } };"
+    }
+   ]
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Medir los dibujos",
+   "sub": "El three-medir.mjs hace scroll en la página en un Chromium sin pantalla y lee window.__renders en cada situación.",
+   "blocos": [
+    {
+     "rot": "Terminal · medir la escena y el peso",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a4; rm -rf \"$E\"; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site-three\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/three-medir.mjs\" \"$U\"; echo \"saída: $?\"\nkill $S\npython3 \"$K/scripts/peso.py\" \"$K/site-three\" | head -1\necho \"three.js com gzip -9: $(cat \"$K\"/site-three/vendor/*.js | gzip -9 | wc -c) bytes\""
+    },
+    {
+     "rot": "Terminal · error común: dibujar siempre",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a4; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site-three\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/three-medir.mjs\" \"${U}?sempre=1\" | grep \"^FALHA\"; echo \"saída: ${PIPESTATUS[0]}\"\nkill $S"
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Salida capturada (19/10/2026)",
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0)\nparado 0 · rolando 30 · fora da tela 0 · reduzir 1 · DPR 1,5 (tela com densidade 3)\nOK: parado 0 · rolando 30 · fora da tela 0 · reduzir 1 · DPR 1,5\nsaída: 0\nPESO: js 2,12 · html/css 0,00 (MB)\nthree.js com gzip -9: 415205 bytes</pre><p>Quieta y fuera de la pantalla: cero. Con reducir movimiento: un cuadro solo. Las dos últimas líneas son el peso: 2,12 MB en bruto (sin minificar), 0,42 MB con gzip -9. Los servidores suelen comprimir JS; el JPEG casi no se comprime. Mide lo que va a viajar por la red antes de compararlo con la película.</p>"
+     },
+     {
+      "rot": "Error común: dibujar siempre",
+      "html": "<pre>FALHA: desenhou 103 vezes parado (devia ser 0)\nFALHA: desenhou 81 vezes fora da tela (devia ser 0)\nFALHA: com reduzir movimento desenhou 83 vezes (devia ser 1)\nsaída: 1</pre><p>Con <code>?sempre=1</code> la página activa el bucle del tutorial. Los números varían en cada ejecución; lo que no varía es la falla.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "passos",
+   "titulo": "¿Cuadros de video o Three.js?",
+   "sub": "Los dos caben en la misma página; cada uno hace bien una cosa.",
+   "passos": [
+    {
+     "titulo": "Cuadros",
+     "texto": [
+      "Foto real, material, luz difícil: lo que un generador o una cámara hacen mejor que el código.",
+      "El peso crece con la duración de la película."
+     ]
+    },
+    {
+     "titulo": "Three.js",
+     "texto": [
+      "Formas, diagramas, partículas, piezas que reaccionan al mouse o cambian de color: todo dibujado al instante.",
+      "El peso es la biblioteca (2,12 MB en bruto, 0,42 MB con gzip aquí) y el trabajo de la GPU en cada dibujo."
+     ]
+    },
+    {
+     "titulo": "Juntos",
+     "texto": [
+      "Película de cuadros en la apertura y una pieza Three.js en una sección más abajo. Cada uno con su regla: cuadros en la ventana de bitmaps, escena bajo demanda.",
+      "La biblioteca adecuada para cada pieza de motion está en el curso 3 (clase 6)."
+     ]
+    }
+   ]
+  },
+  {
+   "tipo": "pratica",
+   "titulo": "Práctica",
+   "sub": "Medir, romper y arreglar.",
+   "exercicios": [
+    {
+     "id": "e1",
+     "titulo": "E1 · Medir",
+     "min": "5 min",
+     "texto": "Ejecuta el bloque \"medir la escena y el peso\".",
+     "pronto": "La línea comienza con <code>OK: parado 0 · rolando</code> (el número de dibujos al hacer scroll varía según la máquina), termina con <code>fora da tela 0 · reduzir 1 · DPR 1,5</code>, y viene <code>saída: 0</code>."
+    },
+    {
+     "id": "e2",
+     "titulo": "E2 · El error",
+     "min": "5 min",
+     "texto": "Ejecuta el mismo medidor con <code>?sempre=1</code> al final de la URL (bloque \"error común: dibujar siempre\").",
+     "pronto": "Tres líneas <code>FALHA: desenhou …</code> y <code>saída: 1</code>."
+    },
+    {
+     "id": "e3",
+     "titulo": "E3 · Tu escena",
+     "min": "20 min",
+     "texto": "Copia kit/site-three a una carpeta tuya y cambia los anillos por otra forma (TorusKnotGeometry, por ejemplo) y el color del material. Mantén la función talvez y el techo de densidad. Sirve la carpeta y mide.",
+     "pronto": "El three-medir.mjs en tu carpeta responde <code>OK: parado 0</code> … <code>reduzir 1</code> con <code>saída: 0</code>."
+    }
+   ]
+  },
+  {
+   "tipo": "quiz",
+   "titulo": "Prueba de la clase",
+   "sub": "La explicación aparece después de tu respuesta.",
+   "perguntas": [
+    {
+     "p": "La página está quieta, con la escena de Three.js en pantalla. ¿Cuántas veces por segundo debe dibujar?",
+     "opcoes": [
+      "Ninguna: nada cambió, no hay nada que dibujar.",
+      "60, para que se vea fluido.",
+      "30, la mitad del monitor.",
+      "Una vez por segundo, para no perder ningún cambio."
+     ],
+     "certa": 0,
+     "explica": "Dibujo bajo demanda: solo cuando cambió el progreso del scroll. Dibujar la misma imagen 60 veces por segundo gasta batería y calienta el celular.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "En un celular con devicePixelRatio 3, el kit dibuja con densidad 1,5. ¿Por qué?",
+     "opcoes": [
+      "Porque Three.js no acepta una densidad mayor que 1,5 en ningún dispositivo.",
+      "Porque el celular no muestra densidad 3.",
+      "Porque el canvas se ve borroso por encima de 1,5.",
+      "Porque 3 da cuatro veces los píxeles de 1,5, sin ganancia visible."
+     ],
+     "certa": 3,
+     "explica": "El trabajo de la GPU crece con el cuadrado de la densidad: (3 ÷ 1,5)² = 4. El techo es una decisión de ingeniería, no un límite de la biblioteca.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "El medidor muestra \"fora da tela 85\". ¿Qué le falta a la página?",
+     "opcoes": [
+      "Un techo de densidad.",
+      "Dejar de dibujar cuando el canvas sale de la pantalla (IntersectionObserver).",
+      "Reducir la cantidad de anillos.",
+      "Cambiar WebGL por canvas 2D, que gasta menos GPU en el celular."
+     ],
+     "certa": 1,
+     "explica": "Fuera de la pantalla nadie ve el dibujo. El observador avisa cuándo salió el canvas, y la comprobación corta antes del render.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "¿Qué hace la página del kit con \"reducir movimiento\" activado?",
+     "opcoes": [
+      "Dibuja más lento, a 30 cuadros por segundo, para cansar menos la vista.",
+      "Oculta la escena.",
+      "Dibuja un solo cuadro y el scroll ya no mueve la escena.",
+      "Muestra un aviso pidiendo que lo desactives."
+     ],
+     "certa": 2,
+     "explica": "Quien pidió menos movimiento recibe la escena quieta, completa. El medidor lo comprueba: reduzir 1.",
+     "ref": "codigo"
+    }
+   ]
+  },
+  {
+   "tipo": "resumo",
+   "titulo": "En tres frases",
+   "itens": [
+    {
+     "t": "Bajo demanda",
+     "texto": "Dibuja solo cuando cambió el progreso y la escena está en pantalla."
+    },
+    {
+     "t": "Techo",
+     "texto": "Densidad hasta 1,5; reducir movimiento = un cuadro."
+    },
+    {
+     "t": "Medir",
+     "texto": "window.__renders contado por three-medir.mjs, y el peso de la biblioteca en peso.py."
+    }
+   ]
+  },
+  {
+   "tipo": "links",
+   "titulo": "Para ir más allá",
+   "links": [
+    {
+     "t": "Three.js: documentación de WebGLRenderer",
+     "href": "https://threejs.org/docs/#api/en/renderers/WebGLRenderer",
+     "icone": "arquivo"
+    },
+    {
+     "t": "MDN: IntersectionObserver",
+     "href": "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver",
+     "icone": "lupa"
+    },
+    {
+     "t": "Curso 3 de la formación: qué biblioteca para cada pieza (clase 6)",
+     "href": "https://inematds.github.io/formacao-cinema-ia-motion-v72/es/",
+     "icone": "seta"
+    }
+   ]
+  }
+ ]
+}

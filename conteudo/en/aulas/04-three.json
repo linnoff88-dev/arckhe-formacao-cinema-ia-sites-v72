@@ -1,0 +1,268 @@
+{
+ "slug": "three",
+ "num": 4,
+ "menu": "Three.js",
+ "titulo": "Depth with Three.js without freezing the page",
+ "titulo_curto": "Three.js without freezing",
+ "minutos": 15,
+ "lead": "Video frames give you the film; Three.js gives you a scene drawn in code that changes angle as you scroll. The risk is the scene drawing nonstop, even when idle or off screen, and heating up the phone. Here you measure, in a headless Chromium, how many times the scene draws in each situation, and you watch the common mistake fail.",
+ "objetivo": "measure a Three.js scene that only draws when the scroll changes, pauses off screen, and respects reduced motion.",
+ "competencias": [
+  "desenhar-sob-demanda",
+  "limitar-densidade",
+  "medir-cena-3d"
+ ],
+ "aprende": [
+  {
+   "icone": "relogio",
+   "t": "Draw on demand: only when the scroll progress has changed"
+  },
+  {
+   "icone": "camadas",
+   "t": "Density cap (1.5) and offscreen pause with IntersectionObserver"
+  },
+  {
+   "icone": "lupa",
+   "t": "Count the draws with Playwright: idle, scrolling, offscreen, and reduced motion"
+  },
+  {
+   "icone": "grafico",
+   "t": "How much Three.js weighs on the page"
+  }
+ ],
+ "hero_alt": "A monitor on a dark desk showing a 3D wireframe scene with geometric shapes and a perspective grid.",
+ "secoes": [
+  {
+   "tipo": "diagrama",
+   "titulo": "When the scene draws",
+   "sub": "On-demand drawing: each question is a reason NOT to draw. Click each step.",
+   "nos": [
+    {
+     "icone": "seta",
+     "titulo": "Scroll",
+     "sub": "event",
+     "detalhe": "The scroll event draws nothing: it only schedules a check for the browser's next frame (requestAnimationFrame), and at most one per frame."
+    },
+    {
+     "icone": "lupa",
+     "titulo": "On screen?",
+     "sub": "observer",
+     "detalhe": "An IntersectionObserver tells you whether the canvas is visible. Offscreen, the check stops here: no drawing what nobody sees."
+    },
+    {
+     "icone": "grafico",
+     "titulo": "Changed?",
+     "sub": "progress",
+     "detalhe": "Computes the scroll progress within the scene (0 to 1). Same as the last one drawn? Stop here. Idle page = zero draws."
+    },
+    {
+     "icone": "camadas",
+     "titulo": "render()",
+     "sub": "one draw",
+     "detalhe": "Positions the camera and the objects by the progress and calls renderer.render once. The kit counts it in window.__renders so the test can read it."
+    },
+    {
+     "icone": "chip",
+     "titulo": "GPU",
+     "sub": "density ≤ 1.5",
+     "forte": true,
+     "detalhe": "renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5)). On a phone with density 3, drawing at 3 is four times more pixels than at 1.5, with no difference you can see while scrolling."
+    }
+   ],
+   "volta": "reduced motion: one frame only",
+   "legenda": "The common mistake is the tutorial loop: requestAnimationFrame calling render() 60 times a second, forever."
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "The heart of the kit scene",
+   "sub": "Page kit/site-three/index.html: four rings at different depths; the camera moves with the scroll. Three.js 0.186.1 (npm, 10/19/2026), copied into vendor/.",
+   "blocos": [
+    {
+     "rot": "Excerpt · kit/site-three/index.html",
+     "icone": "arquivo",
+     "conteudo": "      // On demand: only draws when scrolling changed the progress and the scene is on screen.\n      const talvez = () => {\n        pedido = false;\n        if (!visivel) return;\n        const p = progresso();\n        if (Math.abs(p - ultimo) < 1e-4) return;\n        ultimo = p; desenhar(p);\n      };\n      const agendar = () => { if (!pedido) { pedido = true; requestAnimationFrame(talvez); } };"
+    }
+   ]
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Measure the draws",
+   "sub": "three-medir.mjs scrolls the page in a headless Chromium and reads window.__renders in each situation.",
+   "blocos": [
+    {
+     "rot": "Terminal · measure the scene and the weight",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a4; rm -rf \"$E\"; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site-three\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/three-medir.mjs\" \"$U\"; echo \"saída: $?\"\nkill $S\npython3 \"$K/scripts/peso.py\" \"$K/site-three\" | head -1\necho \"three.js com gzip -9: $(cat \"$K\"/site-three/vendor/*.js | gzip -9 | wc -c) bytes\""
+    },
+    {
+     "rot": "Terminal · common mistake: always drawing",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a4; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site-three\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/three-medir.mjs\" \"${U}?sempre=1\" | grep \"^FALHA\"; echo \"saída: ${PIPESTATUS[0]}\"\nkill $S"
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Captured output (10/19/2026)",
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0)\nparado 0 · rolando 30 · fora da tela 0 · reduzir 1 · DPR 1,5 (tela com densidade 3)\nOK: parado 0 · rolando 30 · fora da tela 0 · reduzir 1 · DPR 1,5\nsaída: 0\nPESO: js 2,12 · html/css 0,00 (MB)\nthree.js com gzip -9: 415205 bytes</pre><p>Idle and offscreen: zero. With reduced motion: one frame only. The last two lines are the weight: 2.12 MB raw (unminified), 0.42 MB with gzip -9. Servers usually compress JS; JPEG barely compresses. Measure what will travel over the wire before comparing with the film.</p>"
+     },
+     {
+      "rot": "Common mistake: always drawing",
+      "html": "<pre>FALHA: desenhou 103 vezes parado (devia ser 0)\nFALHA: desenhou 81 vezes fora da tela (devia ser 0)\nFALHA: com reduzir movimento desenhou 83 vezes (devia ser 1)\nsaída: 1</pre><p>With <code>?sempre=1</code> the page turns on the tutorial loop. The numbers vary on every run; the failure does not.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "passos",
+   "titulo": "Video frames or Three.js?",
+   "sub": "Both fit on the same page; each does one thing well.",
+   "passos": [
+    {
+     "titulo": "Frames",
+     "texto": [
+      "Real photo, material, hard light: what a generator or a camera does better than code.",
+      "The weight grows with the length of the film."
+     ]
+    },
+    {
+     "titulo": "Three.js",
+     "texto": [
+      "Shapes, diagrams, particles, pieces that react to the mouse or change color: everything drawn on the fly.",
+      "The weight is the library (2.12 MB raw, 0.42 MB with gzip here) and the GPU's work on each draw."
+     ]
+    },
+    {
+     "titulo": "Together",
+     "texto": [
+      "A frame film in the opening and a Three.js piece in a section below. Each with its own rule: frames in the bitmap window, scene on demand.",
+      "The right library for each motion piece is in course 3 (lesson 6)."
+     ]
+    }
+   ]
+  },
+  {
+   "tipo": "pratica",
+   "titulo": "Practice",
+   "sub": "Measure, break, and fix.",
+   "exercicios": [
+    {
+     "id": "e1",
+     "titulo": "E1 · Measure",
+     "min": "5 min",
+     "texto": "Run the \"measure the scene and the weight\" block.",
+     "pronto": "The line starts with <code>OK: parado 0 · rolando</code> (the number of draws while scrolling varies with the machine), ends with <code>fora da tela 0 · reduzir 1 · DPR 1,5</code>, and <code>saída: 0</code> follows."
+    },
+    {
+     "id": "e2",
+     "titulo": "E2 · The mistake",
+     "min": "5 min",
+     "texto": "Run the same meter with <code>?sempre=1</code> at the end of the URL (the \"common mistake: always drawing\" block).",
+     "pronto": "Three <code>FALHA: desenhou …</code> lines and <code>saída: 1</code>."
+    },
+    {
+     "id": "e3",
+     "titulo": "E3 · Your scene",
+     "min": "20 min",
+     "texto": "Copy kit/site-three to a folder of your own and swap the rings for another shape (TorusKnotGeometry, for example) and the material color. Keep the maybe function and the density cap. Serve the folder and measure.",
+     "pronto": "The three-medir.mjs in your folder answers <code>OK: parado 0</code> … <code>reduzir 1</code> with <code>saída: 0</code>."
+    }
+   ]
+  },
+  {
+   "tipo": "quiz",
+   "titulo": "Lesson quiz",
+   "sub": "The explanation appears after you answer.",
+   "perguntas": [
+    {
+     "p": "The page is still, with the Three.js scene on screen. How many times per second should it draw?",
+     "opcoes": [
+      "None: nothing changed, so there is nothing to draw.",
+      "60, to keep it smooth.",
+      "30, half the monitor's rate.",
+      "Once per second, so it doesn't miss any change."
+     ],
+     "certa": 0,
+     "explica": "Draw on demand: only when the scroll progress has changed. Drawing the same image 60 times per second drains the battery and heats up the phone.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "On a phone with devicePixelRatio 3, the kit draws at density 1.5. Why?",
+     "opcoes": [
+      "Because Three.js doesn't accept a density above 1.5 on any device.",
+      "Because the phone doesn't display density 3.",
+      "Because the canvas gets blurry above 1.5.",
+      "Because 3 gives four times the pixels of 1.5, with no visible gain."
+     ],
+     "certa": 3,
+     "explica": "The GPU's workload grows with the square of the density: (3 ÷ 1.5)² = 4. The cap is an engineering choice, not a library limit.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "The meter shows \"fora da tela 85\". What is missing from the page?",
+     "opcoes": [
+      "A density cap.",
+      "Stop drawing when the canvas leaves the screen (IntersectionObserver).",
+      "Reduce the number of rings.",
+      "Swap WebGL for a 2D canvas, which uses less GPU on a phone."
+     ],
+     "certa": 1,
+     "explica": "Off screen, nobody sees the drawing. The observer says when the canvas has left, and the check stops before the render.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "What does the kit's page do with \"reduced motion\" turned on?",
+     "opcoes": [
+      "It draws more slowly, at 30 frames per second, to strain the eyes less.",
+      "It hides the scene.",
+      "It draws a single frame and scrolling no longer moves the scene.",
+      "It shows a notice asking the user to turn it off."
+     ],
+     "certa": 2,
+     "explica": "Whoever asked for less motion gets the scene still, whole. The meter checks it: reduzir 1.",
+     "ref": "codigo"
+    }
+   ]
+  },
+  {
+   "tipo": "resumo",
+   "titulo": "In three sentences",
+   "itens": [
+    {
+     "t": "On demand",
+     "texto": "Draws only when the progress changed and the scene is on screen."
+    },
+    {
+     "t": "Cap",
+     "texto": "Density up to 1.5; reduced motion = one frame."
+    },
+    {
+     "t": "Measure",
+     "texto": "window.__renders counted by three-medir.mjs, and the library's weight in peso.py."
+    }
+   ]
+  },
+  {
+   "tipo": "links",
+   "titulo": "Going further",
+   "links": [
+    {
+     "t": "Three.js: WebGLRenderer documentation",
+     "href": "https://threejs.org/docs/#api/en/renderers/WebGLRenderer",
+     "icone": "arquivo"
+    },
+    {
+     "t": "MDN: IntersectionObserver",
+     "href": "https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver",
+     "icone": "lupa"
+    },
+    {
+     "t": "Course 3 of the track: which library for each piece (lesson 6)",
+     "href": "https://inematds.github.io/formacao-cinema-ia-motion-v72/en/",
+     "icone": "seta"
+    }
+   ]
+  }
+ ]
+}

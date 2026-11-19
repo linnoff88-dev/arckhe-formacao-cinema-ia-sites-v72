@@ -1,0 +1,282 @@
+{
+ "slug": "celular",
+ "num": 7,
+ "menu": "Celular",
+ "titulo": "Celular, peso y \"reducir movimiento\": el sitio que abre rápido",
+ "titulo_curto": "Celular y reducir movimiento",
+ "minutos": 16,
+ "lead": "Mucha gente abre la página en el celular en vertical, con red móvil, y algunas personas le pidieron al sistema menos movimiento. Una película horizontal recortada en la pantalla vertical pierde el asunto; una película que avanza a la fuerza molesta a quien pidió que se detuviera. Tú revisas la página en el celular de 390 px, con reducir movimiento, y recortas el peso de la película vertical.",
+ "objetivo": "comprobar en el celular de 390 px, con reducir movimiento y en la primera carga, que la página abre rápido y no fuerza el movimiento.",
+ "competencias": [
+  "filme-vertical-no-celular",
+  "respeitar-reduzir-movimento",
+  "cortar-peso-do-celular"
+ ],
+ "aprende": [
+  {
+   "icone": "camadas",
+   "t": "Película vertical (frames-v/) y encaje por fracción de corte, en vez de cubrir siempre"
+  },
+  {
+   "icone": "escudo",
+   "t": "prefers-reduced-motion y la llave Parado / Ligado / Raio-X (Quieto / Encendido / Rayos X)"
+  },
+  {
+   "icone": "grafico",
+   "t": "Recortar el peso del celular sin quitar cuadros"
+  },
+  {
+   "icone": "seta",
+   "t": "Qué es de este curso y qué es de la Formación inemaSEO"
+  }
+ ],
+ "hero_alt": "Celular en vertical sobre un soporte mostrando un paisaje vertical con niebla, junto a una notebook con un gráfico.",
+ "secoes": [
+  {
+   "tipo": "diagrama",
+   "titulo": "Qué cambia en el celular",
+   "sub": "Haz clic en cada etapa.",
+   "nos": [
+    {
+     "icone": "carregar",
+     "titulo": "1.er pintado",
+     "sub": "lo mínimo",
+     "detalhe": "HTML, CSS, JS y el cuadro 1. El fondo del escenario ya muestra el cuadro 1 por CSS mientras el canvas no dibujó: la pantalla nunca queda negra esperando."
+    },
+    {
+     "icone": "camadas",
+     "titulo": "Vertical",
+     "sub": "frames-v/",
+     "detalhe": "El celular en vertical (hasta 719 px, retrato) pide la película vertical. Un 16:9 cubriendo 390×844 conserva solo el centro de cada cuadro: la mayor parte de la composición desaparece por los lados (scroll-film-studio, references/engine.md)."
+    },
+    {
+     "icone": "alvo",
+     "titulo": "Encaje",
+     "sub": "fracción de corte",
+     "detalhe": "El motor cubre la pantalla mientras el corte es pequeño y encaja entero cuando pasaría del límite (22% en la computadora). Con la película vertical en el celular, el corte es pequeño y el kit permite hasta 80%."
+    },
+    {
+     "icone": "escudo",
+     "titulo": "Reducir",
+     "sub": "quieto",
+     "detalhe": "Con prefers-reduced-motion, la página del kit detiene la película: se vuelve una foto, el texto queda quieto abajo, el carril (scroll driver) de 400vh desaparece. El interruptor Parado / Ligado / Raio-X (Quieto / Encendido / Rayos X) deja que cualquier persona elija; la tecla M alterna."
+    },
+    {
+     "icone": "check",
+     "titulo": "Verificar",
+     "sub": "390 px",
+     "forte": true,
+     "detalhe": "verificar.mjs con --celular abre en 390×844 y exige frames-v; con --reduzir exige el mismo cuadro en 0%, 50% y 100%."
+    }
+   ],
+   "volta": "¿pesó? ancho y -q:v del vertical",
+   "legenda": "La velocidad medida en red real, Core Web Vitals y PageSpeed son de la Formación inemaSEO. Aquí: el peso de la película y el movimiento."
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Celular y reducir movimiento",
+   "sub": "Los dos modos del verificador en la página del kit.",
+   "blocos": [
+    {
+     "rot": "Terminal · verificar en el celular y con reducir movimiento",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a7; rm -rf \"$E\"; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"$U\" --celular; echo \"saída: $?\"\nnode \"$K/scripts/verificar.mjs\" \"$U\" --reduzir | tail -2; echo \"saída: ${PIPESTATUS[0]}\"\nkill $S"
+    },
+    {
+     "rot": "Fragmento · kit/site/site.css",
+     "icone": "arquivo",
+     "conteudo": "html.parado .filme { height: auto; }\nhtml.parado .palco { position: relative; height: auto; padding: 62vh 0 48px; background-size: 100% 60vh; background-position: top center; }\nhtml.parado #tela { height: 60vh; bottom: auto; }\nhtml.parado .batida { position: static; opacity: 1 !important; transform: none !important; max-width: 680px; padding: 24px clamp(16px, 6vw, 80px) 0; }"
+    },
+    {
+     "rot": "Terminal · error común: ignorar reducir movimiento",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a7; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"${U}erro-sem-reduzir.html\" --reduzir | tail -1; echo \"saída: ${PIPESTATUS[0]}\"\nkill $S"
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Salida capturada (19/10/2026)",
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 390×844\nquadros: 144 (frames-v/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: não\ncelular: frames-v (filme vertical) · 390×844\nOK: 3 de 3 posições\nsaída: 0\nreduzir movimento: parado (quadro 0 em 0%, 50% e 100%)\nOK: 3 de 3 posições\nsaída: 0</pre><p>En el celular, la página eligió frames-v; con reducir movimiento, el cuadro se quedó en 0 en las tres posiciones.</p>"
+     },
+     {
+      "rot": "Error común: ignorar reducir movimiento",
+      "html": "<pre>FALHA: com reduzir movimento o filme ainda anda (quadro 0 → 72 → 143)\nsaída: 1</pre><p>La copia <code>erro-sem-reduzir.html</code> desactiva la opción <code>reduzir</code>: la película avanza incluso cuando el sistema pide menos movimiento.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "El celular pesaba más que la computadora",
+   "sub": "En la clase 1, el celular descargaba 3,52 MB y la computadora 1,54 MB. Rehacer solo la película vertical con 600 px y -q:v 8 lo resuelve, sin quitar cuadros.",
+   "blocos": [
+    {
+     "rot": "Terminal · rehacer la película vertical más liviana",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a7; rm -rf \"$E/site\"; cp -r \"$K/site\" \"$E/site\"\npython3 \"$K/scripts/peso.py\" \"$E/site\" --orcamento 3 | grep -E \"^celular|orçamento\"\n# la película vertical otra vez: 600 px de ancho y JPEG -q:v 8 (era 720 px y 6)\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/v.mp4\" 6 1.0 1.35 1080x1920\nbash \"$K/scripts/quadros.sh\" \"$E/v.mp4\" \"$E/site/frames-v\" 600 8\npython3 \"$K/scripts/peso.py\" \"$E/site\" --orcamento 3 --inicial 0.5 | grep -E \"^celular|orçamento|teto\"; echo \"saída: ${PIPESTATUS[0]}\""
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Salida capturada (19/10/2026)",
+      "html": "<pre>celular: tudo 3,52 MB · primeira pintura 0,06 MB · rascunho (1 em 8) 0,47 MB\nvisitante mais pesado 3,52 MB · orçamento 3,0 MB: ACIMA do orçamento\nv.mp4: 6,0 s · 24 fps · 1080×1920\nQUADROS: 144 · 600×1066 · 2,2 MB · 24 fps\ncelular: tudo 2,28 MB · primeira pintura 0,05 MB · rascunho (1 em 8) 0,32 MB\nprimeira pintura 0,05 MB · teto 0,5 MB: DENTRO\nvisitante mais pesado 2,28 MB · orçamento 3,0 MB: DENTRO do orçamento\nsaída: 0</pre><p>Los mismos 144 cuadros, de 3,52 a 2,28 MB en el celular. Mira el resultado en el celular antes de aceptarlo: -q:v 8 es el límite que usa el curso.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "passos",
+   "titulo": "Tres reglas del celular",
+   "sub": "De las dos skills y de lo que mide el verificador.",
+   "passos": [
+    {
+     "titulo": "Película propia",
+     "texto": [
+      "El celular en vertical recibe película vertical: clip 9:16 del generador o, en el ensayo, clipe.sh con 1080x1920.",
+      "Sin frames-v/, el kit vuelve al horizontal cubriendo la pantalla."
+     ]
+    },
+    {
+     "titulo": "Peso propio",
+     "texto": [
+      "Mide el celular por separado (peso.py ya lo hace) y dale el presupuesto más ajustado.",
+      "Recorta el ancho y ajusta -q:v antes de sacar los cuadros."
+     ]
+    },
+    {
+     "titulo": "Movimiento opcional",
+     "texto": [
+      "Reducir movimiento activado = película quieta y texto legible, sin scroll fijo.",
+      "El interruptor en pantalla deja la elección también a quien no tocó el sistema."
+     ]
+    }
+   ]
+  },
+  {
+   "tipo": "pratica",
+   "titulo": "Práctica",
+   "sub": "Celular, reducir y peso, verificados.",
+   "exercicios": [
+    {
+     "id": "e1",
+     "titulo": "E1 · Celular y reducir",
+     "min": "5 min",
+     "texto": "Ejecuta \"verificar en el celular y con reducir movimiento\".",
+     "pronto": "<code>celular: frames-v (filme vertical)</code>, <code>reduzir movimento: parado</code> y dos veces <code>saída: 0</code>."
+    },
+    {
+     "id": "e2",
+     "titulo": "E2 · El error",
+     "min": "5 min",
+     "texto": "Ejecuta el verificador con --reduzir en erro-sem-reduzir.html (bloque \"error común: ignorar reducir movimiento\"). En el navegador de la computadora, activa \"reducir movimiento\" del sistema y abre la página del kit y la copia con error.",
+     "pronto": "<code>FALHA: com reduzir movimento o filme ainda anda</code> y <code>saída: 1</code>."
+    },
+    {
+     "id": "e3",
+     "titulo": "E3 · Celular liviano",
+     "min": "10 min",
+     "texto": "Ejecuta \"rehacer la película vertical más liviana\". Después prueba 540 px con -q:v 7 y compara.",
+     "pronto": "<code>visitante mais pesado 2,28 MB · orçamento 3,0 MB: DENTRO do orçamento</code> y <code>saída: 0</code>."
+    }
+   ]
+  },
+  {
+   "tipo": "quiz",
+   "titulo": "Prueba de la clase",
+   "sub": "La explicación aparece después de tu respuesta.",
+   "perguntas": [
+    {
+     "p": "Una película 16:9 cubriendo la pantalla de un celular en vertical (390×844). ¿Qué pasa?",
+     "opcoes": [
+      "Se ve nítida, porque el celular tiene densidad alta.",
+      "Aparece completa, con franjas negras arriba y abajo, sin cortar nada.",
+      "El navegador cambia solo a la película vertical.",
+      "Queda solo el centro de cada cuadro, y el sujeto puede salirse de la pantalla."
+     ],
+     "certa": 3,
+     "explica": "Cubrir una pantalla vertical con un cuadro ancho corta los lados. Por eso existen la película vertical (frames-v/) y el encaje por fracción de corte.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "La persona activó \"reducir movimiento\" en el sistema. ¿Qué hace la página del kit?",
+     "opcoes": [
+      "Muestra la película a menor velocidad.",
+      "Detiene la película en una foto y deja el texto quieto abajo.",
+      "Oculta toda la página.",
+      "Nada: hacer scroll es una acción de la persona, no una animación que dispara el sitio."
+     ],
+     "certa": 1,
+     "explica": "Una película atada al scroll es movimiento disparado por la persona, y quien pidió menos movimiento recibe la versión quieta. El verificador comprueba el mismo cuadro en 0%, 50% y 100%.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "El celular está 1,2 MB por encima del presupuesto. ¿Cuál es el primer ajuste?",
+     "opcoes": [
+      "Rehacer la película vertical con menor ancho o con -q:v más alto.",
+      "Quitar la mitad de los cuadros de la vertical.",
+      "Usar también la película horizontal en el celular.",
+      "Cambiar los cuadros por un video con autoplay, que el navegador comprime mejor."
+     ],
+     "certa": 0,
+     "explica": "El ancho y -q:v quitan peso sin convertirlo en una presentación de diapositivas. En el ensayo: 720 px y -q:v 6 = 3,52 MB; 600 px y -q:v 8 = 2,28 MB, los mismos 144 cuadros.",
+     "ref": "codigo"
+    },
+    {
+     "p": "¿Dónde aprender a medir Core Web Vitals y la velocidad del sitio para buscadores?",
+     "opcoes": [
+      "En la clase 4, con three-medir.",
+      "En peso.py, con --inicial.",
+      "En la Formación inemaSEO.",
+      "En verificar.mjs, con --celular."
+     ],
+     "certa": 2,
+     "explica": "Este curso mide el peso de la película y el movimiento. El rendimiento para buscadores tiene su propio dueño: la Formación inemaSEO.",
+     "ref": "diagrama"
+    }
+   ]
+  },
+  {
+   "tipo": "resumo",
+   "titulo": "En tres frases",
+   "itens": [
+    {
+     "t": "Vertical",
+     "texto": "El celular en vertical recibe frames-v/ y encaje por fracción de corte."
+    },
+    {
+     "t": "Reducir",
+     "texto": "Película quieta, texto legible, llave en pantalla."
+    },
+    {
+     "t": "Peso",
+     "texto": "Celular medido aparte; ancho y -q:v antes de quitar cuadros."
+    }
+   ]
+  },
+  {
+   "tipo": "links",
+   "titulo": "Para ir más allá",
+   "links": [
+    {
+     "t": "Formación inemaSEO: rendimiento y qué mide cada herramienta",
+     "href": "https://inematds.github.io/formacao-inemaseo-sistemas-v72/es/",
+     "icone": "grafico"
+    },
+    {
+     "t": "MDN: prefers-reduced-motion",
+     "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion",
+     "icone": "escudo"
+    },
+    {
+     "t": "W3C: WCAG 2.2, criterio 2.3.3 (animación disparada por interacción)",
+     "href": "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html",
+     "icone": "arquivo"
+    }
+   ]
+  }
+ ]
+}

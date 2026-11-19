@@ -1,0 +1,282 @@
+{
+ "slug": "celular",
+ "num": 7,
+ "menu": "Mobile",
+ "titulo": "Mobile, weight, and \"reduced motion\": the site that opens fast",
+ "titulo_curto": "Mobile and reduced motion",
+ "minutos": 16,
+ "lead": "Many people open the page on a phone held upright, on a mobile network, and some have asked their system for less motion. A horizontal film cropped to a vertical screen loses its subject; a film that moves by force bothers people who asked it to stop. You check the page on a 390 px phone, with reduced motion on, and cut the weight of the vertical film.",
+ "objetivo": "check on a 390 px phone, with reduced motion on and on the first load, that the page opens fast and does not force motion.",
+ "competencias": [
+  "filme-vertical-no-celular",
+  "respeitar-reduzir-movimento",
+  "cortar-peso-do-celular"
+ ],
+ "aprende": [
+  {
+   "icone": "camadas",
+   "t": "Vertical film (frames-v/) and fit by crop fraction, instead of always covering"
+  },
+  {
+   "icone": "escudo",
+   "t": "prefers-reduced-motion and the Parado / Ligado / Raio-X (Still / On / X-ray) switch"
+  },
+  {
+   "icone": "grafico",
+   "t": "Cut the weight on mobile without dropping frames"
+  },
+  {
+   "icone": "seta",
+   "t": "What belongs to this course and what belongs to the inemaSEO Formation"
+  }
+ ],
+ "hero_alt": "Phone held upright on a stand showing a vertical misty landscape, next to a laptop with a chart.",
+ "secoes": [
+  {
+   "tipo": "diagrama",
+   "titulo": "What changes on mobile",
+   "sub": "Click each step.",
+   "nos": [
+    {
+     "icone": "carregar",
+     "titulo": "1st paint",
+     "sub": "the minimum",
+     "detalhe": "HTML, CSS, JS, and frame 1. The stage background already shows frame 1 through CSS while the canvas hasn't drawn yet: the screen is never black while it waits."
+    },
+    {
+     "icone": "camadas",
+     "titulo": "Vertical",
+     "sub": "frames-v/",
+     "detalhe": "A phone held upright (up to 719 px, portrait) calls for the vertical film. A 16:9 covering 390×844 keeps only the center of each frame: most of the composition disappears at the sides (scroll-film-studio, references/engine.md)."
+    },
+    {
+     "icone": "alvo",
+     "titulo": "Fit",
+     "sub": "crop fraction",
+     "detalhe": "The engine covers the screen while the crop is small and fits the whole frame when it would pass the limit (22% on desktop). With the vertical film on the phone, the crop is small and the kit allows up to 80%."
+    },
+    {
+     "icone": "escudo",
+     "titulo": "Reduce",
+     "sub": "still",
+     "detalhe": "With prefers-reduced-motion, the kit's page stops the film: it becomes a photo, the text sits still below, and the 400vh track goes away. The Parado / Ligado / Raio-X (Still / On / X-ray) switch lets anyone choose; the M key toggles it."
+    },
+    {
+     "icone": "check",
+     "titulo": "Check",
+     "sub": "390 px",
+     "forte": true,
+     "detalhe": "verificar.mjs with --celular opens at 390×844 and requires frames-v; with --reduzir it requires the same frame at 0%, 50%, and 100%."
+    }
+   ],
+   "volta": "too heavy? vertical width and -q:v",
+   "legenda": "Speed measured on a real network, Core Web Vitals, and PageSpeed belong to the inemaSEO course. Here: the weight of the film and the motion."
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Mobile and reduced motion",
+   "sub": "The checker's two modes on the kit's page.",
+   "blocos": [
+    {
+     "rot": "Terminal · check on the phone and with reduced motion",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a7; rm -rf \"$E\"; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"$U\" --celular; echo \"saída: $?\"\nnode \"$K/scripts/verificar.mjs\" \"$U\" --reduzir | tail -2; echo \"saída: ${PIPESTATUS[0]}\"\nkill $S"
+    },
+    {
+     "rot": "Excerpt · kit/site/site.css",
+     "icone": "arquivo",
+     "conteudo": "html.parado .filme { height: auto; }\nhtml.parado .palco { position: relative; height: auto; padding: 62vh 0 48px; background-size: 100% 60vh; background-position: top center; }\nhtml.parado #tela { height: 60vh; bottom: auto; }\nhtml.parado .batida { position: static; opacity: 1 !important; transform: none !important; max-width: 680px; padding: 24px clamp(16px, 6vw, 80px) 0; }"
+    },
+    {
+     "rot": "Terminal · common mistake: ignoring reduced motion",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a7; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"${U}erro-sem-reduzir.html\" --reduzir | tail -1; echo \"saída: ${PIPESTATUS[0]}\"\nkill $S"
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Captured output (10/19/2026)",
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 390×844\nquadros: 144 (frames-v/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: não\ncelular: frames-v (filme vertical) · 390×844\nOK: 3 de 3 posições\nsaída: 0\nreduzir movimento: parado (quadro 0 em 0%, 50% e 100%)\nOK: 3 de 3 posições\nsaída: 0</pre><p>On the phone, the page chose frames-v; with reduced motion, the frame stayed at 0 in all three positions.</p>"
+     },
+     {
+      "rot": "Common mistake: ignoring reduced motion",
+      "html": "<pre>FALHA: com reduzir movimento o filme ainda anda (quadro 0 → 72 → 143)\nsaída: 1</pre><p>The copy <code>erro-sem-reduzir.html</code> turns off the <code>reduzir</code> option: the film keeps moving even when the system asks for less motion.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "The phone weighed more than the desktop",
+   "sub": "In lesson 1, the phone downloaded 3.52 MB and the desktop 1.54 MB. Redoing only the vertical film at 600 px and -q:v 8 fixes it, without dropping frames.",
+   "blocos": [
+    {
+     "rot": "Terminal · redo the vertical film lighter",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a7; rm -rf \"$E/site\"; cp -r \"$K/site\" \"$E/site\"\npython3 \"$K/scripts/peso.py\" \"$E/site\" --orcamento 3 | grep -E \"^celular|orçamento\"\n# the vertical film again: 600 px wide and JPEG -q:v 8 (was 720 px and 6)\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/v.mp4\" 6 1.0 1.35 1080x1920\nbash \"$K/scripts/quadros.sh\" \"$E/v.mp4\" \"$E/site/frames-v\" 600 8\npython3 \"$K/scripts/peso.py\" \"$E/site\" --orcamento 3 --inicial 0.5 | grep -E \"^celular|orçamento|teto\"; echo \"saída: ${PIPESTATUS[0]}\""
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Captured output (10/19/2026)",
+      "html": "<pre>celular: tudo 3,52 MB · primeira pintura 0,06 MB · rascunho (1 em 8) 0,47 MB\nvisitante mais pesado 3,52 MB · orçamento 3,0 MB: ACIMA do orçamento\nv.mp4: 6,0 s · 24 fps · 1080×1920\nQUADROS: 144 · 600×1066 · 2,2 MB · 24 fps\ncelular: tudo 2,28 MB · primeira pintura 0,05 MB · rascunho (1 em 8) 0,32 MB\nprimeira pintura 0,05 MB · teto 0,5 MB: DENTRO\nvisitante mais pesado 2,28 MB · orçamento 3,0 MB: DENTRO do orçamento\nsaída: 0</pre><p>The same 144 frames, from 3.52 to 2.28 MB on the phone. Look at the result on the phone before you accept it: -q:v 8 is the limit the course uses.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "passos",
+   "titulo": "Three phone rules",
+   "sub": "From the two skills and from what the checker measures.",
+   "passos": [
+    {
+     "titulo": "Own film",
+     "texto": [
+      "A phone held upright gets a vertical film: a 9:16 clip from the generator or, in the rehearsal, clipe.sh with 1080x1920.",
+      "Without frames-v/, the kit falls back to the horizontal one covering the screen."
+     ]
+    },
+    {
+     "titulo": "Own weight",
+     "texto": [
+      "Measure the phone separately (peso.py already does) and give it the tightest budget.",
+      "Cut width and -q:v before pulling frames."
+     ]
+    },
+    {
+     "titulo": "Optional motion",
+     "texto": [
+      "Reduced motion on = still film and readable text, with no locked scroll.",
+      "The on-screen switch leaves the choice to people who didn't change the system, too."
+     ]
+    }
+   ]
+  },
+  {
+   "tipo": "pratica",
+   "titulo": "Practice",
+   "sub": "Phone, reduce, and weight, checked.",
+   "exercicios": [
+    {
+     "id": "e1",
+     "titulo": "E1 · Phone and reduce",
+     "min": "5 min",
+     "texto": "Run \"check on mobile and with reduced motion\".",
+     "pronto": "<code>celular: frames-v (filme vertical)</code>, <code>reduzir movimento: parado</code> and two times <code>saída: 0</code>."
+    },
+    {
+     "id": "e2",
+     "titulo": "E2 · The mistake",
+     "min": "5 min",
+     "texto": "Run the checker with --reduzir on erro-sem-reduzir.html (the \"common mistake: ignoring reduced motion\" block). In your desktop browser, turn on your system's \"reduce motion\" setting and open the kit's page and the copy with the error.",
+     "pronto": "<code>FALHA: com reduzir movimento o filme ainda anda</code> and <code>saída: 1</code>."
+    },
+    {
+     "id": "e3",
+     "titulo": "E3 · Light mobile",
+     "min": "10 min",
+     "texto": "Run \"redo the vertical film lighter\". Then try 540 px with -q:v 7 and compare.",
+     "pronto": "<code>visitante mais pesado 2,28 MB · orçamento 3,0 MB: DENTRO do orçamento</code> and <code>saída: 0</code>."
+    }
+   ]
+  },
+  {
+   "tipo": "quiz",
+   "titulo": "Lesson quiz",
+   "sub": "The explanation appears after you answer.",
+   "perguntas": [
+    {
+     "p": "A 16:9 film covering the screen of a phone held upright (390×844). What happens?",
+     "opcoes": [
+      "It looks sharp, because the phone has a high pixel density.",
+      "It shows up whole, with black bars above and below, and nothing is cropped.",
+      "The browser switches to the vertical film on its own.",
+      "Only the center of each frame is left, and the subject can fall off the screen."
+     ],
+     "certa": 3,
+     "explica": "Covering a vertical screen with a wide frame crops the sides. That is why there is the vertical film (frames-v/) and the fit by crop fraction.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "The person turned on \"reduce motion\" in their system. What does the kit's page do?",
+     "opcoes": [
+      "It shows the film at a slower speed.",
+      "It stops the film on a still photo and leaves the text still below it.",
+      "It hides the whole page.",
+      "Nothing: scrolling is an action by the person, not an animation the site triggers."
+     ],
+     "certa": 1,
+     "explica": "A scroll-bound film is motion triggered by the person, and anyone who asked for less motion gets the still version. The checker compares the same frame at 0%, 50% and 100%.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "The phone is 1.2 MB over budget. What is the first adjustment?",
+     "opcoes": [
+      "Redo the vertical film with a smaller width or a higher -q:v.",
+      "Remove half of the frames from the vertical one.",
+      "Use the horizontal film on the phone too.",
+      "Swap the frames for an autoplay video, which the browser compresses better."
+     ],
+     "certa": 0,
+     "explica": "Width and -q:v take off weight without turning it into a slideshow. In the rehearsal: 720 px and -q:v 6 = 3.52 MB; 600 px and -q:v 8 = 2.28 MB, the same 144 frames.",
+     "ref": "codigo"
+    },
+    {
+     "p": "Where do I learn to measure Core Web Vitals and site speed for search?",
+     "opcoes": [
+      "In lesson 4, with three-medir.",
+      "In peso.py, with --inicial.",
+      "In the Formação inemaSEO.",
+      "In verificar.mjs, with --celular."
+     ],
+     "certa": 2,
+     "explica": "This course measures the weight of the film and the motion. Performance for search has an owner: the Formação inemaSEO.",
+     "ref": "diagrama"
+    }
+   ]
+  },
+  {
+   "tipo": "resumo",
+   "titulo": "In three sentences",
+   "itens": [
+    {
+     "t": "Vertical",
+     "texto": "A phone held upright gets frames-v/ and a fit by crop fraction."
+    },
+    {
+     "t": "Reduce",
+     "texto": "Still film, readable text, key on the screen."
+    },
+    {
+     "t": "Weight",
+     "texto": "Phone measured separately; width and -q:v before removing frames."
+    }
+   ]
+  },
+  {
+   "tipo": "links",
+   "titulo": "Going further",
+   "links": [
+    {
+     "t": "Formação inemaSEO: performance and what each tool measures",
+     "href": "https://inematds.github.io/formacao-inemaseo-sistemas-v72/en/",
+     "icone": "grafico"
+    },
+    {
+     "t": "MDN: prefers-reduced-motion",
+     "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion",
+     "icone": "escudo"
+    },
+    {
+     "t": "W3C: WCAG 2.2, criterion 2.3.3 (animation from interactions)",
+     "href": "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html",
+     "icone": "arquivo"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aurora 35 | lente prime de cinema</title>
+  <meta name="description" content="Aurora 35: lente prime de 35 mm para filmar com pouca luz. Produto fictício, página de exemplo do curso Sites cinematográficos (INEMA.CLUB).">
+  <link rel="stylesheet" href="site.css">
+  <!-- Opções desta página (o kit tem cópias com uma opção desligada para mostrar o erro). -->
+  <script>window.SITE = { contrato: false, reduzir: true };  // ERRO DE PROPÓSITO: sem o contrato ?jump + __ready</script>
+  <script defer src="vendor/chave-movimento.js"></script>
+  <script defer src="vendor/motor-rolagem.js"></script>
+  <script defer src="site.js"></script>
+</head>
+<body>
+  <header class="topo">
+    <a class="marca" href="./" aria-label="Aurora 35, início">
+      <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 24" role="img" aria-label="Aurora"><text x="0" y="19" font-family="Georgia, serif" font-size="22" letter-spacing="3" fill="#f3efe7">AURORA</text></svg>
+    </a>
+    <nav><a href="#vidro">Vidro</a><a href="#ficha">Ficha</a><a href="#reservar" class="botao-topo">Reservar</a></nav>
+  </header>
+
+  <main>
+    <!-- O filme: uma seção alta (o "trilho") com um palco preso no topo. A rolagem dentro do trilho escolhe o quadro. -->
+    <section id="filme" class="filme" data-filme data-quadros="frames">
+      <div class="palco">
+        <canvas id="tela" aria-hidden="true" data-xray="filme de ensaio · quadros escolhidos pela rolagem" data-xray-tool="code"></canvas>
+        <div class="batida" data-in="-0.1" data-peak="0" data-out="0.3">
+          <p class="selo">Lente prime · 35 mm · f/1.4</p>
+          <h1>Aurora 35</h1>
+          <p>Feita para a cena que acontece com pouca luz.</p>
+        </div>
+        <div class="batida" data-in="0.3" data-peak="0.5" data-out="0.72">
+          <h2>O preto continua preto</h2>
+          <p>Nove lâminas de diafragma e tratamento antirreflexo em todas as superfícies.</p>
+        </div>
+        <div class="batida" data-in="0.72" data-peak="0.92" data-out="2">
+          <h2>Do set ao celular</h2>
+          <p>Encaixe PL e EF, foco com curso de 300 graus e anel de íris sem cliques.</p>
+        </div>
+        <div class="carregando" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="vidro" class="secao">
+      <h2>Por que ela existe</h2>
+      <div class="cartoes">
+        <article><h3>Pouca luz</h3><p>Abertura f/1.4 para filmar no fim da tarde sem subir o ISO.</p></article>
+        <article><h3>Foco suave</h3><p>Anel com curso longo: o assistente acerta a marca sem pular.</p></article>
+        <article><h3>Leve</h3><p>780 g, cabe num estabilizador de mão.</p></article>
+      </div>
+    </section>
+
+    <section id="ficha" class="secao">
+      <h2>Ficha técnica</h2>
+      <dl class="ficha">
+        <div><dt>Distância focal</dt><dd>35 mm</dd></div>
+        <div><dt>Abertura</dt><dd>f/1.4 a f/16</dd></div>
+        <div><dt>Encaixe</dt><dd>PL e EF</dd></div>
+        <div><dt>Peso</dt><dd>780 g</dd></div>
+      </dl>
+    </section>
+
+    <section id="reservar" class="secao fim">
+      <h2>Reserve a sua</h2>
+      <p>Entrega em 30 dias. Sem cobrança antes do envio.</p>
+      <a class="botao" href="#reservar">Reservar a Aurora 35</a>
+      <p class="aviso">Produto fictício. Esta é a página de exemplo do curso Sites cinematográficos, do INEMA.CLUB.</p>
+    </section>
+  </main>
+</body>
+</html>

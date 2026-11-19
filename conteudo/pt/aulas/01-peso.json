@@ -1,0 +1,310 @@
+{
+ "slug": "peso",
+ "num": 1,
+ "menu": "Peso",
+ "titulo": "O que é um site cinematográfico e quando ele vale o peso",
+ "titulo_curto": "Quando vale o peso",
+ "minutos": 15,
+ "lead": "Um site cinematográfico parece um filme que anda com a rolagem. Por baixo, não há 3D nem vídeo tocando: há quadros de um clipe desenhados num canvas, um por posição da rolagem. Isso pesa. Nesta aula você roda a página de exemplo do kit, mede quanto ela pesa para cada visitante e decide, com um número, se o seu produto pede uma.",
+ "objetivo": "rodar o site de exemplo do kit, medir o peso dele e decidir, com um orçamento em MB, se o seu produto pede um.",
+ "competencias": [
+  "explicar-filme-na-rolagem",
+  "medir-peso-por-visitante",
+  "decidir-com-orcamento"
+ ],
+ "aprende": [
+  {
+   "icone": "camadas",
+   "t": "O caminho clipe → quadros → canvas → rolagem, e por que não é um vídeo tocando"
+  },
+  {
+   "icone": "terminal",
+   "t": "Instalar o kit e ver a página de exemplo passar no verificador"
+  },
+  {
+   "icone": "grafico",
+   "t": "Medir o peso por visitante: computador, celular e primeira pintura"
+  },
+  {
+   "icone": "alvo",
+   "t": "Decidir com um orçamento em MB, antes de gastar com gerador"
+  }
+ ],
+ "hero_alt": "Balança de precisão numa mesa escura com uma pilha de fotogramas impressos e um celular ao lado.",
+ "secoes": [
+  {
+   "tipo": "diagrama",
+   "titulo": "O filme que anda com a rolagem",
+   "sub": "Clique em cada etapa. A volta é a pergunta que decide tudo: quanto isso pesa?",
+   "nos": [
+    {
+     "icone": "video",
+     "titulo": "Clipe",
+     "sub": "um movimento",
+     "detalhe": "Um clipe curto com um movimento contínuo, sem corte: a câmera se aproxima, gira ou atravessa. Pode vir de um gerador de vídeo (curso 1) ou, no ensaio, de uma foto parada animada com ffmpeg (aula 2)."
+    },
+    {
+     "icone": "pasta",
+     "titulo": "Quadros",
+     "sub": "JPEG",
+     "detalhe": "O clipe vira uma pasta de imagens, uma por quadro: f_0001.jpg, f_0002.jpg… São elas que o visitante baixa. É aqui que mora o peso."
+    },
+    {
+     "icone": "camadas",
+     "titulo": "Canvas",
+     "sub": "desenha",
+     "detalhe": "Um elemento canvas preso no topo da tela desenha um quadro de cada vez. Não é um vídeo tocando: buscar um ponto do vídeo a cada movimento da rolagem engasga; desenhar um quadro já decodificado não."
+    },
+    {
+     "icone": "seta",
+     "titulo": "Rolagem",
+     "sub": "escolhe",
+     "detalhe": "Uma seção alta (o trilho) passa por baixo do canvas. A posição da rolagem dentro do trilho vira um número de 0 a 1, e esse número escolhe o quadro: 0 = primeiro, 1 = último."
+    },
+    {
+     "icone": "arquivo",
+     "titulo": "Página",
+     "sub": "texto e seções",
+     "forte": true,
+     "detalhe": "Por cima do filme, frases curtas aparecem em pontos da rolagem; depois do filme vem a página comum: recursos, ficha, botão. O filme abre; quem vende é o texto."
+    }
+   ],
+   "volta": "o peso decide se vale",
+   "legenda": "O efeito \"3D\" vem do clipe, não de um motor 3D. Profundidade desenhada em código é a aula 4."
+  },
+  {
+   "tipo": "passos",
+   "titulo": "Quando vale e quando não vale",
+   "sub": "O filme custa banda do visitante e tempo seu. Ele se paga em poucos casos.",
+   "passos": [
+    {
+     "titulo": "Vale",
+     "texto": [
+      "Produto com forma, material ou mecanismo que se entende melhor em movimento: uma lente, um relógio, uma peça de máquina, um prato.",
+      "Página de lançamento, que o visitante abre uma vez e olha com calma."
+     ]
+    },
+    {
+     "titulo": "Não vale",
+     "texto": [
+      "Página que a pessoa lê com pressa: serviço, preço, artigo, painel. O filme atrasa o que ela veio buscar.",
+      "Quando o produto não muda nada ao girar ou se aproximar: um texto bem escrito vende melhor."
+     ]
+    },
+    {
+     "titulo": "Sem gerador",
+     "texto": [
+      "As duas skills do INEMA (aulas 3 e 6) têm um caminho só com código: formas, luz e texto animados pela rolagem, sem gerar vídeo. Zero crédito.",
+      "Este curso inteiro roda assim: os clipes de ensaio saem de uma foto com ffmpeg."
+     ]
+    },
+    {
+     "titulo": "Com gerador",
+     "texto": [
+      "Clipes do seu gerador viram quadros. Quanto custa depende do gerador: o piloto do site-movimento gastou 300 créditos de Kling 3.0 (kling-video-v3_0) em 720p (README do projeto, 18/10/2026).",
+      "Qual gerador e qual versão: curso 1 da formação."
+     ]
+    }
+   ]
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Instalar o kit",
+   "sub": "O kit fica dentro do repositório deste curso. Clone uma vez e instale; ele usa Node 20.10+, ffmpeg e o Chromium do Playwright.",
+   "blocos": [
+    {
+     "rot": "Uma vez · clonar o curso",
+     "icone": "git",
+     "conteudo": "cd ~/projetos && git clone https://github.com/inematds/formacao-cinema-ia-sites-v72"
+    },
+    {
+     "rot": "Terminal · instalar o kit",
+     "icone": "terminal",
+     "conteudo": "cd ~/projetos/formacao-cinema-ia-sites-v72/kit\nnpm ci --no-audit --no-fund > ${TMPDIR:-/tmp}/npm-sites.log 2>&1; echo \"npm ci: $?\"\nnpx playwright install chromium > ${TMPDIR:-/tmp}/pw-sites.log 2>&1; echo \"chromium: $?\"\nnpx playwright --version\nnpm ls --depth=0 | tail -2\nffmpeg -version | head -1 | cut -d' ' -f1-3"
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Saída capturada (19/10/2026)",
+      "html": "<pre>npm ci: 0\nchromium: 0\nVersion 1.64.0\n└── three@0.186.1\n\nffmpeg version 6.1.1-3ubuntu5</pre><p>O Playwright fica fixo em 1.64.0 e o three em 0.186.1 no <code>package.json</code> do kit: o que você instala é o que foi testado.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Ver a página de exemplo funcionando",
+   "sub": "O servidor do kit pega uma porta livre e escreve a URL num arquivo; o laço espera a URL responder antes de testar.",
+   "blocos": [
+    {
+     "rot": "Terminal · servir e verificar a página do kit",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a1; rm -rf \"$E\"; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"$U\"; echo \"saída: $?\"\nkill $S"
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Saída capturada (19/10/2026)",
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nquadros: 144 (frames/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: não\nOK: 3 de 3 posições\nsaída: 0</pre><p>O verificador abre a página em três pontos da rolagem e confere o quadro e a tela. Para olhar com os seus olhos, rode só a 1ª linha do servidor e abra a URL no navegador.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "codigo",
+   "titulo": "Medir o peso por visitante",
+   "sub": "Cada visitante baixa um filme só: o horizontal no computador ou o vertical no celular em pé.",
+   "blocos": [
+    {
+     "rot": "Terminal · peso com orçamento de 6 MB",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\npython3 \"$K/scripts/peso.py\" \"$K/site\" --orcamento 6 --inicial 0.5; echo \"saída: $?\""
+    },
+    {
+     "rot": "Terminal · erro comum: orçamento de 2 MB",
+     "icone": "terminal",
+     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\npython3 \"$K/scripts/peso.py\" \"$K/site\" --orcamento 2 | tail -1; echo \"saída: ${PIPESTATUS[0]}\""
+    }
+   ],
+   "saida": {
+    "selo": "real",
+    "abas": [
+     {
+      "rot": "Saída capturada (19/10/2026)",
+      "html": "<pre>PESO: quadros-v 3,49 · quadros 1,50 · js 0,02 · html/css 0,01 (MB)\ncomputador: tudo 1,54 MB · primeira pintura 0,05 MB · rascunho (1 em 8) 0,22 MB\ncelular: tudo 3,52 MB · primeira pintura 0,06 MB · rascunho (1 em 8) 0,47 MB\nprimeira pintura 0,06 MB · teto 0,5 MB: DENTRO\nvisitante mais pesado 3,52 MB · orçamento 6,0 MB: DENTRO do orçamento\nsaída: 0</pre><p>Primeira pintura é um teto do que chega antes do primeiro quadro: conta todo arquivo da pasta que não é quadro. O celular pesa mais que o computador aqui: a aula 7 corrige.</p>"
+     },
+     {
+      "rot": "Erro comum: orçamento estourado",
+      "html": "<pre>visitante mais pesado 3,52 MB · orçamento 2,0 MB: ACIMA do orçamento\nsaída: 1</pre><p>Com orçamento de 2 MB, o celular passa do teto e o script sai com 1. É esse código que um portão automático lê.</p>"
+     }
+    ]
+   }
+  },
+  {
+   "tipo": "pratica",
+   "titulo": "Prática",
+   "sub": "Do kit instalado à sua decisão escrita.",
+   "exercicios": [
+    {
+     "id": "e1",
+     "titulo": "E1 · Instalar",
+     "min": "10 min",
+     "texto": "Clone o curso e rode o bloco \"instalar o kit\".",
+     "pronto": "A saída mostra <code>npm ci: 0</code>, <code>chromium: 0</code> e <code>Version 1.64.0</code>."
+    },
+    {
+     "id": "e2",
+     "titulo": "E2 · Ver funcionando",
+     "min": "5 min",
+     "texto": "Rode o bloco \"servir e verificar a página do kit\". Depois abra a URL no seu navegador e role a página.",
+     "pronto": "<code>OK: 3 de 3 posições</code> e <code>saída: 0</code>."
+    },
+    {
+     "id": "e3",
+     "titulo": "E3 · Sua decisão com número",
+     "min": "10 min",
+     "texto": "Escolha um produto seu. Num arquivo decisao.txt, escreva três linhas: <code>Produto: …</code>, <code>Visitante mais pesado: … MB</code> (o número do kit, ou o seu se já tiver quadros) e <code>Decisão: …</code> (filme, só código ou página comum, com o motivo).",
+     "pronto": "<code>grep -c -E \"^(Produto|Visitante mais pesado|Decisão):\" decisao.txt</code> responde <code>3</code>."
+    }
+   ]
+  },
+  {
+   "tipo": "quiz",
+   "titulo": "Teste da aula",
+   "sub": "A explicação aparece depois da sua resposta.",
+   "perguntas": [
+    {
+     "p": "Por que o filme da rolagem é desenhado quadro a quadro num canvas, e não com um vídeo e currentTime?",
+     "opcoes": [
+      "Porque o navegador não consegue tocar um arquivo MP4 dentro de uma página com rolagem longa.",
+      "Buscar um ponto do vídeo a cada passo engasga; desenhar um quadro pronto, não.",
+      "Porque o canvas deixa o arquivo final menor que o vídeo.",
+      "Porque o vídeo não funciona no celular."
+     ],
+     "certa": 1,
+     "explica": "A busca (seek) no vídeo tem atraso e o resultado engasga. O canvas desenha uma imagem já decodificada. O preço é o peso: uma imagem por quadro.",
+     "ref": "diagrama"
+    },
+    {
+     "p": "O peso.py diz \"computador 1,54 MB · celular 3,52 MB\". Qual número vai para o orçamento?",
+     "opcoes": [
+      "A soma dos dois, 5,06 MB.",
+      "O do computador, que é o visitante mais comum.",
+      "O do visitante mais pesado, 3,52 MB.",
+      "A média, 2,5 MB."
+     ],
+     "certa": 2,
+     "explica": "Cada visitante baixa um filme só. O orçamento vale para quem paga mais, aqui o celular. Somar os dois conta um visitante que não existe.",
+     "ref": "codigo"
+    },
+    {
+     "p": "Para qual destas páginas o filme na rolagem tem menos chance de valer o peso?",
+     "opcoes": [
+      "Lançamento de um relógio com mecanismo à mostra.",
+      "Abertura de uma lente nova.",
+      "Página de um prato que gira e solta vapor.",
+      "Tabela de preços de um serviço."
+     ],
+     "certa": 3,
+     "explica": "Quem abre uma tabela de preços quer o número, rápido. O filme atrasa o que a pessoa veio buscar. Produto com forma e material é o caso clássico.",
+     "ref": "passos"
+    },
+    {
+     "p": "O que é a \"primeira pintura\" no peso.py?",
+     "opcoes": [
+      "O que chega antes do primeiro quadro aparecer: HTML, CSS, JS, imagens e o quadro 1.",
+      "O tamanho do primeiro quadro em alta resolução.",
+      "O filme inteiro do computador.",
+      "O tempo, em segundos, até a página abrir."
+     ],
+     "certa": 0,
+     "explica": "É um peso, não um tempo: o que precisa chegar para a tela deixar de ser preta. Tempo de carregamento e Core Web Vitals são da Formação inemaSEO.",
+     "ref": "codigo"
+    }
+   ]
+  },
+  {
+   "tipo": "resumo",
+   "titulo": "Em três frases",
+   "itens": [
+    {
+     "t": "Mecânica",
+     "texto": "Clipe vira quadros; a rolagem escolhe o quadro; o canvas desenha."
+    },
+    {
+     "t": "Custo",
+     "texto": "Peso por visitante: computador, celular e primeira pintura."
+    },
+    {
+     "t": "Decisão",
+     "texto": "Com um orçamento em MB, antes de gastar com gerador."
+    }
+   ]
+  },
+  {
+   "tipo": "links",
+   "titulo": "Para ir além",
+   "links": [
+    {
+     "t": "Curso 1 da formação: geradores de vídeo e versões (out/2026)",
+     "href": "https://inematds.github.io/formacao-cinema-ia-geracao-v72/",
+     "icone": "video"
+    },
+    {
+     "t": "site-movimento: guia e piloto publicado",
+     "href": "https://inematds.github.io/site-movimento/guia/",
+     "icone": "camadas"
+    },
+    {
+     "t": "O kit deste curso no GitHub",
+     "href": "https://github.com/inematds/formacao-cinema-ia-sites-v72/tree/main/kit",
+     "icone": "git"
+    }
+   ]
+  }
+ ]
+}

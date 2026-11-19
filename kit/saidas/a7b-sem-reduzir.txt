@@ -1,0 +1,2 @@
+FALHA: com reduzir movimento o filme ainda anda (quadro 0 → 72 → 143)
+saída: 1

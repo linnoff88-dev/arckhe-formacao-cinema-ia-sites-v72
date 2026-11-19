@@ -1,0 +1,2 @@
+K=~/projetos/formacao-cinema-ia-sites-v72/kit
+python3 "$K/scripts/peso.py" "$K/site" --orcamento 6 --inicial 0.5; echo "saída: $?"

@@ -1,0 +1,6 @@
+cenas-modelo: 5 cenas · 17,5 s · marca Aurora 35 · logo assets/logo.svg
+  ✓ renders/aurora-35-pt-16x9.mp4 · 8 s (lint com avisos)
+/tmp/ensaio-sites/a5/filme/renders/aurora-35-pt-16x9.mp4
+render: 0
+OK: 17,5 s · 1920×1080 · 30 fps · sem áudio
+saída: 0
