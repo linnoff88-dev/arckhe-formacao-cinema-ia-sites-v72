@@ -69,7 +69,7 @@
      "detalhe": "Un archivo con el número de cuadros y la tasa. La página lee el manifest y sabe cuántos cuadros pedir, sin listar la carpeta (el servidor estático ni lo permite)."
     }
    ],
-   "legenda": "Regla de las dos skills de INEMA: extraer a la tasa nativa. Una película de 72 s a 24 cuadros por segundo tiene 1.728 cuadros; sacar \"unos 300\" se vuelve 4 cuadros por segundo en el scroll (scroll-film-studio, references/engine.md)."
+   "legenda": "Regla de las dos skills de ARCKHÉ: extraer a la tasa nativa. Una película de 72 s a 24 cuadros por segundo tiene 1.728 cuadros; sacar \"unos 300\" se vuelve 4 cuadros por segundo en el scroll (scroll-film-studio, references/engine.md)."
   },
   {
    "tipo": "codigo",
@@ -79,7 +79,7 @@
     {
      "rot": "Terminal · hacer el clip de ensayo",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a2; rm -rf \"$E\"; mkdir -p \"$E\"\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/clipe.mp4\" 6 1.0 1.35"
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a2; rm -rf \"$E\"; mkdir -p \"$E\"\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/clipe.mp4\" 6 1.0 1.35"
     }
    ],
    "saida": {
@@ -100,7 +100,7 @@
     {
      "rot": "Terminal · extraer los cuadros y comprobar",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a2\nbash \"$K/scripts/quadros.sh\" \"$E/clipe.mp4\" \"$E/quadros\" 1024 6\nls \"$E/quadros\" | head -3\npython3 \"$K/scripts/conferir-quadros.py\" \"$E/quadros\" \"$E/clipe.mp4\"; echo \"saída: $?\""
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a2\nbash \"$K/scripts/quadros.sh\" \"$E/clipe.mp4\" \"$E/quadros\" 1024 6\nls \"$E/quadros\" | head -3\npython3 \"$K/scripts/conferir-quadros.py\" \"$E/quadros\" \"$E/clipe.mp4\"; echo \"saída: $?\""
     },
     {
      "rot": "Archivo · kit/scripts/quadros.sh",
@@ -126,7 +126,7 @@
     {
      "rot": "Terminal · extraer mal a propósito",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a2; mkdir -p \"$E/poucos\" \"$E/sem-zero\"\n# error 1: \"unos pocos cuadros por segundo bastan\" (6 por segundo de un clip de 24)\nffmpeg -v error -i \"$E/clipe.mp4\" -vf \"fps=6,scale=1024:-2\" -q:v 6 \"$E/poucos/f_%04d.jpg\"\npython3 \"$K/scripts/conferir-quadros.py\" \"$E/poucos\" \"$E/clipe.mp4\"; echo \"saída: $?\"\n# error 2: nombre sin ceros a la izquierda (f_%d en vez de f_%04d)\nffmpeg -v error -i \"$E/clipe.mp4\" -vf \"scale=1024:-2\" -q:v 6 \"$E/sem-zero/f_%d.jpg\"\npython3 \"$K/scripts/conferir-quadros.py\" \"$E/sem-zero\" \"$E/clipe.mp4\"; echo \"saída: $?\""
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a2; mkdir -p \"$E/poucos\" \"$E/sem-zero\"\n# error 1: \"unos pocos cuadros por segundo bastan\" (6 por segundo de un clip de 24)\nffmpeg -v error -i \"$E/clipe.mp4\" -vf \"fps=6,scale=1024:-2\" -q:v 6 \"$E/poucos/f_%04d.jpg\"\npython3 \"$K/scripts/conferir-quadros.py\" \"$E/poucos\" \"$E/clipe.mp4\"; echo \"saída: $?\"\n# error 2: nombre sin ceros a la izquierda (f_%d en vez de f_%04d)\nffmpeg -v error -i \"$E/clipe.mp4\" -vf \"scale=1024:-2\" -q:v 6 \"$E/sem-zero/f_%d.jpg\"\npython3 \"$K/scripts/conferir-quadros.py\" \"$E/sem-zero\" \"$E/clipe.mp4\"; echo \"saída: $?\""
     }
    ],
    "saida": {
@@ -246,7 +246,7 @@
    "links": [
     {
      "t": "scroll-film-studio: recetas de cuadros y encaje (references/engine.md)",
-     "href": "https://github.com/inematds/scroll-film-studio/blob/main/skills/scroll-film-studio/references/engine.md",
+     "href": "https://github.com/linnoff88-dev/scroll-film-studio/blob/main/skills/scroll-film-studio/references/engine.md",
      "icone": "arquivo"
     },
     {
@@ -256,7 +256,7 @@
     },
     {
      "t": "Curso 1 de la formación: generar el clip de verdad",
-     "href": "https://inematds.github.io/formacao-cinema-ia-geracao-v72/es/",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "seta"
     }
    ]

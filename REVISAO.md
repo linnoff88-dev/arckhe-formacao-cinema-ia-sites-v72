@@ -1,4 +1,4 @@
-# Revisão independente — Sites cinematográficos (19/10/2026)
+# Revisão independente — Sites cARCKHÉtográficos (19/10/2026)
 
 Revisor: subagente que não escreveu o curso, com o BRIEF, o CURRICULO, a AUDITORIA e a PESQUISA da formação. Ele só leu os arquivos (não editou nada) e conferiu o kit com `resolver-kit.py --conferir`.
 

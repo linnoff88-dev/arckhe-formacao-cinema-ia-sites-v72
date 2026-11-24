@@ -1,10 +1,10 @@
-# Kit — Sites cinematográficos (Formação Cinema com IA, curso 5 de 6)
+# Kit — Sites cARCKHÉtográficos (Formação CARCKHÉ com IA, curso 5 de 6)
 
 Página de produto fictícia (a lente **Aurora 35**) com filme na rolagem, uma cena Three.js e os scripts que conferem tudo por comando. Nada aqui chama modelo, API ou gerador de vídeo: os clipes de ensaio saem de uma foto com `ffmpeg`. Versões fixadas em 19/10/2026.
 
 ```bash
-cd ~/projetos && git clone https://github.com/inematds/formacao-cinema-ia-sites-v72
-cd formacao-cinema-ia-sites-v72/kit
+cd ~/projetos && git clone https://github.com/linnoff88-dev/formacao-cARCKHÉ-ia-sites-v72
+cd formacao-cARCKHÉ-ia-sites-v72/kit
 npm ci && npx playwright install chromium     # Playwright 1.64.0, three 0.186.1
 bash scripts/portao.sh site                   # PORTÃO: 4/4 OK
 ```
@@ -12,7 +12,7 @@ bash scripts/portao.sh site                   # PORTÃO: 4/4 OK
 | Pasta / arquivo | O que tem |
 |---|---|
 | `site/` | a página de exemplo: `index.html`, `site.css`, `site.js`, `frames/` (filme horizontal, 1024 px) e `frames-v/` (vertical, 720 px); `erro-*.html` são cópias com uma opção desligada de propósito |
-| `site/vendor/` | `motor-rolagem.js` e `chave-movimento.js`, copiados sem mudança de [inematds/site-movimento](https://github.com/inematds/site-movimento) (commit d9a43a4, `skill/site-movimento/runtime/`) |
+| `site/vendor/` | `motor-rolagem.js` e `chave-movimento.js`, copiados sem mudança de [linnoff88-dev/site-movimento](https://github.com/linnoff88-dev/site-movimento) (commit d9a43a4, `skill/site-movimento/runtime/`) |
 | `site-three/` | cena Three.js que desenha sob demanda; `vendor/` tem `three.module.js` + `three.core.js` da 0.186.1 (MIT) |
 | `scripts/clipe.sh` | foto → clipe de ensaio com a câmera se aproximando (zoompan) |
 | `scripts/quadros.sh` | clipe → `f_0001.jpg…` na taxa nativa + `manifest.json` |
@@ -36,4 +36,4 @@ until U=$(cat url.txt) && [ -n "$U" ] && curl -s -o /dev/null "$U"; do sleep 0.3
 node scripts/verificar.mjs "$U"; kill $S
 ```
 
-Curso: https://inematds.github.io/formacao-cinema-ia-sites-v72/ · página do kit no ar: https://inematds.github.io/formacao-cinema-ia-sites-v72/kit/site/ · conteúdo aberto e gratuito do INEMA.CLUB.
+Curso: https://linnoff88-dev.github.io/ · página do kit no ar: https://linnoff88-dev.github.io/ · conteúdo aberto e gratuito do ARCKHÉ AI.

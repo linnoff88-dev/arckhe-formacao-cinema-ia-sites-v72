@@ -92,12 +92,12 @@
     {
      "rot": "Terminal · medir la escena y el peso",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a4; rm -rf \"$E\"; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site-three\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/three-medir.mjs\" \"$U\"; echo \"saída: $?\"\nkill $S\npython3 \"$K/scripts/peso.py\" \"$K/site-three\" | head -1\necho \"three.js com gzip -9: $(cat \"$K\"/site-three/vendor/*.js | gzip -9 | wc -c) bytes\""
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a4; rm -rf \"$E\"; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site-three\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/three-medir.mjs\" \"$U\"; echo \"saída: $?\"\nkill $S\npython3 \"$K/scripts/peso.py\" \"$K/site-three\" | head -1\necho \"three.js com gzip -9: $(cat \"$K\"/site-three/vendor/*.js | gzip -9 | wc -c) bytes\""
     },
     {
      "rot": "Terminal · error común: dibujar siempre",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a4; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site-three\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/three-medir.mjs\" \"${U}?sempre=1\" | grep \"^FALHA\"; echo \"saída: ${PIPESTATUS[0]}\"\nkill $S"
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a4; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site-three\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/three-medir.mjs\" \"${U}?sempre=1\" | grep \"^FALHA\"; echo \"saída: ${PIPESTATUS[0]}\"\nkill $S"
     }
    ],
    "saida": {
@@ -259,7 +259,7 @@
     },
     {
      "t": "Curso 3 de la formación: qué biblioteca para cada pieza (clase 6)",
-     "href": "https://inematds.github.io/formacao-cinema-ia-motion-v72/es/",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "seta"
     }
    ]

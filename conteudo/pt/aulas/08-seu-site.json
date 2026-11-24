@@ -2,7 +2,7 @@
  "slug": "seu-site",
  "num": 8,
  "menu": "Seu site",
- "titulo": "Seu site: uma página de produto com rolagem cinematográfica publicada",
+ "titulo": "Seu site: uma página de produto com rolagem cARCKHÉtográfica publicada",
  "titulo_curto": "Seu site publicado",
  "minutos": 20,
  "lead": "Hora de juntar tudo numa página sua. Você parte do modelo do kit, troca a foto e os textos pelos do seu produto, refaz os dois filmes, passa no portão de quatro conferências e publica no GitHub Pages. O mesmo verificador que rodou na sua máquina roda contra a URL pública: é ele que diz que está no ar.",
@@ -89,7 +89,7 @@
     {
      "rot": "Terminal · montar a página e passar no portão",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a8; rm -rf \"$E\"; mkdir -p \"$E\"\n# o seu site começa como cópia do modelo; troque a foto do produto pela sua (aqui: a lente deitada)\ncp -r \"$K/site\" \"$E/meu-site\"; rm -f \"$E/meu-site\"/erro-*.html\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente2.jpg\" \"$E/h.mp4\" 6 1.0 1.3\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente2.jpg\" \"$E/v.mp4\" 6 1.0 1.3 1080x1920\nbash \"$K/scripts/quadros.sh\" \"$E/h.mp4\" \"$E/meu-site/frames\" 1024 6\nbash \"$K/scripts/quadros.sh\" \"$E/v.mp4\" \"$E/meu-site/frames-v\" 600 8\nbash \"$K/scripts/portao.sh\" \"$E/meu-site\"; echo \"saída: $?\""
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a8; rm -rf \"$E\"; mkdir -p \"$E\"\n# o seu site começa como cópia do modelo; troque a foto do produto pela sua (aqui: a lente deitada)\ncp -r \"$K/site\" \"$E/meu-site\"; rm -f \"$E/meu-site\"/erro-*.html\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente2.jpg\" \"$E/h.mp4\" 6 1.0 1.3\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente2.jpg\" \"$E/v.mp4\" 6 1.0 1.3 1080x1920\nbash \"$K/scripts/quadros.sh\" \"$E/h.mp4\" \"$E/meu-site/frames\" 1024 6\nbash \"$K/scripts/quadros.sh\" \"$E/v.mp4\" \"$E/meu-site/frames-v\" 600 8\nbash \"$K/scripts/portao.sh\" \"$E/meu-site\"; echo \"saída: $?\""
     },
     {
      "rot": "Arquivo · kit/scripts/portao.sh",
@@ -120,7 +120,7 @@
     {
      "rot": "Terminal · verificar uma página publicada",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\ncurl -s -o /dev/null -w \"%{http_code}\\n\" https://inematds.github.io/formacao-cinema-ia-sites-v72/kit/site/\nnode \"$K/scripts/verificar.mjs\" https://inematds.github.io/formacao-cinema-ia-sites-v72/kit/site/; echo \"saída: $?\""
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\ncurl -s -o /dev/null -w \"%{http_code}\\n\" https://linnoff88-dev.github.io/ \"$K/scripts/verificar.mjs\" https://linnoff88-dev.github.io/ echo \"saída: $?\""
     }
    ],
    "saida": {
@@ -166,7 +166,7 @@
    "tipo": "gerador",
    "titulo": "Gere o seu plano com datas",
    "sub": "Escolha a data de início e quanto tempo você tem por semana.",
-   "curso": "Sites cinematográficos",
+   "curso": "Sites cARCKHÉtográficos",
    "horas_padrao": 4,
    "degraus": [
     {
@@ -203,7 +203,7 @@
     }
    ],
    "txt": {
-    "titulo": "Plano — Sites cinematográficos",
+    "titulo": "Plano — Sites cARCKHÉtográficos",
     "inicio": "Início",
     "ritmo": "Ritmo",
     "termino": "Término previsto",
@@ -265,7 +265,7 @@
       "Reduzir movimento."
      ],
      "certa": 2,
-     "explica": "As quatro são peso, computador, celular e reduzir movimento. Core Web Vitals é da Formação inemaSEO.",
+     "explica": "As quatro são peso, computador, celular e reduzir movimento. Core Web Vitals é da Formação ARCKHÉSEO.",
      "ref": "codigo"
     }
    ]
@@ -290,41 +290,41 @@
   },
   {
    "tipo": "links",
-   "titulo": "Fim da Formação Cinema com IA: os 6 cursos",
+   "titulo": "Fim da Formação CARCKHÉ com IA: os 6 cursos",
    "links": [
     {
      "t": "Curso 0 · Direção: pensar como diretor antes de gerar",
-     "href": "https://inematds.github.io/formacao-cinema-ia-direcao-v72/",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "video"
     },
     {
      "t": "Curso 1 · Geração: imagem e vídeo com IA em out/2026",
-     "href": "https://inematds.github.io/formacao-cinema-ia-geracao-v72/",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "video"
     },
     {
      "t": "Curso 2 · Produção: do roteiro ao filme pronto",
-     "href": "https://inematds.github.io/formacao-cinema-ia-producao-v72/",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "video"
     },
     {
      "t": "Curso 3 · Motion por código com agente",
-     "href": "https://inematds.github.io/formacao-cinema-ia-motion-v72/",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "terminal"
     },
     {
      "t": "Curso 4 · A fábrica de vídeo com agentes",
-     "href": "https://inematds.github.io/formacao-cinema-ia-fabrica-v72/",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "robo"
     },
     {
-     "t": "Curso 5 · Sites cinematográficos (este curso)",
-     "href": "https://inematds.github.io/formacao-cinema-ia-sites-v72/",
+     "t": "Curso 5 · Sites cARCKHÉtográficos (este curso)",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "camadas"
     },
     {
-     "t": "Área Vídeos do INEMA",
-     "href": "https://eventos.inema.pro/videos/",
+     "t": "Área Vídeos do ARCKHÉ",
+     "href": "https://eventos.ARCKHÉ.pro/videos/",
      "icone": "seta"
     }
    ]

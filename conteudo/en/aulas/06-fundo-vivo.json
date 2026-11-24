@@ -80,7 +80,7 @@
     {
      "rot": "Terminal · download site-movimento and test the engines",
      "icone": "terminal",
-     "conteudo": "E=${TMPDIR:-/tmp}/ensaio-sites/a6; rm -rf \"$E\"; mkdir -p \"$E\"; cd \"$E\"\ngit clone -q https://github.com/inematds/site-movimento && git -C site-movimento checkout -q d9a43a4; echo \"clone: $?\"\nbash site-movimento/skill/site-movimento/tests/motores-contrato.sh; echo \"saída: $?\""
+     "conteudo": "E=${TMPDIR:-/tmp}/ensaio-sites/a6; rm -rf \"$E\"; mkdir -p \"$E\"; cd \"$E\"\ngit clone -q https://github.com/linnoff88-dev/site-movimento && git -C site-movimento checkout -q d9a43a4; echo \"clone: $?\"\nbash site-movimento/skill/site-movimento/tests/motores-contrato.sh; echo \"saída: $?\""
     }
    ],
    "saida": {
@@ -101,7 +101,7 @@
     {
      "rot": "Terminal · chain, assemble, and prove continuity",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a6; SM=$E/site-movimento/skill/site-movimento/scripts\n# dois clipes encadeados: o 2º começa exatamente onde o 1º terminou (zoom 1,25)\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/c1.mp4\" 4 1.0 1.25\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/c2.mp4\" 4 1.25 1.5\npython3 \"$SM/cortes.py\" \"$E/c1.mp4\" \"$E/c2.mp4\" | sed \"s#$E/##\"; echo \"cortes: ${PIPESTATUS[0]}\"\nrm -rf \"$E/site\"; cp -r \"$K/site\" \"$E/site\"\npython3 \"$SM/montar.py\" \"$E/site\" \"$E/c1.mp4:0:-1\" \"$E/c2.mp4:1:-1\" | head -1 | sed \"s#$E/##\"\npython3 \"$SM/continuidade.py\" \"$E/site/frames\" | sed \"s#$E/##\"; echo \"saída: ${PIPESTATUS[0]}\""
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a6; SM=$E/site-movimento/skill/site-movimento/scripts\n# dois clipes encadeados: o 2º começa exatamente onde o 1º terminou (zoom 1,25)\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/c1.mp4\" 4 1.0 1.25\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/c2.mp4\" 4 1.25 1.5\npython3 \"$SM/cortes.py\" \"$E/c1.mp4\" \"$E/c2.mp4\" | sed \"s#$E/##\"; echo \"cortes: ${PIPESTATUS[0]}\"\nrm -rf \"$E/site\"; cp -r \"$K/site\" \"$E/site\"\npython3 \"$SM/montar.py\" \"$E/site\" \"$E/c1.mp4:0:-1\" \"$E/c2.mp4:1:-1\" | head -1 | sed \"s#$E/##\"\npython3 \"$SM/continuidade.py\" \"$E/site/frames\" | sed \"s#$E/##\"; echo \"saída: ${PIPESTATUS[0]}\""
     }
    ],
    "saida": {
@@ -122,7 +122,7 @@
     {
      "rot": "Terminal · a clip with a cut",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a6; SM=$E/site-movimento/skill/site-movimento/scripts\n# a clip with a hidden cut in the middle: the lens in the dark studio and, suddenly, on the light background\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/a.mp4\" 2 1.0 1.1\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente-clara.jpg\" \"$E/b.mp4\" 2 1.1 1.2\nffmpeg -v error -y -i \"$E/a.mp4\" -i \"$E/b.mp4\" -filter_complex \"[0:v][1:v]concat=n=2:v=1[v]\" -map \"[v]\" -c:v libx264 -crf 18 \"$E/c3.mp4\"\npython3 \"$SM/cortes.py\" \"$E/c3.mp4\" | sed \"s#$E/##\"; echo \"saída: ${PIPESTATUS[0]}\""
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a6; SM=$E/site-movimento/skill/site-movimento/scripts\n# a clip with a hidden cut in the middle: the lens in the dark studio and, suddenly, on the light background\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/a.mp4\" 2 1.0 1.1\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente-clara.jpg\" \"$E/b.mp4\" 2 1.1 1.2\nffmpeg -v error -y -i \"$E/a.mp4\" -i \"$E/b.mp4\" -filter_complex \"[0:v][1:v]concat=n=2:v=1[v]\" -map \"[v]\" -c:v libx264 -crf 18 \"$E/c3.mp4\"\npython3 \"$SM/cortes.py\" \"$E/c3.mp4\" | sed \"s#$E/##\"; echo \"saída: ${PIPESTATUS[0]}\""
     }
    ],
    "saida": {
@@ -174,7 +174,7 @@
     {
      "rot": "Terminal · copy gate on the kit page and on the bad example",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nP=${TMPDIR:-/tmp}/ensaio-sites/a6/site-movimento/skill/site-movimento/scripts/portao-texto.js\nnode \"$P\" \"$K/site/index.html\"; echo \"saída: $?\"\nnode \"$P\" \"$K/exemplos/texto-ruim-pt.html\" 2>&1 | head -5; echo \"saída: ${PIPESTATUS[0]}\""
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nP=${TMPDIR:-/tmp}/ensaio-sites/a6/site-movimento/skill/site-movimento/scripts/portao-texto.js\nnode \"$P\" \"$K/site/index.html\"; echo \"saída: $?\"\nnode \"$P\" \"$K/exemplos/texto-ruim-pt.html\" 2>&1 | head -5; echo \"saída: ${PIPESTATUS[0]}\""
     }
    ],
    "saida": {
@@ -182,7 +182,7 @@
     "abas": [
      {
       "rot": "Captured output (10/19/2026)",
-      "html": "<pre>✓ ~/projetos/formacao-cinema-ia-sites-v72/kit/site/index.html — texto limpo\nsaída: 0\n✗ ~/projetos/formacao-cinema-ia-sites-v72/kit/exemplos/texto-ruim-pt.html — 3 defeito(s)\n  manda a pessoa rolar\n    …Aurora 35 Role para baixo e veja a lente de perto.…\n  narra a câmera\n    …e de perto. Um plano-sequência A câmera avança pelo vidro até o diafragma…\nsaída: 1</pre><p>The gate also fails an em dash, AI jargon (\"revolucionário\"), placeholder text, and the film frame repeated as an image right below it.</p>"
+      "html": "<pre>✓ ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/site/index.html — texto limpo\nsaída: 0\n✗ ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/exemplos/texto-ruim-pt.html — 3 defeito(s)\n  manda a pessoa rolar\n    …Aurora 35 Role para baixo e veja a lente de perto.…\n  narra a câmera\n    …e de perto. Um plano-sequência A câmera avança pelo vidro até o diafragma…\nsaída: 1</pre><p>The gate also fails an em dash, AI jargon (\"revolucionário\"), placeholder text, and the film frame repeated as an image right below it.</p>"
      }
     ]
    }
@@ -301,17 +301,17 @@
    "links": [
     {
      "t": "site-movimento: usage guide",
-     "href": "https://inematds.github.io/site-movimento/guia/",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "camadas"
     },
     {
      "t": "site-movimento: published pilot (eventos home with film)",
-     "href": "https://inematds.github.io/site-movimento/piloto/eventos/",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "video"
     },
     {
      "t": "Course 1 of the track: first and last frame in the generators",
-     "href": "https://inematds.github.io/formacao-cinema-ia-geracao-v72/en/",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "seta"
     }
    ]

@@ -1,30 +1,30 @@
 {
-  "id": "formacao-cinema-ia-sites-v72",
+  "id": "formacao-cARCKHÉ-ia-sites-v72",
   "lang": "en",
-  "url": "https://inematds.github.io/formacao-cinema-ia-sites-v72/en/",
-  "nome": "Cinematic websites",
-  "sub": "Cinema with AI program · course 5",
+  "url": "https://linnoff88-dev.github.io/
+  "nome": "CARCKHÉtic websites",
+  "sub": "CARCKHÉ with AI program · course 5",
   "volta": {
-    "t": "INEMA Videos area",
-    "href": "https://eventos.inema.pro/videos/"
+    "t": "ARCKHÉ Videos area",
+    "href": "https://eventos.ARCKHÉ.pro/videos/"
   },
   "lado_card": {
     "rot": "End of the program",
-    "t": "The 6 courses of the Cinema with AI program",
-    "texto": "This is the last one. From direction to the site: go back to any course through the INEMA Videos area.",
+    "t": "The 6 courses of the CARCKHÉ with AI program",
+    "texto": "This is the last one. From direction to the site: go back to any course through the ARCKHÉ Videos area.",
     "link": "Open the Videos area",
-    "href": "https://eventos.inema.pro/videos/"
+    "href": "https://eventos.ARCKHÉ.pro/videos/"
   },
-  "rodape": "INEMA.CLUB · open and free content · INEMA Learning v7.2 format · Cinema with AI program, course 5 of 6 · <a href=\"https://eventos.inema.pro/videos/\">eventos.inema.pro/videos</a> · <a href=\"https://inema.club/\">inema.club</a>",
+  "rodape": "ARCKHÉ AI · open and free content · ARCKHÉ Learning v7.2 format · CARCKHÉ with AI program, course 5 of 6 · <a href=\"https://eventos.ARCKHÉ.pro/videos/\">eventos.ARCKHÉ.pro/videos</a> · <a href=\"https://ARCKHÉ AI/\">ARCKHÉ AI</a>",
   "videos": {},
   "inicio": {
-    "kicker": "Cinema with AI program · course 5 of 6 · 8 lessons",
-    "titulo": "Cinematic websites: the video becomes a page, and the page opens fast",
+    "kicker": "CARCKHÉ with AI program · course 5 of 6 · 8 lessons",
+    "titulo": "CARCKHÉtic websites: the video becomes a page, and the page opens fast",
     "lead": "A clip becomes frames, scroll picks the frame, and the page feels like a film. Here you build that with an agent, measure the weight, add depth with Three.js, make the brand film from the site, chain clips with no cuts, and check it on your phone and with reduced motion. All local, no credits.",
     "cta": "Start with lesson 1",
     "cta2": {
       "t": "See the previous course (The factory)",
-      "href": "https://inematds.github.io/formacao-cinema-ia-fabrica-v72/en/"
+      "href": "https://linnoff88-dev.github.io/
     },
     "capa_alt": "A dark editing desk with one monitor showing code, another with a web page open on a misty landscape, and a phone standing up showing the same page.",
     "numeros": [
@@ -73,7 +73,7 @@
           "2 · Production: from script to film",
           "3 · Motion by code with an agent",
           "4 · The video factory with agents",
-          "5 · Cinematic websites (this course)"
+          "5 · CARCKHÉtic websites (this course)"
         ]
       }
     ]

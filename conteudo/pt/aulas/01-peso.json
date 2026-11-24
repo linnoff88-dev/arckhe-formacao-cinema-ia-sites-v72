@@ -2,10 +2,10 @@
  "slug": "peso",
  "num": 1,
  "menu": "Peso",
- "titulo": "O que é um site cinematográfico e quando ele vale o peso",
+ "titulo": "O que é um site cARCKHÉtográfico e quando ele vale o peso",
  "titulo_curto": "Quando vale o peso",
  "minutos": 15,
- "lead": "Um site cinematográfico parece um filme que anda com a rolagem. Por baixo, não há 3D nem vídeo tocando: há quadros de um clipe desenhados num canvas, um por posição da rolagem. Isso pesa. Nesta aula você roda a página de exemplo do kit, mede quanto ela pesa para cada visitante e decide, com um número, se o seu produto pede uma.",
+ "lead": "Um site cARCKHÉtográfico parece um filme que anda com a rolagem. Por baixo, não há 3D nem vídeo tocando: há quadros de um clipe desenhados num canvas, um por posição da rolagem. Isso pesa. Nesta aula você roda a página de exemplo do kit, mede quanto ela pesa para cada visitante e decide, com um número, se o seu produto pede uma.",
  "objetivo": "rodar o site de exemplo do kit, medir o peso dele e decidir, com um orçamento em MB, se o seu produto pede um.",
  "competencias": [
   "explicar-filme-na-rolagem",
@@ -94,7 +94,7 @@
     {
      "titulo": "Sem gerador",
      "texto": [
-      "As duas skills do INEMA (aulas 3 e 6) têm um caminho só com código: formas, luz e texto animados pela rolagem, sem gerar vídeo. Zero crédito.",
+      "As duas skills do ARCKHÉ (aulas 3 e 6) têm um caminho só com código: formas, luz e texto animados pela rolagem, sem gerar vídeo. Zero crédito.",
       "Este curso inteiro roda assim: os clipes de ensaio saem de uma foto com ffmpeg."
      ]
     },
@@ -115,12 +115,12 @@
     {
      "rot": "Uma vez · clonar o curso",
      "icone": "git",
-     "conteudo": "cd ~/projetos && git clone https://github.com/inematds/formacao-cinema-ia-sites-v72"
+     "conteudo": "cd ~/projetos && git clone https://github.com/linnoff88-dev/formacao-cARCKHÉ-ia-sites-v72"
     },
     {
      "rot": "Terminal · instalar o kit",
      "icone": "terminal",
-     "conteudo": "cd ~/projetos/formacao-cinema-ia-sites-v72/kit\nnpm ci --no-audit --no-fund > ${TMPDIR:-/tmp}/npm-sites.log 2>&1; echo \"npm ci: $?\"\nnpx playwright install chromium > ${TMPDIR:-/tmp}/pw-sites.log 2>&1; echo \"chromium: $?\"\nnpx playwright --version\nnpm ls --depth=0 | tail -2\nffmpeg -version | head -1 | cut -d' ' -f1-3"
+     "conteudo": "cd ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nnpm ci --no-audit --no-fund > ${TMPDIR:-/tmp}/npm-sites.log 2>&1; echo \"npm ci: $?\"\nnpx playwright install chromium > ${TMPDIR:-/tmp}/pw-sites.log 2>&1; echo \"chromium: $?\"\nnpx playwright --version\nnpm ls --depth=0 | tail -2\nffmpeg -version | head -1 | cut -d' ' -f1-3"
     }
    ],
    "saida": {
@@ -141,7 +141,7 @@
     {
      "rot": "Terminal · servir e verificar a página do kit",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a1; rm -rf \"$E\"; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"$U\"; echo \"saída: $?\"\nkill $S"
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a1; rm -rf \"$E\"; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"$U\"; echo \"saída: $?\"\nkill $S"
     }
    ],
    "saida": {
@@ -162,12 +162,12 @@
     {
      "rot": "Terminal · peso com orçamento de 6 MB",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\npython3 \"$K/scripts/peso.py\" \"$K/site\" --orcamento 6 --inicial 0.5; echo \"saída: $?\""
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\npython3 \"$K/scripts/peso.py\" \"$K/site\" --orcamento 6 --inicial 0.5; echo \"saída: $?\""
     },
     {
      "rot": "Terminal · erro comum: orçamento de 2 MB",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\npython3 \"$K/scripts/peso.py\" \"$K/site\" --orcamento 2 | tail -1; echo \"saída: ${PIPESTATUS[0]}\""
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\npython3 \"$K/scripts/peso.py\" \"$K/site\" --orcamento 2 | tail -1; echo \"saída: ${PIPESTATUS[0]}\""
     }
    ],
    "saida": {
@@ -262,7 +262,7 @@
       "O tempo, em segundos, até a página abrir."
      ],
      "certa": 0,
-     "explica": "É um peso, não um tempo: o que precisa chegar para a tela deixar de ser preta. Tempo de carregamento e Core Web Vitals são da Formação inemaSEO.",
+     "explica": "É um peso, não um tempo: o que precisa chegar para a tela deixar de ser preta. Tempo de carregamento e Core Web Vitals são da Formação ARCKHÉSEO.",
      "ref": "codigo"
     }
    ]
@@ -291,17 +291,17 @@
    "links": [
     {
      "t": "Curso 1 da formação: geradores de vídeo e versões (out/2026)",
-     "href": "https://inematds.github.io/formacao-cinema-ia-geracao-v72/",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "video"
     },
     {
      "t": "site-movimento: guia e piloto publicado",
-     "href": "https://inematds.github.io/site-movimento/guia/",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "camadas"
     },
     {
      "t": "O kit deste curso no GitHub",
-     "href": "https://github.com/inematds/formacao-cinema-ia-sites-v72/tree/main/kit",
+     "href": "https://github.com/linnoff88-dev/formacao-cARCKHÉ-ia-sites-v72/tree/main/kit",
      "icone": "git"
     }
    ]

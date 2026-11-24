@@ -5,7 +5,7 @@
  "titulo": "Rolagem que controla o tempo: a skill de scroll cinemático",
  "titulo_curto": "Rolagem e skill",
  "minutos": 18,
- "lead": "O motor que liga a rolagem aos quadros tem poucas peças, e cada uma resolve um engasgo medido. Você vê as peças, troca os quadros da página do kit pelos seus da aula 2, prova pelo contrato de teste que o quadro certo aparece em cada ponto e pede a página nova à skill scroll-film-studio, do INEMA.",
+ "lead": "O motor que liga a rolagem aos quadros tem poucas peças, e cada uma resolve um engasgo medido. Você vê as peças, troca os quadros da página do kit pelos seus da aula 2, prova pelo contrato de teste que o quadro certo aparece em cada ponto e pede a página nova à skill scroll-film-studio, do ARCKHÉ.",
  "objetivo": "ligar seus quadros ao motor de rolagem do kit, provar pelo contrato ?jump e __ready e pedir a página à skill.",
  "competencias": [
   "ler-motor-de-rolagem",
@@ -35,7 +35,7 @@
   {
    "tipo": "diagrama",
    "titulo": "O motor de rolagem por dentro",
-   "sub": "As peças do motor-rolagem.js (site-movimento, INEMA). Clique em cada uma.",
+   "sub": "As peças do motor-rolagem.js (site-movimento, ARCKHÉ). Clique em cada uma.",
    "nos": [
     {
      "icone": "seta",
@@ -86,7 +86,7 @@
     {
      "rot": "Terminal · seus quadros na página e verificar",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a3; rm -rf \"$E/site\"\ncp -r \"$K/site\" \"$E/site\"; rm -rf \"$E/site/frames\"\ncp -r \"${TMPDIR:-/tmp}/ensaio-sites/a2/quadros\" \"$E/site/frames\"\nnode \"$K/scripts/servir.mjs\" \"$E/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"$U\"; echo \"saída: $?\"\nkill $S"
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a3; rm -rf \"$E/site\"\ncp -r \"$K/site\" \"$E/site\"; rm -rf \"$E/site/frames\"\ncp -r \"${TMPDIR:-/tmp}/ensaio-sites/a2/quadros\" \"$E/site/frames\"\nnode \"$K/scripts/servir.mjs\" \"$E/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"$U\"; echo \"saída: $?\"\nkill $S"
     },
     {
      "rot": "Trecho · kit/site/site.js",
@@ -96,7 +96,7 @@
     {
      "rot": "Terminal · erro comum: página sem o contrato",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a3\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"${U}erro-sem-contrato.html\"; echo \"saída: $?\"\nkill $S"
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a3\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"${U}erro-sem-contrato.html\"; echo \"saída: $?\"\nkill $S"
     }
    ],
    "saida": {
@@ -116,7 +116,7 @@
   {
    "tipo": "passos",
    "titulo": "O contrato de teste",
-   "sub": "Duas linhas que as duas skills do INEMA pedem em toda página que elas constroem.",
+   "sub": "Duas linhas que as duas skills do ARCKHÉ pedem em toda página que elas constroem.",
    "passos": [
     {
      "titulo": "?jump=[y]",
@@ -144,22 +144,22 @@
   {
    "tipo": "codigo",
    "titulo": "A skill scroll-film-studio",
-   "sub": "Skill do INEMA para Codex e Claude Code: entrevista, conceitos, direção de arte, página e portões. Duas pistas: Lane A só código (sem custo) e Lane B com filme do seu gerador. O verificar.mjs do kit lê os ganchos do kit (seção [data-filme], canvas #tela, window.__filme e window.__filmeInfo) além do contrato; por isso o prompt manda a skill partir de kit/site. Página feita do zero pela skill confere com o verify.js dela.",
+   "sub": "Skill do ARCKHÉ para Codex e Claude Code: entrevista, conceitos, direção de arte, página e portões. Duas pistas: Lane A só código (sem custo) e Lane B com filme do seu gerador. O verificar.mjs do kit lê os ganchos do kit (seção [data-filme], canvas #tela, window.__filme e window.__filmeInfo) além do contrato; por isso o prompt manda a skill partir de kit/site. Página feita do zero pela skill confere com o verify.js dela.",
    "blocos": [
     {
      "rot": "Terminal · baixar a skill e ver o que ela traz",
      "icone": "terminal",
-     "conteudo": "E=${TMPDIR:-/tmp}/ensaio-sites/a3; rm -rf \"$E\"; mkdir -p \"$E\"; cd \"$E\"\ngit clone -q https://github.com/inematds/scroll-film-studio && git -C scroll-film-studio checkout -q 9d64875; echo \"clone: $?\"\ncd scroll-film-studio/skills/scroll-film-studio\nls; ls references scripts\nsed -n 2p SKILL.md"
+     "conteudo": "E=${TMPDIR:-/tmp}/ensaio-sites/a3; rm -rf \"$E\"; mkdir -p \"$E\"; cd \"$E\"\ngit clone -q https://github.com/linnoff88-dev/scroll-film-studio && git -C scroll-film-studio checkout -q 9d64875; echo \"clone: $?\"\ncd scroll-film-studio/skills/scroll-film-studio\nls; ls references scripts\nsed -n 2p SKILL.md"
     },
     {
      "rot": "Uma vez · instalar no seu agente",
      "icone": "robo",
-     "conteudo": "git clone https://github.com/inematds/scroll-film-studio ~/projetos/scroll-film-studio\nmkdir -p ~/.claude/skills ~/.codex/skills\nln -s ~/projetos/scroll-film-studio/skills/scroll-film-studio ~/.claude/skills/scroll-film-studio\nln -s ~/projetos/scroll-film-studio/skills/scroll-film-studio ~/.codex/skills/scroll-film-studio\n# Codex que não achar a skill em ~/.codex/skills: use ~/.agents/skills"
+     "conteudo": "git clone https://github.com/linnoff88-dev/scroll-film-studio ~/projetos/scroll-film-studio\nmkdir -p ~/.claude/skills ~/.codex/skills\nln -s ~/projetos/scroll-film-studio/skills/scroll-film-studio ~/.claude/skills/scroll-film-studio\nln -s ~/projetos/scroll-film-studio/skills/scroll-film-studio ~/.codex/skills/scroll-film-studio\n# Codex que não achar a skill em ~/.codex/skills: use ~/.agents/skills"
     },
     {
      "rot": "Prompt · pedir a página à skill (Lane A)",
      "icone": "chat",
-     "conteudo": "Use a skill scroll-film-studio na Lane A (só código, sem gerar vídeo).\nProduto: <nome e uma frase do que ele é>.\nPara quem: <quem compra>.\nO filme de abertura usa os quadros que já estão em frames/ (manifest.json com a contagem).\nTexto: só o que está neste arquivo: <caminho do seu texto>. Não invente número nem depoimento.\nRegras fixas: página estática, sem build; parta de kit/site (motor-rolagem.js e site.js) e mude só o visual e o texto, mantendo a seção [data-filme], o canvas #tela, window.__filme, window.__filmeInfo, o contrato ?jump=<y> + window.__ready e o modo parado com reduzir movimento.\nPronto quando: node ~/projetos/formacao-cinema-ia-sites-v72/kit/scripts/verificar.mjs <url> responde OK: 3 de 3 posições."
+     "conteudo": "Use a skill scroll-film-studio na Lane A (só código, sem gerar vídeo).\nProduto: <nome e uma frase do que ele é>.\nPara quem: <quem compra>.\nO filme de abertura usa os quadros que já estão em frames/ (manifest.json com a contagem).\nTexto: só o que está neste arquivo: <caminho do seu texto>. Não invente número nem depoimento.\nRegras fixas: página estática, sem build; parta de kit/site (motor-rolagem.js e site.js) e mude só o visual e o texto, mantendo a seção [data-filme], o canvas #tela, window.__filme, window.__filmeInfo, o contrato ?jump=<y> + window.__ready e o modo parado com reduzir movimento.\nPronto quando: node ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/scripts/verificar.mjs <url> responde OK: 3 de 3 posições."
     }
    ],
    "saida": {
@@ -180,7 +180,7 @@
     {
      "rot": "Terminal · texto limpo e texto que narra a câmera",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nG=${TMPDIR:-/tmp}/ensaio-sites/a3/scroll-film-studio/skills/scroll-film-studio/scripts/copy-gate.js\nnode \"$G\" \"$K/site/index.html\"; echo \"saída: $?\"\nnode \"$G\" \"$K/exemplos/texto-ruim.html\" 2>&1 | head -5; echo \"saída: ${PIPESTATUS[0]}\""
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nG=${TMPDIR:-/tmp}/ensaio-sites/a3/scroll-film-studio/skills/scroll-film-studio/scripts/copy-gate.js\nnode \"$G\" \"$K/site/index.html\"; echo \"saída: $?\"\nnode \"$G\" \"$K/exemplos/texto-ruim.html\" 2>&1 | head -5; echo \"saída: ${PIPESTATUS[0]}\""
     }
    ],
    "saida": {
@@ -188,7 +188,7 @@
     "abas": [
      {
       "rot": "Saída capturada (19/10/2026)",
-      "html": "<pre>✓ ~/projetos/formacao-cinema-ia-sites-v72/kit/site/index.html — copy clean\nsaída: 0\n✗ ~/projetos/formacao-cinema-ia-sites-v72/kit/exemplos/texto-ruim.html — 5 copy defect(s)\n  line 6: narrates the scroll instead of performing it\n    …ction class=\"beat\"&gt;Aurora 35As you scroll, the camera pushes in through the glass…\n  line 7: instructs the visitor to scroll\n    …s=\"beat\"&gt;One continuous takeKeep scrolling to see the reveal. &lt;/body…\nsaída: 1</pre><p>O copy-gate.js lê inglês. Para páginas em português e espanhol, o site-movimento tem um portão de texto equivalente, que você roda na aula 6.</p>"
+      "html": "<pre>✓ ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/site/index.html — copy clean\nsaída: 0\n✗ ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/exemplos/texto-ruim.html — 5 copy defect(s)\n  line 6: narrates the scroll instead of performing it\n    …ction class=\"beat\"&gt;Aurora 35As you scroll, the camera pushes in through the glass…\n  line 7: instructs the visitor to scroll\n    …s=\"beat\"&gt;One continuous takeKeep scrolling to see the reveal. &lt;/body…\nsaída: 1</pre><p>O copy-gate.js lê inglês. Para páginas em português e espanhol, o site-movimento tem um portão de texto equivalente, que você roda na aula 6.</p>"
      }
     ]
    }
@@ -300,12 +300,12 @@
    "links": [
     {
      "t": "scroll-film-studio: guia de uso",
-     "href": "https://inematds.github.io/scroll-film-studio/guia/",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "robo"
     },
     {
      "t": "site-movimento: o motor de rolagem (runtime/motor-rolagem.js)",
-     "href": "https://github.com/inematds/site-movimento/blob/main/skill/site-movimento/runtime/motor-rolagem.js",
+     "href": "https://github.com/linnoff88-dev/site-movimento/blob/main/skill/site-movimento/runtime/motor-rolagem.js",
      "icone": "git"
     },
     {

@@ -5,7 +5,7 @@
  "titulo": "Película de la marca a partir del propio sitio",
  "titulo_curto": "Película de la marca",
  "minutos": 18,
- "lead": "Hasta aquí el video se convirtió en página. Ahora el camino inverso: la página se convierte en video. filmarca (INEMA) lee colores, fuentes, logo, textos y capturas de un sitio y arma una película de la marca en HyperFrames. Tú corres el camino completo contra la página del kit sin llamar a ningún modelo, con las escenas modelo del propio filmarca, y después pones la película en la página.",
+ "lead": "Hasta aquí el video se convirtió en página. Ahora el camino inverso: la página se convierte en video. filmarca (ARCKHÉ) lee colores, fuentes, logo, textos y capturas de un sitio y arma una película de la marca en HyperFrames. Tú corres el camino completo contra la página del kit sin llamar a ningún modelo, con las escenas modelo del propio filmarca, y después pones la película en la página.",
  "objetivo": "leer el ADN del sitio del kit con filmarca y renderizar una película de la marca con escenas modelo, sin llamar a ningún modelo.",
  "competencias": [
   "ler-dna-do-site",
@@ -80,7 +80,7 @@
     {
      "rot": "Terminal · clonar, instalar y probar",
      "icone": "terminal",
-     "conteudo": "E=${TMPDIR:-/tmp}/ensaio-sites/a5; rm -rf \"$E\"; mkdir -p \"$E\"; cd \"$E\"\ngit clone -q https://github.com/inematds/filmarca && cd filmarca && git checkout -q 0c0356c; echo \"clone: $?\"\nnpm ci --no-audit --no-fund > npm.log 2>&1; echo \"npm ci: $?\"\nnode -p \"'hyperframes ' + require('hyperframes/package.json').version + ' · playwright ' + require('playwright/package.json').version\"\nnpx playwright install chromium > pw.log 2>&1; echo \"chromium: $?\"\nnpm test 2>&1 | grep -E \"^ℹ (pass|fail)\""
+     "conteudo": "E=${TMPDIR:-/tmp}/ensaio-sites/a5; rm -rf \"$E\"; mkdir -p \"$E\"; cd \"$E\"\ngit clone -q https://github.com/linnoff88-dev/filmarca && cd filmarca && git checkout -q 0c0356c; echo \"clone: $?\"\nnpm ci --no-audit --no-fund > npm.log 2>&1; echo \"npm ci: $?\"\nnode -p \"'hyperframes ' + require('hyperframes/package.json').version + ' · playwright ' + require('playwright/package.json').version\"\nnpx playwright install chromium > pw.log 2>&1; echo \"chromium: $?\"\nnpm test 2>&1 | grep -E \"^ℹ (pass|fail)\""
     }
    ],
    "saida": {
@@ -101,7 +101,7 @@
     {
      "rot": "Terminal · dna del sitio del kit",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a5; cd \"$E/filmarca\"\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode bin/filmarca.mjs dna \"$U\" --out \"$E/filme\"; echo \"dna: $?\"\nkill $S\nls \"$E/filme/assets\""
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a5; cd \"$E/filmarca\"\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode bin/filmarca.mjs dna \"$U\" --out \"$E/filme\"; echo \"dna: $?\"\nkill $S\nls \"$E/filme/assets\""
     }
    ],
    "saida": {
@@ -122,7 +122,7 @@
     {
      "rot": "Terminal · escenas modelo, render y revisar",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a5; cd \"$E/filmarca\"\nexport HYPERFRAMES_NO_TELEMETRY=1\ncp \"$K/filmarca/roteiro.json\" \"$E/filme/\"\nnode \"$K/scripts/cenas-modelo.mjs\" . \"$E/filme\"\nnode bin/filmarca.mjs render \"$E/filme\" --formatos 16x9 --rascunho; echo \"render: $?\"\npython3 \"$K/scripts/conferir-video.py\" \"$E/filme/renders/aurora-35-pt-16x9.mp4\" 17.5 1920x1080; echo \"saída: $?\""
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a5; cd \"$E/filmarca\"\nexport HYPERFRAMES_NO_TELEMETRY=1\ncp \"$K/filmarca/roteiro.json\" \"$E/filme/\"\nnode \"$K/scripts/cenas-modelo.mjs\" . \"$E/filme\"\nnode bin/filmarca.mjs render \"$E/filme\" --formatos 16x9 --rascunho; echo \"render: $?\"\npython3 \"$K/scripts/conferir-video.py\" \"$E/filme/renders/aurora-35-pt-16x9.mp4\" 17.5 1920x1080; echo \"saída: $?\""
     },
     {
      "rot": "Archivo · kit/filmarca/roteiro.json",
@@ -263,13 +263,13 @@
    "titulo": "Para ir más allá",
    "links": [
     {
-     "t": "filmarca: guía de uso y la película de inema.club hecha con él",
-     "href": "https://inematds.github.io/filmarca/guia/",
+     "t": "filmarca: guía de uso y la película de ARCKHÉ AI hecha con él",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "video"
     },
     {
      "t": "Curso 3 de la formación: HyperFrames por dentro",
-     "href": "https://inematds.github.io/formacao-cinema-ia-motion-v72/es/",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "seta"
     },
     {

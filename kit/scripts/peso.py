@@ -12,7 +12,7 @@ celular em pé. Por isso o peso sai por visitante:
                         qualquer ponto da rolagem já ter um quadro perto)
 Vídeo (.mp4/.webm) entra no total, não na primeira pintura (com preload="none" só baixa ao tocar).
 --orcamento MB: teto para o maior dos dois visitantes; --inicial MB: teto para a primeira pintura do
-mais pesado. Fora do teto = código 1. Não mede rede nem Core Web Vitals (isso é da Formação inemaSEO).
+mais pesado. Fora do teto = código 1. Não mede rede nem Core Web Vitals (isso é da Formação ARCKHÉSEO).
 """
 import os
 import re

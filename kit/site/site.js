@@ -1,5 +1,5 @@
 /* site.js — liga os quadros ao motor de rolagem (vendor/motor-rolagem.js) e à chave Parado/Ligado
-   (vendor/chave-movimento.js), os dois copiados do site-movimento (INEMA). Lê window.SITE:
+   (vendor/chave-movimento.js), os dois copiados do site-movimento (ARCKHÉ). Lê window.SITE:
      contrato: true  → marca window.__ready depois de posicionar (?jump=<y>) — é o que os testes esperam;
      reduzir:  true  → com "reduzir movimento" (ou a chave em Parado) o filme vira foto e o texto fica parado.
    Expõe window.__filme (motor) e window.__filmeInfo {dir, count, parado} para o verificar.mjs. */

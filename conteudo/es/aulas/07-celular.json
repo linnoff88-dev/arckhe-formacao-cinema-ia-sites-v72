@@ -27,7 +27,7 @@
   },
   {
    "icone": "seta",
-   "t": "Qué es de este curso y qué es de la Formación inemaSEO"
+   "t": "Qué es de este curso y qué es de la Formación ARCKHÉSEO"
   }
  ],
  "hero_alt": "Celular en vertical sobre un soporte mostrando un paisaje vertical con niebla, junto a una notebook con un gráfico.",
@@ -70,7 +70,7 @@
     }
    ],
    "volta": "¿pesó? ancho y -q:v del vertical",
-   "legenda": "La velocidad medida en red real, Core Web Vitals y PageSpeed son de la Formación inemaSEO. Aquí: el peso de la película y el movimiento."
+   "legenda": "La velocidad medida en red real, Core Web Vitals y PageSpeed son de la Formación ARCKHÉSEO. Aquí: el peso de la película y el movimiento."
   },
   {
    "tipo": "codigo",
@@ -80,7 +80,7 @@
     {
      "rot": "Terminal · verificar en el celular y con reducir movimiento",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a7; rm -rf \"$E\"; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"$U\" --celular; echo \"saída: $?\"\nnode \"$K/scripts/verificar.mjs\" \"$U\" --reduzir | tail -2; echo \"saída: ${PIPESTATUS[0]}\"\nkill $S"
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a7; rm -rf \"$E\"; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"$U\" --celular; echo \"saída: $?\"\nnode \"$K/scripts/verificar.mjs\" \"$U\" --reduzir | tail -2; echo \"saída: ${PIPESTATUS[0]}\"\nkill $S"
     },
     {
      "rot": "Fragmento · kit/site/site.css",
@@ -90,7 +90,7 @@
     {
      "rot": "Terminal · error común: ignorar reducir movimiento",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a7; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"${U}erro-sem-reduzir.html\" --reduzir | tail -1; echo \"saída: ${PIPESTATUS[0]}\"\nkill $S"
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a7; mkdir -p \"$E\"\nnode \"$K/scripts/servir.mjs\" \"$K/site\" > \"$E/url.txt\" & S=$!\nuntil U=$(cat \"$E/url.txt\") && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nnode \"$K/scripts/verificar.mjs\" \"${U}erro-sem-reduzir.html\" --reduzir | tail -1; echo \"saída: ${PIPESTATUS[0]}\"\nkill $S"
     }
    ],
    "saida": {
@@ -115,7 +115,7 @@
     {
      "rot": "Terminal · rehacer la película vertical más liviana",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a7; rm -rf \"$E/site\"; cp -r \"$K/site\" \"$E/site\"\npython3 \"$K/scripts/peso.py\" \"$E/site\" --orcamento 3 | grep -E \"^celular|orçamento\"\n# la película vertical otra vez: 600 px de ancho y JPEG -q:v 8 (era 720 px y 6)\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/v.mp4\" 6 1.0 1.35 1080x1920\nbash \"$K/scripts/quadros.sh\" \"$E/v.mp4\" \"$E/site/frames-v\" 600 8\npython3 \"$K/scripts/peso.py\" \"$E/site\" --orcamento 3 --inicial 0.5 | grep -E \"^celular|orçamento|teto\"; echo \"saída: ${PIPESTATUS[0]}\""
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a7; rm -rf \"$E/site\"; cp -r \"$K/site\" \"$E/site\"\npython3 \"$K/scripts/peso.py\" \"$E/site\" --orcamento 3 | grep -E \"^celular|orçamento\"\n# la película vertical otra vez: 600 px de ancho y JPEG -q:v 8 (era 720 px y 6)\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/v.mp4\" 6 1.0 1.35 1080x1920\nbash \"$K/scripts/quadros.sh\" \"$E/v.mp4\" \"$E/site/frames-v\" 600 8\npython3 \"$K/scripts/peso.py\" \"$E/site\" --orcamento 3 --inicial 0.5 | grep -E \"^celular|orçamento|teto\"; echo \"saída: ${PIPESTATUS[0]}\""
     }
    ],
    "saida": {
@@ -230,11 +230,11 @@
      "opcoes": [
       "En la clase 4, con three-medir.",
       "En peso.py, con --inicial.",
-      "En la Formación inemaSEO.",
+      "En la Formación ARCKHÉSEO.",
       "En verificar.mjs, con --celular."
      ],
      "certa": 2,
-     "explica": "Este curso mide el peso de la película y el movimiento. El rendimiento para buscadores tiene su propio dueño: la Formación inemaSEO.",
+     "explica": "Este curso mide el peso de la película y el movimiento. El rendimiento para buscadores tiene su propio dueño: la Formación ARCKHÉSEO.",
      "ref": "diagrama"
     }
    ]
@@ -262,8 +262,8 @@
    "titulo": "Para ir más allá",
    "links": [
     {
-     "t": "Formación inemaSEO: rendimiento y qué mide cada herramienta",
-     "href": "https://inematds.github.io/formacao-inemaseo-sistemas-v72/es/",
+     "t": "Formación ARCKHÉSEO: rendimiento y qué mide cada herramienta",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "grafico"
     },
     {

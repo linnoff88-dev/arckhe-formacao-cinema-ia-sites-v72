@@ -1,30 +1,30 @@
 {
- "id": "formacao-cinema-ia-sites-v72",
+ "id": "formacao-cARCKHÉ-ia-sites-v72",
  "lang": "pt-BR",
- "url": "https://inematds.github.io/formacao-cinema-ia-sites-v72/",
- "nome": "Sites cinematográficos",
- "sub": "Formação Cinema com IA · curso 5",
+ "url": "https://linnoff88-dev.github.io/
+ "nome": "Sites cARCKHÉtográficos",
+ "sub": "Formação CARCKHÉ com IA · curso 5",
  "volta": {
-  "t": "Área Vídeos do INEMA",
-  "href": "https://eventos.inema.pro/videos/"
+  "t": "Área Vídeos do ARCKHÉ",
+  "href": "https://eventos.ARCKHÉ.pro/videos/"
  },
  "lado_card": {
   "rot": "Fim da formação",
-  "t": "Os 6 cursos da Formação Cinema com IA",
-  "texto": "Este é o último. Da direção ao site: volte a qualquer curso pela área Vídeos do INEMA.",
+  "t": "Os 6 cursos da Formação CARCKHÉ com IA",
+  "texto": "Este é o último. Da direção ao site: volte a qualquer curso pela área Vídeos do ARCKHÉ.",
   "link": "Abrir a área Vídeos",
-  "href": "https://eventos.inema.pro/videos/"
+  "href": "https://eventos.ARCKHÉ.pro/videos/"
  },
- "rodape": "INEMA.CLUB · conteúdo aberto e gratuito · formato INEMA Learning v7.2 · Formação Cinema com IA, curso 5 de 6 · <a href=\"https://eventos.inema.pro/videos/\">eventos.inema.pro/videos</a> · <a href=\"https://inema.club/\">inema.club</a>",
+ "rodape": "ARCKHÉ AI · conteúdo aberto e gratuito · formato ARCKHÉ Learning v7.2 · Formação CARCKHÉ com IA, curso 5 de 6 · <a href=\"https://eventos.ARCKHÉ.pro/videos/\">eventos.ARCKHÉ.pro/videos</a> · <a href=\"https://ARCKHÉ AI/\">ARCKHÉ AI</a>",
  "videos": {},
  "inicio": {
-  "kicker": "Formação Cinema com IA · curso 5 de 6 · 8 aulas",
-  "titulo": "Sites cinematográficos: o vídeo vira página, e a página abre rápido",
+  "kicker": "Formação CARCKHÉ com IA · curso 5 de 6 · 8 aulas",
+  "titulo": "Sites cARCKHÉtográficos: o vídeo vira página, e a página abre rápido",
   "lead": "Um clipe vira quadros, a rolagem escolhe o quadro e a página parece um filme. Aqui você monta isso com agente, mede o peso, põe profundidade com Three.js, faz o filme da marca a partir do site, encadeia clipes sem corte e confere no celular e com reduzir movimento. Tudo local, sem crédito.",
   "cta": "Começar pela aula 1",
   "cta2": {
    "t": "Ver o curso anterior (A fábrica)",
-   "href": "https://inematds.github.io/formacao-cinema-ia-fabrica-v72/"
+   "href": "https://linnoff88-dev.github.io/
   },
   "capa_alt": "Mesa de edição escura com um monitor de código, outro com uma página web aberta numa paisagem enevoada e um celular em pé mostrando a mesma página.",
   "numeros": [
@@ -73,7 +73,7 @@
      "2 · Produção: do roteiro ao filme",
      "3 · Motion por código com agente",
      "4 · A fábrica de vídeo com agentes",
-     "5 · Sites cinematográficos (este curso)"
+     "5 · Sites cARCKHÉtográficos (este curso)"
     ]
    }
   ]

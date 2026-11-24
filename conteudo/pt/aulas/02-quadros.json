@@ -30,7 +30,7 @@
    "t": "Conferir contagem, ordem e peso antes de levar para a página"
   }
  ],
- "hero_alt": "Tira de negativos de cinema sobre uma mesa de luz, com uma lupa por cima.",
+ "hero_alt": "Tira de negativos de cARCKHÉ sobre uma mesa de luz, com uma lupa por cima.",
  "secoes": [
   {
    "tipo": "diagrama",
@@ -69,7 +69,7 @@
      "detalhe": "Um arquivo com o número de quadros e a taxa. A página lê o manifest e sabe quantos quadros pedir, sem listar a pasta (o servidor estático nem deixa)."
     }
    ],
-   "legenda": "Regra das duas skills do INEMA: extrair na taxa nativa. Um filme de 72 s em 24 quadros por segundo tem 1.728 quadros; tirar \"uns 300\" vira 4 quadros por segundo na rolagem (scroll-film-studio, references/engine.md)."
+   "legenda": "Regra das duas skills do ARCKHÉ: extrair na taxa nativa. Um filme de 72 s em 24 quadros por segundo tem 1.728 quadros; tirar \"uns 300\" vira 4 quadros por segundo na rolagem (scroll-film-studio, references/engine.md)."
   },
   {
    "tipo": "codigo",
@@ -79,7 +79,7 @@
     {
      "rot": "Terminal · fazer o clipe de ensaio",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a2; rm -rf \"$E\"; mkdir -p \"$E\"\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/clipe.mp4\" 6 1.0 1.35"
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a2; rm -rf \"$E\"; mkdir -p \"$E\"\nbash \"$K/scripts/clipe.sh\" \"$K/exemplos/lente.jpg\" \"$E/clipe.mp4\" 6 1.0 1.35"
     }
    ],
    "saida": {
@@ -100,7 +100,7 @@
     {
      "rot": "Terminal · extrair os quadros e conferir",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a2\nbash \"$K/scripts/quadros.sh\" \"$E/clipe.mp4\" \"$E/quadros\" 1024 6\nls \"$E/quadros\" | head -3\npython3 \"$K/scripts/conferir-quadros.py\" \"$E/quadros\" \"$E/clipe.mp4\"; echo \"saída: $?\""
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a2\nbash \"$K/scripts/quadros.sh\" \"$E/clipe.mp4\" \"$E/quadros\" 1024 6\nls \"$E/quadros\" | head -3\npython3 \"$K/scripts/conferir-quadros.py\" \"$E/quadros\" \"$E/clipe.mp4\"; echo \"saída: $?\""
     },
     {
      "rot": "Arquivo · kit/scripts/quadros.sh",
@@ -126,7 +126,7 @@
     {
      "rot": "Terminal · extrair errado de propósito",
      "icone": "terminal",
-     "conteudo": "K=~/projetos/formacao-cinema-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a2; mkdir -p \"$E/poucos\" \"$E/sem-zero\"\n# erro 1: \"uns quadros por segundo bastam\" (6 por segundo de um clipe de 24)\nffmpeg -v error -i \"$E/clipe.mp4\" -vf \"fps=6,scale=1024:-2\" -q:v 6 \"$E/poucos/f_%04d.jpg\"\npython3 \"$K/scripts/conferir-quadros.py\" \"$E/poucos\" \"$E/clipe.mp4\"; echo \"saída: $?\"\n# erro 2: nome sem zeros à esquerda (f_%d em vez de f_%04d)\nffmpeg -v error -i \"$E/clipe.mp4\" -vf \"scale=1024:-2\" -q:v 6 \"$E/sem-zero/f_%d.jpg\"\npython3 \"$K/scripts/conferir-quadros.py\" \"$E/sem-zero\" \"$E/clipe.mp4\"; echo \"saída: $?\""
+     "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nE=${TMPDIR:-/tmp}/ensaio-sites/a2; mkdir -p \"$E/poucos\" \"$E/sem-zero\"\n# erro 1: \"uns quadros por segundo bastam\" (6 por segundo de um clipe de 24)\nffmpeg -v error -i \"$E/clipe.mp4\" -vf \"fps=6,scale=1024:-2\" -q:v 6 \"$E/poucos/f_%04d.jpg\"\npython3 \"$K/scripts/conferir-quadros.py\" \"$E/poucos\" \"$E/clipe.mp4\"; echo \"saída: $?\"\n# erro 2: nome sem zeros à esquerda (f_%d em vez de f_%04d)\nffmpeg -v error -i \"$E/clipe.mp4\" -vf \"scale=1024:-2\" -q:v 6 \"$E/sem-zero/f_%d.jpg\"\npython3 \"$K/scripts/conferir-quadros.py\" \"$E/sem-zero\" \"$E/clipe.mp4\"; echo \"saída: $?\""
     }
    ],
    "saida": {
@@ -246,7 +246,7 @@
    "links": [
     {
      "t": "scroll-film-studio: receitas de quadros e encaixe (references/engine.md)",
-     "href": "https://github.com/inematds/scroll-film-studio/blob/main/skills/scroll-film-studio/references/engine.md",
+     "href": "https://github.com/linnoff88-dev/scroll-film-studio/blob/main/skills/scroll-film-studio/references/engine.md",
      "icone": "arquivo"
     },
     {
@@ -256,7 +256,7 @@
     },
     {
      "t": "Curso 1 da formação: gerar o clipe de verdade",
-     "href": "https://inematds.github.io/formacao-cinema-ia-geracao-v72/",
+     "href": "https://linnoff88-dev.github.io/
      "icone": "seta"
     }
    ]
