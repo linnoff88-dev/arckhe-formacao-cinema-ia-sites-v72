@@ -19,7 +19,7 @@
   },
   {
    "icone": "check",
-   "t": "O contrato de teste ?jump=[y] + window.__ready, e por que sem ele não há verificação"
+   "t": "O contrato de teste ?jump=[y] + window.__ready, e por que sem ele nêo há verificaçêo"
   },
   {
    "icone": "robo",
@@ -27,7 +27,7 @@
   },
   {
    "icone": "portao",
-   "t": "O portão de texto: a página vende, não narra a câmera"
+   "t": "O portêo de texto: a página vende, nêo narra a câmera"
   }
  ],
  "hero_alt": "Mouse com roda de rolagem em foco numa mesa escura, com um monitor ao fundo mostrando uma página com uma lente.",
@@ -40,8 +40,8 @@
     {
      "icone": "seta",
      "titulo": "Trilho",
-     "sub": "seção alta",
-     "detalhe": "Uma seção de 400vh (quatro telas) com um palco preso no topo (position: sticky). Enquanto o trilho passa, o palco fica parado e o canvas troca de quadro."
+     "sub": "seçêo alta",
+     "detalhe": "Uma seçêo de 400vh (quatro telas) com um palco preso no topo (position: sticky). Enquanto o trilho passa, o palco fica parado e o canvas troca de quadro."
     },
     {
      "icone": "grafico",
@@ -53,13 +53,13 @@
      "icone": "relogio",
      "titulo": "Cabeça",
      "sub": "suavizada",
-     "detalhe": "A cada quadro do navegador, o quadro atual anda 14% do caminho até o alvo (lerp 0,14). Ligar direto no alvo parece mecânico; com a suavização o filme desliza."
+     "detalhe": "A cada quadro do navegador, o quadro atual anda 14% do caminho até o alvo (lerp 0,14). Ligar direto no alvo parece mecânico; com a suavizaçêo o filme desliza."
     },
     {
      "icone": "memoria",
      "titulo": "Janela",
      "sub": "de bitmaps",
-     "detalhe": "Desenhar um JPEG que ainda não foi decodificado trava a página. O motor decodifica fora da linha principal (createImageBitmap) os quadros de 2 s à frente e 1,4 s atrás, e solta o resto. A janela é medida em segundos de filme, não em quadros."
+     "detalhe": "Desenhar um JPEG que ainda nêo foi decodificado trava a página. O motor decodifica fora da linha principal (createImageBitmap) os quadros de 2 s à frente e 1,4 s atrás, e solta o resto. A janela é medida em segundos de filme, nêo em quadros."
     },
     {
      "icone": "carregar",
@@ -76,7 +76,7 @@
     }
    ],
    "volta": "?jump posiciona; __ready avisa",
-   "legenda": "No site-movimento, a correção da janela de bitmaps levou a travada máxima na rolagem de 150–315 ms para 33–36 ms (README e comentário do motor, 18/10/2026)."
+   "legenda": "No site-movimento, a correçêo da janela de bitmaps levou a travada máxima na rolagem de 150–315 ms para 33–36 ms (README e comentário do motor, 18/10/2026)."
   },
   {
    "tipo": "codigo",
@@ -104,11 +104,11 @@
     "abas": [
      {
       "rot": "Saída capturada (19/10/2026)",
-      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nquadros: 144 (frames/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: não\nOK: 3 de 3 posições\nsaída: 0</pre><p>O verificador abre a página três vezes com <code>?jump=</code> no começo, no meio e no fim do trilho e lê o quadro do motor.</p>"
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nquadros: 144 (frames/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: nêo\nOK: 3 de 3 posições\nsaída: 0</pre><p>O verificador abre a página três vezes com <code>?jump=</code> no começo, no meio e no fim do trilho e lê o quadro do motor.</p>"
      },
      {
       "rot": "Erro comum: sem o contrato",
-      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nFALHA: a página não marcou window.__ready em 15 s (falta o contrato ?jump + __ready)\nsaída: 1</pre><p>A cópia <code>erro-sem-contrato.html</code> não chama <code>MotionEngine.ready</code>: a página funciona para quem rola com a mão, mas nenhum teste sabe quando olhar.</p>"
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nFALHA: a página nêo marcou window.__ready em 15 s (falta o contrato ?jump + __ready)\nsaída: 1</pre><p>A cópia <code>erro-sem-contrato.html</code> nêo chama <code>MotionEngine.ready</code>: a página funciona para quem rola com a mêo, mas nenhum teste sabe quando olhar.</p>"
      }
     ]
    }
@@ -144,7 +144,7 @@
   {
    "tipo": "codigo",
    "titulo": "A skill scroll-film-studio",
-   "sub": "Skill do ARCKHÉ para Codex e Claude Code: entrevista, conceitos, direção de arte, página e portões. Duas pistas: Lane A só código (sem custo) e Lane B com filme do seu gerador. O verificar.mjs do kit lê os ganchos do kit (seção [data-filme], canvas #tela, window.__filme e window.__filmeInfo) além do contrato; por isso o prompt manda a skill partir de kit/site. Página feita do zero pela skill confere com o verify.js dela.",
+   "sub": "Skill do ARCKHÉ para Codex e Claude Code: entrevista, conceitos, direçêo de arte, página e portões. Duas pistas: Lane A só código (sem custo) e Lane B com filme do seu gerador. O verificar.mjs do kit lê os ganchos do kit (seçêo [data-filme], canvas #tela, window.__filme e window.__filmeInfo) além do contrato; por isso o prompt manda a skill partir de kit/site. Página feita do zero pela skill confere com o verify.js dela.",
    "blocos": [
     {
      "rot": "Terminal · baixar a skill e ver o que ela traz",
@@ -154,12 +154,12 @@
     {
      "rot": "Uma vez · instalar no seu agente",
      "icone": "robo",
-     "conteudo": "git clone https://github.com/linnoff88-dev/scroll-film-studio ~/projetos/scroll-film-studio\nmkdir -p ~/.claude/skills ~/.codex/skills\nln -s ~/projetos/scroll-film-studio/skills/scroll-film-studio ~/.claude/skills/scroll-film-studio\nln -s ~/projetos/scroll-film-studio/skills/scroll-film-studio ~/.codex/skills/scroll-film-studio\n# Codex que não achar a skill em ~/.codex/skills: use ~/.agents/skills"
+     "conteudo": "git clone https://github.com/linnoff88-dev/scroll-film-studio ~/projetos/scroll-film-studio\nmkdir -p ~/.claude/skills ~/.codex/skills\nln -s ~/projetos/scroll-film-studio/skills/scroll-film-studio ~/.claude/skills/scroll-film-studio\nln -s ~/projetos/scroll-film-studio/skills/scroll-film-studio ~/.codex/skills/scroll-film-studio\n# Codex que nêo achar a skill em ~/.codex/skills: use ~/.agents/skills"
     },
     {
      "rot": "Prompt · pedir a página à skill (Lane A)",
      "icone": "chat",
-     "conteudo": "Use a skill scroll-film-studio na Lane A (só código, sem gerar vídeo).\nProduto: <nome e uma frase do que ele é>.\nPara quem: <quem compra>.\nO filme de abertura usa os quadros que já estão em frames/ (manifest.json com a contagem).\nTexto: só o que está neste arquivo: <caminho do seu texto>. Não invente número nem depoimento.\nRegras fixas: página estática, sem build; parta de kit/site (motor-rolagem.js e site.js) e mude só o visual e o texto, mantendo a seção [data-filme], o canvas #tela, window.__filme, window.__filmeInfo, o contrato ?jump=<y> + window.__ready e o modo parado com reduzir movimento.\nPronto quando: node ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/scripts/verificar.mjs <url> responde OK: 3 de 3 posições."
+     "conteudo": "Use a skill scroll-film-studio na Lane A (só código, sem gerar vídeo).\nProduto: <nome e uma frase do que ele é>.\nPara quem: <quem compra>.\nO filme de abertura usa os quadros que já estêo em frames/ (manifest.json com a contagem).\nTexto: só o que está neste arquivo: <caminho do seu texto>. Nêo invente número nem depoimento.\nRegras fixas: página estática, sem build; parta de kit/site (motor-rolagem.js e site.js) e mude só o visual e o texto, mantendo a seçêo [data-filme], o canvas #tela, window.__filme, window.__filmeInfo, o contrato ?jump=<y> + window.__ready e o modo parado com reduzir movimento.\nPronto quando: node ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/scripts/verificar.mjs <url> responde OK: 3 de 3 posições."
     }
    ],
    "saida": {
@@ -174,7 +174,7 @@
   },
   {
    "tipo": "codigo",
-   "titulo": "O portão de texto da skill",
+   "titulo": "O portêo de texto da skill",
    "sub": "O texto sobre o filme vende o produto. Se ele narra a câmera (\"a câmera avança\") ou manda rolar, é roteiro de filmagem vazando para a página. O copy-gate.js reprova.",
    "blocos": [
     {
@@ -188,7 +188,7 @@
     "abas": [
      {
       "rot": "Saída capturada (19/10/2026)",
-      "html": "<pre>✓ ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/site/index.html — copy clean\nsaída: 0\n✗ ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/exemplos/texto-ruim.html — 5 copy defect(s)\n  line 6: narrates the scroll instead of performing it\n    …ction class=\"beat\"&gt;Aurora 35As you scroll, the camera pushes in through the glass…\n  line 7: instructs the visitor to scroll\n    …s=\"beat\"&gt;One continuous takeKeep scrolling to see the reveal. &lt;/body…\nsaída: 1</pre><p>O copy-gate.js lê inglês. Para páginas em português e espanhol, o site-movimento tem um portão de texto equivalente, que você roda na aula 6.</p>"
+      "html": "<pre>✓ ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/site/index.html — copy clean\nsaída: 0\n✗ ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/exemplos/texto-ruim.html — 5 copy defect(s)\n  line 6: narrates the scroll instead of performing it\n    …ction class=\"beat\"&gt;Aurora 35As you scroll, the camera pushes in through the glass…\n  line 7: instructs the visitor to scroll\n    …s=\"beat\"&gt;One continuous takeKeep scrolling to see the reveal. &lt;/body…\nsaída: 1</pre><p>O copy-gate.js lê inglês. Para páginas em português e espanhol, o site-movimento tem um portêo de texto equivalente, que você roda na aula 6.</p>"
      }
     ]
    }
@@ -210,21 +210,21 @@
      "titulo": "E2 · Sem contrato",
      "min": "5 min",
      "texto": "Rode o verificador contra <code>erro-sem-contrato.html</code> (bloco \"erro comum: página sem o contrato\") e depois abra <code>kit/site/site.js</code> e ache a linha que chama <code>MotionEngine.ready</code>.",
-     "pronto": "<code>FALHA: a página não marcou window.__ready em 15 s</code> com <code>saída: 1</code>."
+     "pronto": "<code>FALHA: a página nêo marcou window.__ready em 15 s</code> com <code>saída: 1</code>."
     },
     {
      "id": "e3",
      "titulo": "E3 · A skill",
      "min": "15 min",
-     "texto": "Rode \"baixar a skill\" e instale no seu agente. Rode o portão de texto. Opcional: peça a página pelo prompt da Lane A com o seu produto, numa pasta nova.",
-     "pronto": "<code>ls ~/.claude/skills/scroll-film-studio/SKILL.md</code> (ou <code>~/.codex/skills/…</code>) mostra o arquivo, e o bloco do portão de texto mostra <code>copy clean</code> e depois <code>saída: 1</code>."
+     "texto": "Rode \"baixar a skill\" e instale no seu agente. Rode o portêo de texto. Opcional: peça a página pelo prompt da Lane A com o seu produto, numa pasta nova.",
+     "pronto": "<code>ls ~/.claude/skills/scroll-film-studio/SKILL.md</code> (ou <code>~/.codex/skills/…</code>) mostra o arquivo, e o bloco do portêo de texto mostra <code>copy clean</code> e depois <code>saída: 1</code>."
     }
    ]
   },
   {
    "tipo": "quiz",
    "titulo": "Teste da aula",
-   "sub": "A explicação aparece depois da sua resposta.",
+   "sub": "A explicaçêo aparece depois da sua resposta.",
    "perguntas": [
     {
      "p": "A rolagem trava quando você rola rápido pela primeira vez. Qual peça do motor resolve isso?",
@@ -235,7 +235,7 @@
       "A janela de bitmaps: decodificar antes os quadros perto da cabeça."
      ],
      "certa": 3,
-     "explica": "O engasgo é a decodificação do JPEG na hora de desenhar. A janela decodifica antes, fora da linha principal. Pré-carregar tudo pesa e não evita a decodificação; densidade 2 dobra o trabalho.",
+     "explica": "O engasgo é a decodificaçêo do JPEG na hora de desenhar. A janela decodifica antes, fora da linha principal. Pré-carregar tudo pesa e nêo evita a decodificaçêo; densidade 2 dobra o trabalho.",
      "ref": "diagrama"
     },
     {
@@ -251,22 +251,22 @@
      "ref": "passos"
     },
     {
-     "p": "Qual destas frases o portão de texto reprova sobre o filme de uma lente?",
+     "p": "Qual destas frases o portêo de texto reprova sobre o filme de uma lente?",
      "opcoes": [
       "\"A câmera avança pelo vidro até o diafragma.\"",
       "\"Nove lâminas de diafragma.\"",
       "\"Feita para a cena que acontece com pouca luz.\"",
-      "\"780 g, cabe num estabilizador de mão.\""
+      "\"780 g, cabe num estabilizador de mêo.\""
      ],
      "certa": 0,
-     "explica": "Narrar a câmera é roteiro de filmagem, não texto para quem compra. A pessoa já está vendo o filme; o texto diz o que a imagem não diz.",
+     "explica": "Narrar a câmera é roteiro de filmagem, nêo texto para quem compra. A pessoa já está vendo o filme; o texto diz o que a imagem nêo diz.",
      "ref": "codigo"
     },
     {
      "p": "Na skill scroll-film-studio, o que muda entre a Lane A e a Lane B?",
      "opcoes": [
       "A Lane A é feita para celular em pé e a Lane B para tela de computador.",
-      "A Lane B não precisa de quadros.",
+      "A Lane B nêo precisa de quadros.",
       "A Lane A é só código; a Lane B usa clipes do seu gerador.",
       "A Lane A usa Three.js e a B usa canvas 2D."
      ],
@@ -286,11 +286,11 @@
     },
     {
      "t": "Contrato",
-     "texto": "?jump=[y] posiciona, window.__ready avisa: sem ele não há teste."
+     "texto": "?jump=[y] posiciona, window.__ready avisa: sem ele nêo há teste."
     },
     {
      "t": "Skill",
-     "texto": "scroll-film-studio pela Lane A, com portão de texto."
+     "texto": "scroll-film-studio pela Lane A, com portêo de texto."
     }
    ]
   },

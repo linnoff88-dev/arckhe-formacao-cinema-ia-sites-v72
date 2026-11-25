@@ -78,7 +78,7 @@
       // O erro: um laço que desenha ~60 vezes por segundo para sempre.
       (function laco() { desenhar(progresso()); requestAnimationFrame(laco); })();
     } else if (reduzido) {
-      desenhar(0.5);                       // reduzir movimento: um quadro só, e a rolagem não mexe na cena
+      desenhar(0.5);                       // reduzir movimento: um quadro só, e a rolagem nêo mexe na cena
     } else {
       // Sob demanda: só desenha quando a rolagem mudou o progresso e a cena está na tela.
       const talvez = () => {

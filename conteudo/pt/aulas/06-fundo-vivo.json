@@ -5,8 +5,8 @@
  "titulo": "Fundo vivo: vídeo gerado dentro do site",
  "titulo_curto": "Fundo vivo",
  "minutos": 18,
- "lead": "Um filme de abertura longo não sai de um clipe só: sai de vários clipes curtos encadeados, cada um começando no último quadro real do anterior. O risco é o gerador cortar escondido no meio de um clipe. A skill site-movimento tem portões que pegam isso. Você roda os portões em clipes de ensaio, um contínuo e um com corte, sem gastar crédito.",
- "objetivo": "encadear clipes num filme contínuo e provar com os portões do site-movimento que não há corte escondido.",
+ "lead": "Um filme de abertura longo nêo sai de um clipe só: sai de vários clipes curtos encadeados, cada um começando no último quadro real do anterior. O risco é o gerador cortar escondido no meio de um clipe. A skill site-movimento tem portões que pegam isso. Você roda os portões em clipes de ensaio, um contínuo e um com corte, sem gastar crédito.",
+ "objetivo": "encadear clipes num filme contínuo e provar com os portões do site-movimento que nêo há corte escondido.",
  "competencias": [
   "encadear-clipes",
   "detectar-corte-escondido",
@@ -27,7 +27,7 @@
   },
   {
    "icone": "portao",
-   "t": "O portão de texto em português, inglês e espanhol"
+   "t": "O portêo de texto em português, inglês e espanhol"
   }
  ],
  "hero_alt": "Monitor largo numa sala escura mostrando uma página cujo fundo é uma paisagem de montanhas com névoa ao amanhecer.",
@@ -53,7 +53,7 @@
      "icone": "lupa",
      "titulo": "Portões",
      "sub": "por clipe",
-     "detalhe": "fixacao.py: o motor respeitou o quadro de início e o de fim? cortes.py: há corte escondido no meio? Clipe com corte nunca entra: aproxime os keyframes e refaça. Não esconda com fade."
+     "detalhe": "fixacao.py: o motor respeitou o quadro de início e o de fim? cortes.py: há corte escondido no meio? Clipe com corte nunca entra: aproxime os keyframes e refaça. Nêo esconda com fade."
     },
     {
      "icone": "camadas",
@@ -88,7 +88,7 @@
     "abas": [
      {
       "rot": "Saída capturada (19/10/2026)",
-      "html": "<pre>clone: 0\nOK kling\nOK agnes\nOK kie\nOK custom\n4/4 motores OK\nsaída: 0</pre><p>Nenhum serviço foi chamado: o DRY_RUN sai antes de ler qualquer chave. Gerar de verdade usa a conta e os créditos do motor que você escolher; o curso não faz isso.</p>"
+      "html": "<pre>clone: 0\nOK kling\nOK agnes\nOK kie\nOK custom\n4/4 motores OK\nsaída: 0</pre><p>Nenhum serviço foi chamado: o DRY_RUN sai antes de ler qualquer chave. Gerar de verdade usa a conta e os créditos do motor que você escolher; o curso nêo faz isso.</p>"
      }
     ]
    }
@@ -109,7 +109,7 @@
     "abas": [
      {
       "rot": "Saída capturada (19/10/2026)",
-      "html": "<pre>c1.mp4: 4,0 s · 24 fps · 1920×1080\nc2.mp4: 4,0 s · 24 fps · 1920×1080\nc1.mp4 quadros 97, mediana 1.00, piores [(77, 0.99), (90, 0.99)] ok\nc2.mp4 quadros 97, mediana 1.00, piores [(1, 0.99), (95, 0.99)] ok\ncortes: 0\nsite: 191 quadros, 3.4 MB, cor da emenda #050605\ncontinuidade — site/frames: 48 quadros (a cada 4), mediana 0.983\nPASSA — um movimento só\nsaída: 0</pre><p>4 s + 4 s = 191 quadros (o quadro 0 do clipe 2 sai, para não repetir). O montar.py grava em site/frames, a pasta que a página do kit já lê.</p>"
+      "html": "<pre>c1.mp4: 4,0 s · 24 fps · 1920×1080\nc2.mp4: 4,0 s · 24 fps · 1920×1080\nc1.mp4 quadros 97, mediana 1.00, piores [(77, 0.99), (90, 0.99)] ok\nc2.mp4 quadros 97, mediana 1.00, piores [(1, 0.99), (95, 0.99)] ok\ncortes: 0\nsite: 191 quadros, 3.4 MB, cor da emenda #050605\ncontinuidade — site/frames: 48 quadros (a cada 4), mediana 0.983\nPASSA — um movimento só\nsaída: 0</pre><p>4 s + 4 s = 191 quadros (o quadro 0 do clipe 2 sai, para nêo repetir). O montar.py grava em site/frames, a pasta que a página do kit já lê.</p>"
      }
     ]
    }
@@ -160,19 +160,19 @@
     "inicio": "5 etapas em fila/. Clique em \"Rodar a fila\".",
     "rodando": "Uma etapa por vez: o clipe seguinte depende do último quadro real do anterior.",
     "parou": "Interrompido. A etapa do meio ficou em rodando/. Rode de novo para ver a retomada.",
-    "retoma": "Retomada: o que estava em rodando/ voltou para a fila. Clipe já pronto não é gerado de novo (nem cobrado de novo).",
+    "retoma": "Retomada: o que estava em rodando/ voltou para a fila. Clipe já pronto nêo é gerado de novo (nem cobrado de novo).",
     "fim": "Fila vazia: clipes, montagem e continuidade prontos.",
     "fimfalha": "Fila vazia. O clipe 3 foi para falhou/ (corte escondido): aproxime os keyframes e refaça só ele."
    },
-   "legenda": "Simulação no navegador: nada é gerado. A falha é proposital, para mostrar que só o clipe com corte volta."
+   "legenda": "Simulaçêo no navegador: nada é gerado. A falha é proposital, para mostrar que só o clipe com corte volta."
   },
   {
    "tipo": "codigo",
-   "titulo": "O portão de texto em três línguas",
-   "sub": "Versão do site-movimento do portão da aula 3: lê português, inglês e espanhol.",
+   "titulo": "O portêo de texto em três línguas",
+   "sub": "Versêo do site-movimento do portêo da aula 3: lê português, inglês e espanhol.",
    "blocos": [
     {
-     "rot": "Terminal · portão de texto na página do kit e no exemplo ruim",
+     "rot": "Terminal · portêo de texto na página do kit e no exemplo ruim",
      "icone": "terminal",
      "conteudo": "K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit\nP=${TMPDIR:-/tmp}/ensaio-sites/a6/site-movimento/skill/site-movimento/scripts/portao-texto.js\nnode \"$P\" \"$K/site/index.html\"; echo \"saída: $?\"\nnode \"$P\" \"$K/exemplos/texto-ruim-pt.html\" 2>&1 | head -5; echo \"saída: ${PIPESTATUS[0]}\""
     }
@@ -182,7 +182,7 @@
     "abas": [
      {
       "rot": "Saída capturada (19/10/2026)",
-      "html": "<pre>✓ ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/site/index.html — texto limpo\nsaída: 0\n✗ ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/exemplos/texto-ruim-pt.html — 3 defeito(s)\n  manda a pessoa rolar\n    …Aurora 35 Role para baixo e veja a lente de perto.…\n  narra a câmera\n    …e de perto. Um plano-sequência A câmera avança pelo vidro até o diafragma…\nsaída: 1</pre><p>O portão também reprova travessão, jargão de IA (\"revolucionário\"), texto provisório e o quadro do filme repetido como imagem logo abaixo.</p>"
+      "html": "<pre>✓ ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/site/index.html — texto limpo\nsaída: 0\n✗ ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/exemplos/texto-ruim-pt.html — 3 defeito(s)\n  manda a pessoa rolar\n    …Aurora 35 Role para baixo e veja a lente de perto.…\n  narra a câmera\n    …e de perto. Um plano-sequência A câmera avança pelo vidro até o diafragma…\nsaída: 1</pre><p>O portêo também reprova travessêo, jargêo de IA (\"revolucionário\"), texto provisório e o quadro do filme repetido como imagem logo abaixo.</p>"
      }
     ]
    }
@@ -217,7 +217,7 @@
      "id": "e4",
      "titulo": "E4 · Seu texto",
      "min": "10 min",
-     "texto": "Rode o portão de texto na página que você está fazendo.",
+     "texto": "Rode o portêo de texto na página que você está fazendo.",
      "pronto": "<code>texto limpo</code> e <code>saída: 0</code>."
     }
    ]
@@ -225,7 +225,7 @@
   {
    "tipo": "quiz",
    "titulo": "Teste da aula",
-   "sub": "A explicação aparece depois da sua resposta.",
+   "sub": "A explicaçêo aparece depois da sua resposta.",
    "perguntas": [
     {
      "p": "De onde o clipe 2 deve começar?",
@@ -236,7 +236,7 @@
       "Do primeiro quadro do clipe 1."
      ],
      "certa": 2,
-     "explica": "O motor nunca termina exatamente no keyframe. Começar do último quadro real (pixels extraídos) faz a emenda casar por construção.",
+     "explica": "O motor nunca termina exatamente no keyframe. Começar do último quadro real (pixels extraídos) faz a emenda casar por construçêo.",
      "ref": "diagrama"
     },
     {
@@ -248,16 +248,16 @@
       "Seguir: na rolagem ninguém percebe."
      ],
      "certa": 1,
-     "explica": "A pessoa para de rolar exatamente no corte. Fade e flash chamam atenção; ponte corta de novo. Passo menor de câmera e refazer.",
+     "explica": "A pessoa para de rolar exatamente no corte. Fade e flash chamam atençêo; ponte corta de novo. Passo menor de câmera e refazer.",
      "ref": "diagrama"
     },
     {
-     "p": "Por que o continuidade.py compara com a mediana local, e não com um limite fixo?",
+     "p": "Por que o continuidade.py compara com a mediana local, e nêo com um limite fixo?",
      "opcoes": [
       "Porque um travelling rápido e liso marca baixo e um corte entre quadros parecidos marca alto; o formato da curva separa os dois.",
       "Porque o limite fixo é lento.",
       "Porque cada gerador usa uma escala diferente.",
-      "Porque o ffmpeg não calcula SSIM."
+      "Porque o ffmpeg nêo calcula SSIM."
      ],
      "certa": 0,
      "explica": "Movimento liso: cada par parecido com os vizinhos, por mais baixo que seja. Corte: queda brusca abaixo da mediana dos vizinhos. É o que o próprio script explica no cabeçalho.",
@@ -268,7 +268,7 @@
      "opcoes": [
       "Que o clipe sai mais barato.",
       "Que o motor usa a chave de teste.",
-      "Que o vídeo é gerado em baixa resolução.",
+      "Que o vídeo é gerado em baixa resoluçêo.",
       "Que nenhum serviço é chamado: o motor só mostra o comando."
      ],
      "certa": 3,
@@ -287,7 +287,7 @@
     },
     {
      "t": "Portões",
-     "texto": "fixação, cortes, continuidade; corte nunca entra."
+     "texto": "fixaçêo, cortes, continuidade; corte nunca entra."
     },
     {
      "t": "Sem gasto",
@@ -310,7 +310,7 @@
      "icone": "video"
     },
     {
-     "t": "Curso 1 da formação: primeiro e último quadro nos geradores",
+     "t": "Curso 1 da formaçêo: primeiro e último quadro nos geradores",
      "href": "https://linnoff88-dev.github.io/
      "icone": "seta"
     }

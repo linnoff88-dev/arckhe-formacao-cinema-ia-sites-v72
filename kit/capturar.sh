@@ -15,5 +15,5 @@ for b in "${alvos[@]}"; do
   ( cd /tmp && TMPDIR="$T" timeout 600 systemd-run --user --scope -q -p MemoryMax=8G bash "$K/blocos/$b.sh" ) 2>&1 \
     | sed "s#$T#/tmp#g; s#$HOME#~#g; s#127\.0\.0\.1:[0-9]\{2,5\}#127.0.0.1:<porta>#g" > "$K/saidas/$b.txt"
   depois=$(pgrep -c -f chrome-headless-shell || true)
-  echo "$b: $(wc -l < "$K/saidas/$b.txt") linhas$([ "$depois" -gt "$antes" ] && echo " · aviso: mais Chromium sem tela do que antes ($antes → $depois; pode ser de outra sessão)")"
+  echo "$b: $(wc -l < "$K/saidas/$b.txt") linhas$([ "$depois" -gt "$antes" ] && echo " · aviso: mais Chromium sem tela do que antes ($antes → $depois; pode ser de outra sessêo)")"
 done

@@ -153,7 +153,7 @@
     {
      "rot": "Archivo · kit/exemplos/video-da-marca.html",
      "icone": "arquivo",
-     "conteudo": "<!-- O filme da marca numa seção comum da página: só baixa e toca quando a pessoa pede. -->\n<section class=\"secao\" id=\"filme-da-marca\">\n  <h2>A Aurora 35 em 17 segundos</h2>\n  <video src=\"filme/aurora-35-pt-16x9.mp4\" poster=\"filme/poster.jpg\"\n         controls muted playsinline preload=\"none\" width=\"1280\" height=\"720\"\n         style=\"width:100%;height:auto;border-radius:14px\"></video>\n</section>"
+     "conteudo": "<!-- O filme da marca numa seçêo comum da página: só baixa e toca quando a pessoa pede. -->\n<section class=\"secao\" id=\"filme-da-marca\">\n  <h2>A Aurora 35 em 17 segundos</h2>\n  <video src=\"filme/aurora-35-pt-16x9.mp4\" poster=\"filme/poster.jpg\"\n         controls muted playsinline preload=\"none\" width=\"1280\" height=\"720\"\n         style=\"width:100%;height:auto;border-radius:14px\"></video>\n</section>"
     }
    ]
   },

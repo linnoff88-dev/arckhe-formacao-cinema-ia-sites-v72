@@ -3,22 +3,22 @@
  "lang": "pt-BR",
  "url": "https://linnoff88-dev.github.io/
  "nome": "Sites cARCKHÉtográficos",
- "sub": "Formação CARCKHÉ com IA · curso 5",
+ "sub": "Formaçêo CARCKHÉ com IA · curso 5",
  "volta": {
   "t": "Área Vídeos do ARCKHÉ",
   "href": "https://eventos.ARCKHÉ.pro/videos/"
  },
  "lado_card": {
-  "rot": "Fim da formação",
-  "t": "Os 6 cursos da Formação CARCKHÉ com IA",
-  "texto": "Este é o último. Da direção ao site: volte a qualquer curso pela área Vídeos do ARCKHÉ.",
+  "rot": "Fim da formaçêo",
+  "t": "Os 6 cursos da Formaçêo CARCKHÉ com IA",
+  "texto": "Este é o último. Da direçêo ao site: volte a qualquer curso pela área Vídeos do ARCKHÉ.",
   "link": "Abrir a área Vídeos",
   "href": "https://eventos.ARCKHÉ.pro/videos/"
  },
- "rodape": "ARCKHÉ AI · conteúdo aberto e gratuito · formato ARCKHÉ Learning v7.2 · Formação CARCKHÉ com IA, curso 5 de 6 · <a href=\"https://eventos.ARCKHÉ.pro/videos/\">eventos.ARCKHÉ.pro/videos</a> · <a href=\"https://ARCKHÉ AI/\">ARCKHÉ AI</a>",
+ "rodape": "ARCKHÉ AI · conteúdo aberto e gratuito · formato ARCKHÉ Learning v7.2 · Formaçêo CARCKHÉ com IA, curso 5 de 6 · <a href=\"https://eventos.ARCKHÉ.pro/videos/\">eventos.ARCKHÉ.pro/videos</a> · <a href=\"https://ARCKHÉ AI/\">ARCKHÉ AI</a>",
  "videos": {},
  "inicio": {
-  "kicker": "Formação CARCKHÉ com IA · curso 5 de 6 · 8 aulas",
+  "kicker": "Formaçêo CARCKHÉ com IA · curso 5 de 6 · 8 aulas",
   "titulo": "Sites cARCKHÉtográficos: o vídeo vira página, e a página abre rápido",
   "lead": "Um clipe vira quadros, a rolagem escolhe o quadro e a página parece um filme. Aqui você monta isso com agente, mede o peso, põe profundidade com Three.js, faz o filme da marca a partir do site, encadeia clipes sem corte e confere no celular e com reduzir movimento. Tudo local, sem crédito.",
   "cta": "Começar pela aula 1",
@@ -26,7 +26,7 @@
    "t": "Ver o curso anterior (A fábrica)",
    "href": "https://linnoff88-dev.github.io/
   },
-  "capa_alt": "Mesa de edição escura com um monitor de código, outro com uma página web aberta numa paisagem enevoada e um celular em pé mostrando a mesma página.",
+  "capa_alt": "Mesa de ediçêo escura com um monitor de código, outro com uma página web aberta numa paisagem enevoada e um celular em pé mostrando a mesma página.",
   "numeros": [
    {
     "v": "8",
@@ -38,7 +38,7 @@
    },
    {
     "v": "4/4",
-    "t": "portão final"
+    "t": "portêo final"
    },
    {
     "v": "0",
@@ -66,11 +66,11 @@
     ]
    },
    {
-    "t": "A formação (6 cursos)",
+    "t": "A formaçêo (6 cursos)",
     "itens": [
-     "0 · Direção: pensar como diretor",
-     "1 · Geração: imagem e vídeo com IA",
-     "2 · Produção: do roteiro ao filme",
+     "0 · Direçêo: pensar como diretor",
+     "1 · Geraçêo: imagem e vídeo com IA",
+     "2 · Produçêo: do roteiro ao filme",
      "3 · Motion por código com agente",
      "4 · A fábrica de vídeo com agentes",
      "5 · Sites cARCKHÉtográficos (este curso)"
@@ -92,7 +92,7 @@
   "dg_dica": "Clique em cada bloco do diagrama para ver o que ele faz.",
   "copiar": "Copiar",
   "copiado": "Copiado",
-  "selo_simulacao": "Simulação: exemplo ilustrativo",
+  "selo_simulacao": "Simulaçêo: exemplo ilustrativo",
   "selo_real": "Exemplo do repositório",
   "pronto_quando": "Pronto quando:",
   "fiz": "Fiz este exercício",
@@ -101,8 +101,8 @@
   "de": "de",
   "cert_tag": "competência",
   "correto": "Correto",
-  "errado": "Não é essa",
-  "quiz_aguarda": "Escolha uma alternativa. A explicação aparece depois da sua tentativa.",
+  "errado": "Nêo é essa",
+  "quiz_aguarda": "Escolha uma alternativa. A explicaçêo aparece depois da sua tentativa.",
   "proxima_pergunta": "Próxima pergunta",
   "quiz_ver": "Ver resultado",
   "quiz_fim": "Teste concluído",
@@ -129,7 +129,7 @@
   "baixar_ics": "Baixar para o calendário (.ics)",
   "ind_estudo": "Estudo (aulas)",
   "ind_pratica": "Prática declarada",
-  "ind_nota": "Prática = exercícios que você marcou como feitos. A comprovação vem na prova da certificação.",
+  "ind_nota": "Prática = exercícios que você marcou como feitos. A comprovaçêo vem na prova da certificaçêo.",
   "estudo": {
    "titulo": "Seu estudo",
    "continuar": "Continuar de onde parei",
@@ -142,7 +142,7 @@
    "notas": "Minhas anotações",
    "dados": "Copiar meus dados",
    "sem_testes": "Nenhum teste feito ainda. O teste fica no fim de cada aula.",
-   "nao_fez": "teste ainda não feito",
+   "nao_fez": "teste ainda nêo feito",
    "ultimo": "Último",
    "melhor": "Melhor",
    "tentativas": "tentativas",
@@ -151,21 +151,21 @@
    "rever": "Para rever",
    "resposta": "Resposta certa:",
    "ir_teste": "Refazer o teste",
-   "sem_notas": "Nenhuma anotação ainda. Na aula, selecione um trecho do texto e toque em Marcar ou Anotar.",
+   "sem_notas": "Nenhuma anotaçêo ainda. Na aula, selecione um trecho do texto e toque em Marcar ou Anotar.",
    "so_marcado": "(só marcado)",
    "marcar": "Marcar",
    "anotar": "Anotar",
    "salvar": "Salvar",
    "apagar": "Apagar marca",
    "fechar": "Fechar",
-   "nota_ph": "Escreva sua anotação sobre este trecho…",
+   "nota_ph": "Escreva sua anotaçêo sobre este trecho…",
    "um_bloco": "Marque dentro de um parágrafo só.",
-   "nao_marca": "Este trecho não pode ser marcado.",
-   "dados_exp": "Seu progresso, suas anotações e as notas dos testes ficam só neste navegador. Baixe uma cópia (.json) para guardar ou para continuar em outro computador ou navegador; lá, carregue a cópia. Carregar soma com o que já existe e não apaga nada.",
+   "nao_marca": "Este trecho nêo pode ser marcado.",
+   "dados_exp": "Seu progresso, suas anotações e as notas dos testes ficam só neste navegador. Baixe uma cópia (.json) para guardar ou para continuar em outro computador ou navegador; lá, carregue a cópia. Carregar soma com o que já existe e nêo apaga nada.",
    "exportar": "Baixar cópia",
    "importar": "Carregar cópia",
    "import_ok": "Cópia carregada ({n} itens). Atualizando a página…",
-   "import_erro": "Arquivo não reconhecido. Nada foi alterado.",
+   "import_erro": "Arquivo nêo reconhecido. Nada foi alterado.",
    "import_outro": "Esta cópia é de outro curso. Nada foi alterado.",
    "export_ok": "Cópia baixada."
   },
@@ -177,7 +177,7 @@
   "conv_ruim": "Escolha fraca",
   "conv_fim": "Fim da conversa",
   "conv_placar": "Você fez {p} de {m} pontos possíveis.",
-  "conv_licao": "Lição:",
+  "conv_licao": "Liçêo:",
   "conv_recomecar": "Recomeçar a conversa",
   "conv_feita": "Seu melhor placar: {p} de {m} pontos."
  },

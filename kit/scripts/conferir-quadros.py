@@ -6,8 +6,8 @@ Uso:  python3 conferir-quadros.py <pasta-de-quadros> <clipe.mp4>
 Confere:
   1. nomes f_0001.jpg, f_0002.jpg… sem buraco (com zeros à esquerda a ordem alfabética é a do filme;
      sem eles, f_10.jpg vem antes de f_2.jpg e o filme pula para a frente e volta);
-  2. um quadro por quadro do clipe: contagem = duração × fps (folga de 1). Menos que isso é o filme
-     virando apresentação de slides na rolagem;
+  2. um quadro por quadro do clipe: contagem = duraçêo × fps (folga de 1). Menos que isso é o filme
+     virando apresentaçêo de slides na rolagem;
   3. manifest.json com o mesmo número de quadros.
 Saída: "OK: 144 quadros · 24 fps · 1024 px · 2,9 MB" (código 0) ou "FALHA: …" (código 1).
 """
@@ -29,7 +29,7 @@ def main():
     r = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries",
                         "stream=r_frame_rate:format=duration", "-of", "json", clipe], capture_output=True, text=True)
     if r.returncode != 0:
-        print(f"FALHA: ffprobe não abriu {clipe}")
+        print(f"FALHA: ffprobe nêo abriu {clipe}")
         return 1
     d = json.loads(r.stdout)
     n, q = d["streams"][0]["r_frame_rate"].split("/")

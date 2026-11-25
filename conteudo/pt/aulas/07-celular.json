@@ -6,7 +6,7 @@
  "titulo_curto": "Celular e reduzir movimento",
  "minutos": 16,
  "lead": "Muita gente abre a página no celular em pé, com rede de celular, e algumas pessoas pediram ao sistema menos movimento. Um filme horizontal cortado na tela vertical perde o assunto; um filme que anda à força incomoda quem pediu para parar. Você confere a página no celular de 390 px, com reduzir movimento, e corta o peso do filme vertical.",
- "objetivo": "conferir no celular de 390 px, com reduzir movimento e no primeiro carregamento, que a página abre rápido e não força o movimento.",
+ "objetivo": "conferir no celular de 390 px, com reduzir movimento e no primeiro carregamento, que a página abre rápido e nêo força o movimento.",
  "competencias": [
   "filme-vertical-no-celular",
   "respeitar-reduzir-movimento",
@@ -15,7 +15,7 @@
  "aprende": [
   {
    "icone": "camadas",
-   "t": "Filme vertical (frames-v/) e encaixe por fração de corte, em vez de cobrir sempre"
+   "t": "Filme vertical (frames-v/) e encaixe por fraçêo de corte, em vez de cobrir sempre"
   },
   {
    "icone": "escudo",
@@ -27,7 +27,7 @@
   },
   {
    "icone": "seta",
-   "t": "O que é deste curso e o que é da Formação ARCKHÉSEO"
+   "t": "O que é deste curso e o que é da Formaçêo ARCKHÉSEO"
   }
  ],
  "hero_alt": "Celular em pé num suporte mostrando uma paisagem vertical com névoa, ao lado de um notebook com um gráfico.",
@@ -41,18 +41,18 @@
      "icone": "carregar",
      "titulo": "1ª pintura",
      "sub": "o mínimo",
-     "detalhe": "HTML, CSS, JS e o quadro 1. O fundo do palco já mostra o quadro 1 pelo CSS enquanto o canvas não desenhou: a tela nunca fica preta esperando."
+     "detalhe": "HTML, CSS, JS e o quadro 1. O fundo do palco já mostra o quadro 1 pelo CSS enquanto o canvas nêo desenhou: a tela nunca fica preta esperando."
     },
     {
      "icone": "camadas",
      "titulo": "Vertical",
      "sub": "frames-v/",
-     "detalhe": "Celular em pé (até 719 px, retrato) pede o filme vertical. Um 16:9 cobrindo 390×844 mantém só o centro de cada quadro: a maior parte da composição some dos lados (scroll-film-studio, references/engine.md)."
+     "detalhe": "Celular em pé (até 719 px, retrato) pede o filme vertical. Um 16:9 cobrindo 390×844 mantém só o centro de cada quadro: a maior parte da composiçêo some dos lados (scroll-film-studio, references/engine.md)."
     },
     {
      "icone": "alvo",
      "titulo": "Encaixe",
-     "sub": "fração de corte",
+     "sub": "fraçêo de corte",
      "detalhe": "O motor cobre a tela enquanto o corte é pequeno e encaixa inteiro quando passaria do limite (22% no computador). Com o filme vertical no celular, o corte é pequeno e o kit permite até 80%."
     },
     {
@@ -70,7 +70,7 @@
     }
    ],
    "volta": "pesou? largura e -q:v do vertical",
-   "legenda": "Velocidade medida em rede real, Core Web Vitals e PageSpeed são da Formação ARCKHÉSEO. Aqui: o peso do filme e o movimento."
+   "legenda": "Velocidade medida em rede real, Core Web Vitals e PageSpeed sêo da Formaçêo ARCKHÉSEO. Aqui: o peso do filme e o movimento."
   },
   {
    "tipo": "codigo",
@@ -98,11 +98,11 @@
     "abas": [
      {
       "rot": "Saída capturada (19/10/2026)",
-      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 390×844\nquadros: 144 (frames-v/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: não\ncelular: frames-v (filme vertical) · 390×844\nOK: 3 de 3 posições\nsaída: 0\nreduzir movimento: parado (quadro 0 em 0%, 50% e 100%)\nOK: 3 de 3 posições\nsaída: 0</pre><p>No celular, a página escolheu frames-v; com reduzir movimento, o quadro ficou em 0 nas três posições.</p>"
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 390×844\nquadros: 144 (frames-v/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: nêo\ncelular: frames-v (filme vertical) · 390×844\nOK: 3 de 3 posições\nsaída: 0\nreduzir movimento: parado (quadro 0 em 0%, 50% e 100%)\nOK: 3 de 3 posições\nsaída: 0</pre><p>No celular, a página escolheu frames-v; com reduzir movimento, o quadro ficou em 0 nas três posições.</p>"
      },
      {
       "rot": "Erro comum: ignorar reduzir movimento",
-      "html": "<pre>FALHA: com reduzir movimento o filme ainda anda (quadro 0 → 72 → 143)\nsaída: 1</pre><p>A cópia <code>erro-sem-reduzir.html</code> desliga a opção <code>reduzir</code>: o filme anda mesmo com o sistema pedindo menos movimento.</p>"
+      "html": "<pre>FALHA: com reduzir movimento o filme ainda anda (quadro 0 → 72 → 143)\nsaída: 1</pre><p>A cópia <code>erro-sem-reduzir.html</code> desliga a opçêo <code>reduzir</code>: o filme anda mesmo com o sistema pedindo menos movimento.</p>"
      }
     ]
    }
@@ -151,7 +151,7 @@
      "titulo": "Movimento opcional",
      "texto": [
       "Reduzir movimento ligado = filme parado e texto legível, sem rolagem presa.",
-      "A chave na tela deixa a escolha também para quem não mexeu no sistema."
+      "A chave na tela deixa a escolha também para quem nêo mexeu no sistema."
      ]
     }
    ]
@@ -187,7 +187,7 @@
   {
    "tipo": "quiz",
    "titulo": "Teste da aula",
-   "sub": "A explicação aparece depois da sua resposta.",
+   "sub": "A explicaçêo aparece depois da sua resposta.",
    "perguntas": [
     {
      "p": "Um filme 16:9 cobrindo a tela de um celular em pé (390×844). O que acontece?",
@@ -198,7 +198,7 @@
       "Sobra só o centro de cada quadro, e o assunto pode sair da tela."
      ],
      "certa": 3,
-     "explica": "Cobrir uma tela vertical com um quadro largo corta os lados. Por isso o filme vertical (frames-v/) e o encaixe por fração de corte.",
+     "explica": "Cobrir uma tela vertical com um quadro largo corta os lados. Por isso o filme vertical (frames-v/) e o encaixe por fraçêo de corte.",
      "ref": "diagrama"
     },
     {
@@ -207,10 +207,10 @@
       "Mostra o filme numa velocidade menor.",
       "Para o filme numa foto e deixa o texto parado embaixo.",
       "Esconde a página inteira.",
-      "Nada: rolar é uma ação da pessoa, não uma animação que o site dispara."
+      "Nada: rolar é uma açêo da pessoa, nêo uma animaçêo que o site dispara."
      ],
      "certa": 1,
-     "explica": "Um filme preso à rolagem é movimento disparado pela pessoa, e quem pediu menos movimento recebe a versão parada. O verificador confere o mesmo quadro em 0%, 50% e 100%.",
+     "explica": "Um filme preso à rolagem é movimento disparado pela pessoa, e quem pediu menos movimento recebe a versêo parada. O verificador confere o mesmo quadro em 0%, 50% e 100%.",
      "ref": "diagrama"
     },
     {
@@ -222,7 +222,7 @@
       "Trocar os quadros por um vídeo com autoplay, que o navegador comprime melhor."
      ],
      "certa": 0,
-     "explica": "Largura e -q:v tiram peso sem virar apresentação de slides. No ensaio: 720 px e -q:v 6 = 3,52 MB; 600 px e -q:v 8 = 2,28 MB, os mesmos 144 quadros.",
+     "explica": "Largura e -q:v tiram peso sem virar apresentaçêo de slides. No ensaio: 720 px e -q:v 6 = 3,52 MB; 600 px e -q:v 8 = 2,28 MB, os mesmos 144 quadros.",
      "ref": "codigo"
     },
     {
@@ -230,11 +230,11 @@
      "opcoes": [
       "Na aula 4, com o three-medir.",
       "No peso.py, com --inicial.",
-      "Na Formação ARCKHÉSEO.",
+      "Na Formaçêo ARCKHÉSEO.",
       "No verificar.mjs, com --celular."
      ],
      "certa": 2,
-     "explica": "Este curso mede o peso do filme e o movimento. Desempenho para busca tem dono: a Formação ARCKHÉSEO.",
+     "explica": "Este curso mede o peso do filme e o movimento. Desempenho para busca tem dono: a Formaçêo ARCKHÉSEO.",
      "ref": "diagrama"
     }
    ]
@@ -245,7 +245,7 @@
    "itens": [
     {
      "t": "Vertical",
-     "texto": "Celular em pé ganha frames-v/ e encaixe por fração de corte."
+     "texto": "Celular em pé ganha frames-v/ e encaixe por fraçêo de corte."
     },
     {
      "t": "Reduzir",
@@ -262,7 +262,7 @@
    "titulo": "Para ir além",
    "links": [
     {
-     "t": "Formação ARCKHÉSEO: desempenho e o que cada ferramenta mede",
+     "t": "Formaçêo ARCKHÉSEO: desempenho e o que cada ferramenta mede",
      "href": "https://linnoff88-dev.github.io/
      "icone": "grafico"
     },
@@ -272,7 +272,7 @@
      "icone": "escudo"
     },
     {
-     "t": "W3C: WCAG 2.2, critério 2.3.3 (animação disparada por interação)",
+     "t": "W3C: WCAG 2.2, critério 2.3.3 (animaçêo disparada por interaçêo)",
      "href": "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html",
      "icone": "arquivo"
     }

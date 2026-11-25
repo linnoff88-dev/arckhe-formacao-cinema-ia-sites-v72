@@ -148,12 +148,12 @@
     {
      "rot": "With the model · script, scenes, and render",
      "icone": "robo",
-     "conteudo": "cd <pasta-do-filmarca>\nnode bin/filmarca.mjs roteiro <pasta-do-filme> --pedido \"filme de apresentação da lente para a página\" --motor claude\nnode bin/filmarca.mjs cenas <pasta-do-filme> --motor claude\nnode bin/filmarca.mjs render <pasta-do-filme> --formatos 16x9,9x16 --rascunho"
+     "conteudo": "cd <pasta-do-filmarca>\nnode bin/filmarca.mjs roteiro <pasta-do-filme> --pedido \"filme de apresentaçêo da lente para a página\" --motor claude\nnode bin/filmarca.mjs cenas <pasta-do-filme> --motor claude\nnode bin/filmarca.mjs render <pasta-do-filme> --formatos 16x9,9x16 --rascunho"
     },
     {
      "rot": "File · kit/exemplos/video-da-marca.html",
      "icone": "arquivo",
-     "conteudo": "<!-- O filme da marca numa seção comum da página: só baixa e toca quando a pessoa pede. -->\n<section class=\"secao\" id=\"filme-da-marca\">\n  <h2>A Aurora 35 em 17 segundos</h2>\n  <video src=\"filme/aurora-35-pt-16x9.mp4\" poster=\"filme/poster.jpg\"\n         controls muted playsinline preload=\"none\" width=\"1280\" height=\"720\"\n         style=\"width:100%;height:auto;border-radius:14px\"></video>\n</section>"
+     "conteudo": "<!-- O filme da marca numa seçêo comum da página: só baixa e toca quando a pessoa pede. -->\n<section class=\"secao\" id=\"filme-da-marca\">\n  <h2>A Aurora 35 em 17 segundos</h2>\n  <video src=\"filme/aurora-35-pt-16x9.mp4\" poster=\"filme/poster.jpg\"\n         controls muted playsinline preload=\"none\" width=\"1280\" height=\"720\"\n         style=\"width:100%;height:auto;border-radius:14px\"></video>\n</section>"
     }
    ]
   },

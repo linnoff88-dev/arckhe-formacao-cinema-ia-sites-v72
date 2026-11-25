@@ -47,26 +47,26 @@
      "icone": "caneta",
      "titulo": "roteiro",
      "sub": "fatos do site",
-     "detalhe": "O diretor (o modelo da sua assinatura, pelo claude -p ou codex exec) escreve o conceito e as cenas só com fatos do marca.json. No ensaio, você escreve o roteiro.json à mão."
+     "detalhe": "O diretor (o modelo da sua assinatura, pelo claude -p ou codex exec) escreve o conceito e as cenas só com fatos do marca.json. No ensaio, você escreve o roteiro.json à mêo."
     },
     {
      "icone": "camadas",
      "titulo": "cenas",
      "sub": "HTML + GSAP",
-     "detalhe": "Cada cena vira HTML, CSS e GSAP num contrato fechado. A conferência roda cada cena nos três formatos e recusa rede, relógio, acaso, animação CSS, texto fora do quadro e palavra partida. Recusada duas vezes, entra a cena-modelo."
+     "detalhe": "Cada cena vira HTML, CSS e GSAP num contrato fechado. A conferência roda cada cena nos três formatos e recusa rede, relógio, acaso, animaçêo CSS, texto fora do quadro e palavra partida. Recusada duas vezes, entra a cena-modelo."
     },
     {
      "icone": "video",
      "titulo": "render",
      "sub": "HyperFrames",
-     "detalhe": "Uma composição por idioma e formato (16:9, 9:16, 1:1), lint e MP4 renderizado na sua máquina."
+     "detalhe": "Uma composiçêo por idioma e formato (16:9, 9:16, 1:1), lint e MP4 renderizado na sua máquina."
     },
     {
      "icone": "arquivo",
      "titulo": "Na página",
      "sub": "vídeo leve",
      "forte": true,
-     "detalhe": "O MP4 entra numa seção comum, com preload=\"none\" e pôster: não pesa na primeira pintura e só baixa quando a pessoa aperta play."
+     "detalhe": "O MP4 entra numa seçêo comum, com preload=\"none\" e pôster: nêo pesa na primeira pintura e só baixa quando a pessoa aperta play."
     }
    ],
    "volta": "o filme volta para o site",
@@ -109,7 +109,7 @@
     "abas": [
      {
       "rot": "Saída capturada (19/10/2026)",
-      "html": "<pre>  lendo http://127.0.0.1:&lt;porta&gt;/\n  marca: Aurora 35 · cores #0c0c10 #f3efe7 #e2a23b #e2a23b #0b0b0d · fontes Georgia / system-ui · logo assets/logo.svg\ndna: 0\nfonts\nlogo.svg\nprint-1.png\nprint-2.png\nprint-3.png\nprint-celular.png\nprint-topo.png</pre><p>Repare na cor primária: <code>#e2a23b</code> é o amarelo da chave de movimento (Parado / Ligado), não o detalhe da marca. O DNA lê o que aparece na tela. Confira o marca.json antes de gerar e corrija à mão o que estiver errado.</p>"
+      "html": "<pre>  lendo http://127.0.0.1:&lt;porta&gt;/\n  marca: Aurora 35 · cores #0c0c10 #f3efe7 #e2a23b #e2a23b #0b0b0d · fontes Georgia / system-ui · logo assets/logo.svg\ndna: 0\nfonts\nlogo.svg\nprint-1.png\nprint-2.png\nprint-3.png\nprint-celular.png\nprint-topo.png</pre><p>Repare na cor primária: <code>#e2a23b</code> é o amarelo da chave de movimento (Parado / Ligado), nêo o detalhe da marca. O DNA lê o que aparece na tela. Confira o marca.json antes de gerar e corrija à mêo o que estiver errado.</p>"
      }
     ]
    }
@@ -135,7 +135,7 @@
     "abas": [
      {
       "rot": "Saída capturada (19/10/2026)",
-      "html": "<pre>cenas-modelo: 5 cenas · 17,5 s · marca Aurora 35 · logo assets/logo.svg\n  ✓ renders/aurora-35-pt-16x9.mp4 · 8 s (lint com avisos)\n/tmp/ensaio-sites/a5/filme/renders/aurora-35-pt-16x9.mp4\nrender: 0\nOK: 17,5 s · 1920×1080 · 30 fps · sem áudio\nsaída: 0</pre><p>Cinco cenas, 17,5 s, render de rascunho em segundos. \"lint com avisos\" é aviso, não erro: o MP4 saiu e passou no conferidor.</p>"
+      "html": "<pre>cenas-modelo: 5 cenas · 17,5 s · marca Aurora 35 · logo assets/logo.svg\n  ✓ renders/aurora-35-pt-16x9.mp4 · 8 s (lint com avisos)\n/tmp/ensaio-sites/a5/filme/renders/aurora-35-pt-16x9.mp4\nrender: 0\nOK: 17,5 s · 1920×1080 · 30 fps · sem áudio\nsaída: 0</pre><p>Cinco cenas, 17,5 s, render de rascunho em segundos. \"lint com avisos\" é aviso, nêo erro: o MP4 saiu e passou no conferidor.</p>"
      }
     ]
    }
@@ -143,17 +143,17 @@
   {
    "tipo": "codigo",
    "titulo": "Com o modelo da sua assinatura, e de volta na página",
-   "sub": "O passo real troca o roteiro escrito à mão e as cenas-modelo pelo diretor e pelas cenas animadas pelo modelo. Depois, o MP4 entra na página.",
+   "sub": "O passo real troca o roteiro escrito à mêo e as cenas-modelo pelo diretor e pelas cenas animadas pelo modelo. Depois, o MP4 entra na página.",
    "blocos": [
     {
      "rot": "Com o modelo · roteiro, cenas e render",
      "icone": "robo",
-     "conteudo": "cd <pasta-do-filmarca>\nnode bin/filmarca.mjs roteiro <pasta-do-filme> --pedido \"filme de apresentação da lente para a página\" --motor claude\nnode bin/filmarca.mjs cenas <pasta-do-filme> --motor claude\nnode bin/filmarca.mjs render <pasta-do-filme> --formatos 16x9,9x16 --rascunho"
+     "conteudo": "cd <pasta-do-filmarca>\nnode bin/filmarca.mjs roteiro <pasta-do-filme> --pedido \"filme de apresentaçêo da lente para a página\" --motor claude\nnode bin/filmarca.mjs cenas <pasta-do-filme> --motor claude\nnode bin/filmarca.mjs render <pasta-do-filme> --formatos 16x9,9x16 --rascunho"
     },
     {
      "rot": "Arquivo · kit/exemplos/video-da-marca.html",
      "icone": "arquivo",
-     "conteudo": "<!-- O filme da marca numa seção comum da página: só baixa e toca quando a pessoa pede. -->\n<section class=\"secao\" id=\"filme-da-marca\">\n  <h2>A Aurora 35 em 17 segundos</h2>\n  <video src=\"filme/aurora-35-pt-16x9.mp4\" poster=\"filme/poster.jpg\"\n         controls muted playsinline preload=\"none\" width=\"1280\" height=\"720\"\n         style=\"width:100%;height:auto;border-radius:14px\"></video>\n</section>"
+     "conteudo": "<!-- O filme da marca numa seçêo comum da página: só baixa e toca quando a pessoa pede. -->\n<section class=\"secao\" id=\"filme-da-marca\">\n  <h2>A Aurora 35 em 17 segundos</h2>\n  <video src=\"filme/aurora-35-pt-16x9.mp4\" poster=\"filme/poster.jpg\"\n         controls muted playsinline preload=\"none\" width=\"1280\" height=\"720\"\n         style=\"width:100%;height:auto;border-radius:14px\"></video>\n</section>"
     }
    ]
   },
@@ -180,7 +180,7 @@
      "id": "e3",
      "titulo": "E3 · O filme na página",
      "min": "15 min",
-     "texto": "Numa cópia da página do kit, crie a pasta filme/, copie o MP4 e tire o pôster (<code>ffmpeg -ss 2 -i filme/aurora-35-pt-16x9.mp4 -frames:v 1 filme/poster.jpg</code>). Cole a seção de kit/exemplos/video-da-marca.html antes da ficha técnica e rode o peso.py com <code>--inicial 0.5</code>.",
+     "texto": "Numa cópia da página do kit, crie a pasta filme/, copie o MP4 e tire o pôster (<code>ffmpeg -ss 2 -i filme/aurora-35-pt-16x9.mp4 -frames:v 1 filme/poster.jpg</code>). Cole a seçêo de kit/exemplos/video-da-marca.html antes da ficha técnica e rode o peso.py com <code>--inicial 0.5</code>.",
      "pronto": "O peso.py mostra <code>vídeo</code> na linha PESO e <code>primeira pintura … DENTRO</code>."
     }
    ]
@@ -188,7 +188,7 @@
   {
    "tipo": "quiz",
    "titulo": "Teste da aula",
-   "sub": "A explicação aparece depois da sua resposta.",
+   "sub": "A explicaçêo aparece depois da sua resposta.",
    "perguntas": [
     {
      "p": "Qual etapa do filmarca roda sem modelo nenhum?",
@@ -196,10 +196,10 @@
       "O roteiro.",
       "O dna.",
       "As cenas animadas.",
-      "A tradução dos textos."
+      "A traduçêo dos textos."
      ],
      "certa": 1,
-     "explica": "O dna é Playwright lendo a página: cores, fontes, logo, textos e prints. Roteiro, cenas e tradução usam o modelo da sua assinatura; no ensaio, o roteiro é escrito à mão e as cenas são as cenas-modelo.",
+     "explica": "O dna é Playwright lendo a página: cores, fontes, logo, textos e prints. Roteiro, cenas e traduçêo usam o modelo da sua assinatura; no ensaio, o roteiro é escrito à mêo e as cenas sêo as cenas-modelo.",
      "ref": "diagrama"
     },
     {
@@ -208,10 +208,10 @@
       "Rodar o dna até acertar.",
       "Apagar a chave de movimento do site.",
       "Gerar o filme assim mesmo; o modelo percebe a cor errada e corrige sozinho.",
-      "Conferir o marca.json e corrigir a cor à mão antes de gerar."
+      "Conferir o marca.json e corrigir a cor à mêo antes de gerar."
      ],
      "certa": 3,
-     "explica": "O DNA lê o que aparece na tela, e um botão colorido conta como cor. O marca.json é seu: corrigir uma linha custa menos que refazer cenas.",
+     "explica": "O DNA lê o que aparece na tela, e um botêo colorido conta como cor. O marca.json é seu: corrigir uma linha custa menos que refazer cenas.",
      "ref": "codigo"
     },
     {
@@ -223,19 +223,19 @@
       "Pede uma terceira, uma quarta e uma quinta tentativa ao modelo."
      ],
      "certa": 0,
-     "explica": "Recusada, o modelo corrige uma vez; falhou de novo, entra a cena-modelo. O filme sempre sai, e a página de revisão mostra qual cena é modelo.",
+     "explica": "Recusada, o modelo corrige uma vez; falhou de novo, entra a cena-modelo. O filme sempre sai, e a página de revisêo mostra qual cena é modelo.",
      "ref": "diagrama"
     },
     {
      "p": "Por que o vídeo da marca entra na página com preload=\"none\"?",
      "opcoes": [
-      "Porque sem preload=\"none\" o vídeo não toca no celular em nenhum navegador.",
-      "Porque o GitHub Pages não serve MP4 grande.",
+      "Porque sem preload=\"none\" o vídeo nêo toca no celular em nenhum navegador.",
+      "Porque o GitHub Pages nêo serve MP4 grande.",
       "Para só baixar o MP4 quando a pessoa pedir, fora da primeira pintura.",
       "Para o vídeo tocar sozinho ao abrir."
      ],
      "certa": 2,
-     "explica": "Com preload=\"none\" e pôster, o navegador só baixa o vídeo no play. A primeira pintura continua a mesma; o peso.py conta o vídeo no total, não no início.",
+     "explica": "Com preload=\"none\" e pôster, o navegador só baixa o vídeo no play. A primeira pintura continua a mesma; o peso.py conta o vídeo no total, nêo no início.",
      "ref": "codigo"
     }
    ]
@@ -250,11 +250,11 @@
     },
     {
      "t": "Ensaio",
-     "texto": "Roteiro à mão + cenas-modelo + render local = filme sem gastar nada."
+     "texto": "Roteiro à mêo + cenas-modelo + render local = filme sem gastar nada."
     },
     {
      "t": "De volta",
-     "texto": "MP4 com pôster e preload=\"none\" numa seção da página."
+     "texto": "MP4 com pôster e preload=\"none\" numa seçêo da página."
     }
    ]
   },
@@ -268,7 +268,7 @@
      "icone": "video"
     },
     {
-     "t": "Curso 3 da formação: HyperFrames por dentro",
+     "t": "Curso 3 da formaçêo: HyperFrames por dentro",
      "href": "https://linnoff88-dev.github.io/
      "icone": "seta"
     },

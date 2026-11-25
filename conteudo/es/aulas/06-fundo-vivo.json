@@ -182,7 +182,7 @@
     "abas": [
      {
       "rot": "Salida capturada (19/10/2026)",
-      "html": "<pre>✓ ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/site/index.html — texto limpo\nsaída: 0\n✗ ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/exemplos/texto-ruim-pt.html — 3 defeito(s)\n  manda a pessoa rolar\n    …Aurora 35 Role para baixo e veja a lente de perto.…\n  narra a câmera\n    …e de perto. Um plano-sequência A câmera avança pelo vidro até o diafragma…\nsaída: 1</pre><p>La puerta también reprueba el guion largo (travessão), la jerga de IA (\"revolucionário\"), el texto provisional y el cuadro de la película repetido como imagen justo debajo.</p>"
+      "html": "<pre>✓ ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/site/index.html — texto limpo\nsaída: 0\n✗ ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit/exemplos/texto-ruim-pt.html — 3 defeito(s)\n  manda a pessoa rolar\n    …Aurora 35 Role para baixo e veja a lente de perto.…\n  narra a câmera\n    …e de perto. Um plano-sequência A câmera avança pelo vidro até o diafragma…\nsaída: 1</pre><p>La puerta también reprueba el guion largo (travessêo), la jerga de IA (\"revolucionário\"), el texto provisional y el cuadro de la película repetido como imagen justo debajo.</p>"
      }
     ]
    }

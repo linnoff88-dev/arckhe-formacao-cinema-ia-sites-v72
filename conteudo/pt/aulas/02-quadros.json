@@ -5,7 +5,7 @@
  "titulo": "Do vídeo aos quadros: extrair, comprimir e ordenar a sequência",
  "titulo_curto": "Do vídeo aos quadros",
  "minutos": 15,
- "lead": "A qualidade do movimento na rolagem se decide aqui. Quadros de menos e o filme vira apresentação de slides; quadros grandes demais e a página não abre no celular; nome sem zeros e o filme pula. Você faz um clipe de ensaio com ffmpeg a partir de uma foto, extrai todos os quadros e confere contagem, ordem e peso com um script.",
+ "lead": "A qualidade do movimento na rolagem se decide aqui. Quadros de menos e o filme vira apresentaçêo de slides; quadros grandes demais e a página nêo abre no celular; nome sem zeros e o filme pula. Você faz um clipe de ensaio com ffmpeg a partir de uma foto, extrai todos os quadros e confere contagem, ordem e peso com um script.",
  "objetivo": "transformar um clipe em quadros na taxa nativa, com nome em ordem e peso conferido, prontos para a rolagem.",
  "competencias": [
   "extrair-quadros-taxa-nativa",
@@ -23,7 +23,7 @@
   },
   {
    "icone": "lista",
-   "t": "Por que f_0001.jpg e não f_1.jpg, e o que o manifest.json faz"
+   "t": "Por que f_0001.jpg e nêo f_1.jpg, e o que o manifest.json faz"
   },
   {
    "icone": "check",
@@ -142,7 +142,7 @@
   {
    "tipo": "pratica",
    "titulo": "Prática",
-   "sub": "Do clipe à pasta conferida, e uma versão sua.",
+   "sub": "Do clipe à pasta conferida, e uma versêo sua.",
    "exercicios": [
     {
      "id": "e1",
@@ -170,7 +170,7 @@
   {
    "tipo": "quiz",
    "titulo": "Teste da aula",
-   "sub": "A explicação aparece depois da sua resposta.",
+   "sub": "A explicaçêo aparece depois da sua resposta.",
    "perguntas": [
     {
      "p": "Um clipe de 6 s em 24 quadros por segundo. Quantos quadros a pasta deve ter?",
@@ -181,14 +181,14 @@
       "300, um número redondo."
      ],
      "certa": 2,
-     "explica": "Na taxa nativa: 6 × 24 = 144. Menos quadros deixa a página mais leve, mas a rolagem vira apresentação de slides. Para pesar menos, diminua a largura ou suba o -q:v.",
+     "explica": "Na taxa nativa: 6 × 24 = 144. Menos quadros deixa a página mais leve, mas a rolagem vira apresentaçêo de slides. Para pesar menos, diminua a largura ou suba o -q:v.",
      "ref": "diagrama"
     },
     {
      "p": "A pasta tem f_1.jpg … f_144.jpg. O que dá errado?",
      "opcoes": [
       "f_10.jpg vem antes de f_2.jpg na ordem alfabética, e o filme sai pulando.",
-      "O navegador não abre arquivo cujo número não tenha zeros à esquerda no nome.",
+      "O navegador nêo abre arquivo cujo número nêo tenha zeros à esquerda no nome.",
       "O JPEG fica maior.",
       "Nada: o número está certo."
      ],
@@ -217,7 +217,7 @@
       "Para o navegador guardar todos os quadros em cache antes da primeira rolagem."
      ],
      "certa": 1,
-     "explica": "Servidor estático (GitHub Pages, por exemplo) não lista pastas. O manifest diz a contagem e a taxa, e a página monta os nomes f_0001.jpg em diante.",
+     "explica": "Servidor estático (GitHub Pages, por exemplo) nêo lista pastas. O manifest diz a contagem e a taxa, e a página monta os nomes f_0001.jpg em diante.",
      "ref": "diagrama"
     }
    ]
@@ -250,12 +250,12 @@
      "icone": "arquivo"
     },
     {
-     "t": "ffmpeg: documentação do filtro zoompan",
+     "t": "ffmpeg: documentaçêo do filtro zoompan",
      "href": "https://ffmpeg.org/ffmpeg-filters.html#zoompan",
      "icone": "video"
     },
     {
-     "t": "Curso 1 da formação: gerar o clipe de verdade",
+     "t": "Curso 1 da formaçêo: gerar o clipe de verdade",
      "href": "https://linnoff88-dev.github.io/
      "icone": "seta"
     }

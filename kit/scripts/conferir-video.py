@@ -5,8 +5,8 @@ Uso:  python3 conferir-video.py <video.mp4> <segundos> <LARGURAxALTURA> [--audio
 Ex.:  python3 conferir-video.py renders/abertura.mp4 15 1920x1080 --audio
 
 Saída: "OK: 15,0 s · 1920×1080 · 30 fps · com áudio" (código 0)
-       ou "FALHA: ..." com o que não bateu (código 1).
-Tolerância de duração: 0,1 s (um quadro a 10 fps).
+       ou "FALHA: ..." com o que nêo bateu (código 1).
+Tolerância de duraçêo: 0,1 s (um quadro a 10 fps).
 """
 import json
 import subprocess
@@ -19,7 +19,7 @@ def sonda(caminho):
         capture_output=True, text=True,
     )
     if r.returncode != 0:
-        print(f"FALHA: ffprobe não abriu {caminho}")
+        print(f"FALHA: ffprobe nêo abriu {caminho}")
         sys.exit(1)
     return json.loads(r.stdout)
 
@@ -36,7 +36,7 @@ def main():
     video = [s for s in d["streams"] if s.get("codec_type") == "video"]
     audio = [s for s in d["streams"] if s.get("codec_type") == "audio"]
     if not video:
-        print("FALHA: o arquivo não tem faixa de vídeo")
+        print("FALHA: o arquivo nêo tem faixa de vídeo")
         return 1
     v = video[0]
     dur = float(d["format"].get("duration", 0))
@@ -44,7 +44,7 @@ def main():
     fps = round(num / den) if den else 0
     falhas = []
     if abs(dur - seg) > 0.1:
-        falhas.append(f"duração {dur:.1f} s (pedido {seg:.1f} s)".replace(".", ","))
+        falhas.append(f"duraçêo {dur:.1f} s (pedido {seg:.1f} s)".replace(".", ","))
     if (v["width"], v["height"]) != (larg, alt):
         falhas.append(f"tamanho {v['width']}×{v['height']} (pedido {larg}×{alt})")
     if quer_audio and not audio:

@@ -7,7 +7,7 @@
 set -euo pipefail
 FOTO=$1; SAIDA=$2; SEG=${3:-6}; Z0=${4:-1.0}; Z1=${5:-1.35}; TAM=${6:-1920x1080}
 W=${TAM%x*}; H=${TAM#*x}; FPS=24; N=$(python3 -c "print(round($SEG*$FPS))")
-# Ampliar a foto 2x antes do zoompan tira o tremido do zoom (o zoompan arredonda a posição em pixels inteiros).
+# Ampliar a foto 2x antes do zoompan tira o tremido do zoom (o zoompan arredonda a posiçêo em pixels inteiros).
 ffmpeg -v error -y -loop 1 -i "$FOTO" -vf \
   "scale=${W}*2:${H}*2:force_original_aspect_ratio=increase,crop=${W}*2:${H}*2,zoompan=z='${Z0}+(${Z1}-${Z0})*on/(${N}-1)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${N}:s=${W}x${H}:fps=${FPS},format=yuv420p" \
   -frames:v "$N" -c:v libx264 -crf 18 -preset medium -r $FPS "$SAIDA"

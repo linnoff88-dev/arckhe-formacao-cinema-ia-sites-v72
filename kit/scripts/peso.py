@@ -10,9 +10,9 @@ celular em pé. Por isso o peso sai por visitante:
                         quadro 1 (o motor do kit pinta o quadro 1 assim que ele chega)
   rascunho              primeira pintura + 1 quadro a cada 8 (o motor baixa esses primeiro, para
                         qualquer ponto da rolagem já ter um quadro perto)
-Vídeo (.mp4/.webm) entra no total, não na primeira pintura (com preload="none" só baixa ao tocar).
+Vídeo (.mp4/.webm) entra no total, nêo na primeira pintura (com preload="none" só baixa ao tocar).
 --orcamento MB: teto para o maior dos dois visitantes; --inicial MB: teto para a primeira pintura do
-mais pesado. Fora do teto = código 1. Não mede rede nem Core Web Vitals (isso é da Formação ARCKHÉSEO).
+mais pesado. Fora do teto = código 1. Nêo mede rede nem Core Web Vitals (isso é da Formaçêo ARCKHÉSEO).
 """
 import os
 import re

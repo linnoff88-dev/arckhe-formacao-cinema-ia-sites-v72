@@ -149,7 +149,7 @@
     "abas": [
      {
       "rot": "Captured output (10/19/2026)",
-      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nquadros: 144 (frames/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: não\nOK: 3 de 3 posições\nsaída: 0</pre><p>The checker opens the page at three scroll points and verifies the frame and the screen. To look with your own eyes, run only the 1st line of the server and open the URL in your browser.</p>"
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nquadros: 144 (frames/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: nêo\nOK: 3 de 3 posições\nsaída: 0</pre><p>The checker opens the page at three scroll points and verifies the frame and the screen. To look with your own eyes, run only the 1st line of the server and open the URL in your browser.</p>"
      }
     ]
    }
@@ -207,8 +207,8 @@
      "id": "e3",
      "titulo": "E3 · Your decision, with a number",
      "min": "10 min",
-     "texto": "Pick one of your products. In a file called decisao.txt, write three lines: <code>Produto: …</code>, <code>Visitante mais pesado: … MB</code> (the kit's number, or your own if you already have frames) and <code>Decisão: …</code> (movie, code only, or a regular page, with the reason).",
-     "pronto": "<code>grep -c -E \"^(Produto|Visitante mais pesado|Decisão):\" decisao.txt</code> returns <code>3</code>."
+     "texto": "Pick one of your products. In a file called decisao.txt, write three lines: <code>Produto: …</code>, <code>Visitante mais pesado: … MB</code> (the kit's number, or your own if you already have frames) and <code>Decisêo: …</code> (movie, code only, or a regular page, with the reason).",
+     "pronto": "<code>grep -c -E \"^(Produto|Visitante mais pesado|Decisêo):\" decisao.txt</code> returns <code>3</code>."
     }
    ]
   },

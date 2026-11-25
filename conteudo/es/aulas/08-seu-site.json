@@ -94,7 +94,7 @@
     {
      "rot": "Archivo · kit/scripts/portao.sh",
      "icone": "arquivo",
-     "conteudo": "#!/usr/bin/env bash\n# portao.sh — o portão final da página: 4 conferências, uma por vez, sem modelo e sem serviço pago.\n#   1. peso       visitante mais pesado ≤ ORCAMENTO MB (padrão 6) e primeira pintura ≤ 0,5 MB\n#   2. computador 1366×768: rolagem em 0 %, 50 % e 100 % com o quadro certo e tela pintada\n#   3. celular    390×844 em pé: filme vertical (frames-v/), sem transbordo\n#   4. reduzir    com \"reduzir movimento\": o filme fica parado\n# Uso: bash portao.sh <pasta-do-site>          (ORCAMENTO=8 bash portao.sh … muda o teto)\nset -uo pipefail\nK=$(cd \"$(dirname \"$0\")/..\" && pwd)\nSITE=$(cd \"$1\" && pwd)\nT=$(mktemp -d); trap 'kill $S 2>/dev/null; rm -rf \"$T\"' EXIT\nnode \"$K/scripts/servir.mjs\" \"$SITE\" > \"$T/url\" & S=$!\nuntil U=$(cat \"$T/url\" 2>/dev/null) && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nok=0\npython3 \"$K/scripts/peso.py\" \"$SITE\" --orcamento \"${ORCAMENTO:-6}\" --inicial 0.5 > \"$T/1\" && ok=$((ok+1)) && echo \"1 peso: OK\" || { echo \"1 peso: FALHA\"; grep -E \"ACIMA\" \"$T/1\"; }\nfor n in \"2 computador:\" \"3 celular:--celular\" \"4 reduzir:--reduzir\"; do\n  rot=${n%%:*}; op=${n#*:}\n  node \"$K/scripts/verificar.mjs\" \"$U\" $op > \"$T/v\" && ok=$((ok+1)) && echo \"$rot: OK\" || { echo \"$rot: FALHA\"; grep \"^FALHA\" \"$T/v\"; }\ndone\necho \"PORTÃO: $ok/4 $([ $ok -eq 4 ] && echo OK || echo FALHOU)\"\n[ $ok -eq 4 ]"
+     "conteudo": "#!/usr/bin/env bash\n# portao.sh — o portêo final da página: 4 conferências, uma por vez, sem modelo e sem serviço pago.\n#   1. peso       visitante mais pesado ≤ ORCAMENTO MB (padrêo 6) e primeira pintura ≤ 0,5 MB\n#   2. computador 1366×768: rolagem em 0 %, 50 % e 100 % com o quadro certo e tela pintada\n#   3. celular    390×844 em pé: filme vertical (frames-v/), sem transbordo\n#   4. reduzir    com \"reduzir movimento\": o filme fica parado\n# Uso: bash portao.sh <pasta-do-site>          (ORCAMENTO=8 bash portao.sh … muda o teto)\nset -uo pipefail\nK=$(cd \"$(dirname \"$0\")/..\" && pwd)\nSITE=$(cd \"$1\" && pwd)\nT=$(mktemp -d); trap 'kill $S 2>/dev/null; rm -rf \"$T\"' EXIT\nnode \"$K/scripts/servir.mjs\" \"$SITE\" > \"$T/url\" & S=$!\nuntil U=$(cat \"$T/url\" 2>/dev/null) && [ -n \"$U\" ] && curl -s -o /dev/null \"$U\"; do sleep 0.3; done\nok=0\npython3 \"$K/scripts/peso.py\" \"$SITE\" --orcamento \"${ORCAMENTO:-6}\" --inicial 0.5 > \"$T/1\" && ok=$((ok+1)) && echo \"1 peso: OK\" || { echo \"1 peso: FALHA\"; grep -E \"ACIMA\" \"$T/1\"; }\nfor n in \"2 computador:\" \"3 celular:--celular\" \"4 reduzir:--reduzir\"; do\n  rot=${n%%:*}; op=${n#*:}\n  node \"$K/scripts/verificar.mjs\" \"$U\" $op > \"$T/v\" && ok=$((ok+1)) && echo \"$rot: OK\" || { echo \"$rot: FALHA\"; grep \"^FALHA\" \"$T/v\"; }\ndone\necho \"PORTêO: $ok/4 $([ $ok -eq 4 ] && echo OK || echo FALHOU)\"\n[ $ok -eq 4 ]"
     }
    ],
    "saida": {
@@ -102,7 +102,7 @@
     "abas": [
      {
       "rot": "Salida capturada (19/10/2026)",
-      "html": "<pre>h.mp4: 6,0 s · 24 fps · 1920×1080\nv.mp4: 6,0 s · 24 fps · 1080×1920\nQUADROS: 144 · 1024×576 · 2,2 MB · 24 fps\nQUADROS: 144 · 600×1066 · 3,5 MB · 24 fps\n1 peso: OK\n2 computador: OK\n3 celular: OK\n4 reduzir: OK\nPORTÃO: 4/4 OK\nsaída: 0</pre><p>La puerta de control ejecuta las cuatro revisiones una por vez y sale con 0 solo si las cuatro pasan.</p>"
+      "html": "<pre>h.mp4: 6,0 s · 24 fps · 1920×1080\nv.mp4: 6,0 s · 24 fps · 1080×1920\nQUADROS: 144 · 1024×576 · 2,2 MB · 24 fps\nQUADROS: 144 · 600×1066 · 3,5 MB · 24 fps\n1 peso: OK\n2 computador: OK\n3 celular: OK\n4 reduzir: OK\nPORTêO: 4/4 OK\nsaída: 0</pre><p>La puerta de control ejecuta las cuatro revisiones una por vez y sale con 0 solo si las cuatro pasan.</p>"
      }
     ]
    }
@@ -128,7 +128,7 @@
     "abas": [
      {
       "rot": "Salida capturada (19/10/2026)",
-      "html": "<pre>200\nChromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nquadros: 144 (frames/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: não\nOK: 3 de 3 posições\nsaída: 0</pre><p>Esta es la página del kit publicada junto con el curso. Ejecuta el mismo bloque con la URL de tu página en GitHub Pages (tu usuario y el nombre del repositorio), unos minutos después del push.</p>"
+      "html": "<pre>200\nChromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nquadros: 144 (frames/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: nêo\nOK: 3 de 3 posições\nsaída: 0</pre><p>Esta es la página del kit publicada junto con el curso. Ejecuta el mismo bloque con la URL de tu página en GitHub Pages (tu usuario y el nombre del repositorio), unos minutos después del push.</p>"
      }
     ]
    }
@@ -143,7 +143,7 @@
      "titulo": "E1 · Puerta de control en el ensayo",
      "min": "10 min",
      "texto": "Ejecuta \"montar la página y pasar la puerta de control\".",
-     "pronto": "<code>PORTÃO: 4/4 OK</code> y <code>saída: 0</code>."
+     "pronto": "<code>PORTêO: 4/4 OK</code> y <code>saída: 0</code>."
     },
     {
      "id": "e2",
@@ -151,7 +151,7 @@
      "min": "60 min",
      "dias": "1–2 días",
      "texto": "Copia kit/site a una carpeta tuya, borra las copias erro-*.html, cambia la foto (clipe.sh en los dos formatos), rehaz los cuadros, reescribe los textos del index.html solo con hechos de tu producto y ejecuta la puerta de texto de la clase 6 y el portao.sh.",
-     "pronto": "La puerta de texto responde <code>texto limpo</code> y el portao.sh responde <code>PORTÃO: 4/4 OK</code> con <code>saída: 0</code>."
+     "pronto": "La puerta de texto responde <code>texto limpo</code> y el portao.sh responde <code>PORTêO: 4/4 OK</code> con <code>saída: 0</code>."
     },
     {
      "id": "e3",
@@ -221,7 +221,7 @@
    "sub": "La explicación aparece después de tu respuesta.",
    "perguntas": [
     {
-     "p": "El portao.sh dio \"PORTÃO: 3/4 FALHOU\" con \"1 peso: FALHA\". ¿Qué haces primero?",
+     "p": "El portao.sh dio \"PORTêO: 3/4 FALHOU\" con \"1 peso: FALHA\". ¿Qué haces primero?",
      "opcoes": [
       "Publicar de todos modos y corregir el peso cuando la página ya esté en línea.",
       "Subir el ORCAMENTO hasta que pase.",

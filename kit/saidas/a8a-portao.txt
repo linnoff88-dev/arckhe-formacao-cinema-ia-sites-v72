@@ -6,5 +6,5 @@ QUADROS: 144 · 600×1066 · 3,5 MB · 24 fps
 2 computador: OK
 3 celular: OK
 4 reduzir: OK
-PORTÃO: 4/4 OK
+PORTêO: 4/4 OK
 saída: 0

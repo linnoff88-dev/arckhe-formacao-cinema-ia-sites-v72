@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# portao.sh — o portão final da página: 4 conferências, uma por vez, sem modelo e sem serviço pago.
-#   1. peso       visitante mais pesado ≤ ORCAMENTO MB (padrão 6) e primeira pintura ≤ 0,5 MB
+# portao.sh — o portêo final da página: 4 conferências, uma por vez, sem modelo e sem serviço pago.
+#   1. peso       visitante mais pesado ≤ ORCAMENTO MB (padrêo 6) e primeira pintura ≤ 0,5 MB
 #   2. computador 1366×768: rolagem em 0 %, 50 % e 100 % com o quadro certo e tela pintada
 #   3. celular    390×844 em pé: filme vertical (frames-v/), sem transbordo
 #   4. reduzir    com "reduzir movimento": o filme fica parado
@@ -17,5 +17,5 @@ for n in "2 computador:" "3 celular:--celular" "4 reduzir:--reduzir"; do
   rot=${n%%:*}; op=${n#*:}
   node "$K/scripts/verificar.mjs" "$U" $op > "$T/v" && ok=$((ok+1)) && echo "$rot: OK" || { echo "$rot: FALHA"; grep "^FALHA" "$T/v"; }
 done
-echo "PORTÃO: $ok/4 $([ $ok -eq 4 ] && echo OK || echo FALHOU)"
+echo "PORTêO: $ok/4 $([ $ok -eq 4 ] && echo OK || echo FALHOU)"
 [ $ok -eq 4 ]

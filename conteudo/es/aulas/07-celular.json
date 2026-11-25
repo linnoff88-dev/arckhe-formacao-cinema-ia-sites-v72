@@ -98,7 +98,7 @@
     "abas": [
      {
       "rot": "Salida capturada (19/10/2026)",
-      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 390×844\nquadros: 144 (frames-v/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: não\ncelular: frames-v (filme vertical) · 390×844\nOK: 3 de 3 posições\nsaída: 0\nreduzir movimento: parado (quadro 0 em 0%, 50% e 100%)\nOK: 3 de 3 posições\nsaída: 0</pre><p>En el celular, la página eligió frames-v; con reducir movimiento, el cuadro se quedó en 0 en las tres posiciones.</p>"
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 390×844\nquadros: 144 (frames-v/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: nêo\ncelular: frames-v (filme vertical) · 390×844\nOK: 3 de 3 posições\nsaída: 0\nreduzir movimento: parado (quadro 0 em 0%, 50% e 100%)\nOK: 3 de 3 posições\nsaída: 0</pre><p>En el celular, la página eligió frames-v; con reducir movimiento, el cuadro se quedó en 0 en las tres posiciones.</p>"
      },
      {
       "rot": "Error común: ignorar reducir movimiento",

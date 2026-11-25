@@ -5,7 +5,7 @@
  "titulo": "O que é um site cARCKHÉtográfico e quando ele vale o peso",
  "titulo_curto": "Quando vale o peso",
  "minutos": 15,
- "lead": "Um site cARCKHÉtográfico parece um filme que anda com a rolagem. Por baixo, não há 3D nem vídeo tocando: há quadros de um clipe desenhados num canvas, um por posição da rolagem. Isso pesa. Nesta aula você roda a página de exemplo do kit, mede quanto ela pesa para cada visitante e decide, com um número, se o seu produto pede uma.",
+ "lead": "Um site cARCKHÉtográfico parece um filme que anda com a rolagem. Por baixo, nêo há 3D nem vídeo tocando: há quadros de um clipe desenhados num canvas, um por posiçêo da rolagem. Isso pesa. Nesta aula você roda a página de exemplo do kit, mede quanto ela pesa para cada visitante e decide, com um número, se o seu produto pede uma.",
  "objetivo": "rodar o site de exemplo do kit, medir o peso dele e decidir, com um orçamento em MB, se o seu produto pede um.",
  "competencias": [
   "explicar-filme-na-rolagem",
@@ -15,7 +15,7 @@
  "aprende": [
   {
    "icone": "camadas",
-   "t": "O caminho clipe → quadros → canvas → rolagem, e por que não é um vídeo tocando"
+   "t": "O caminho clipe → quadros → canvas → rolagem, e por que nêo é um vídeo tocando"
   },
   {
    "icone": "terminal",
@@ -30,7 +30,7 @@
    "t": "Decidir com um orçamento em MB, antes de gastar com gerador"
   }
  ],
- "hero_alt": "Balança de precisão numa mesa escura com uma pilha de fotogramas impressos e um celular ao lado.",
+ "hero_alt": "Balança de precisêo numa mesa escura com uma pilha de fotogramas impressos e um celular ao lado.",
  "secoes": [
   {
    "tipo": "diagrama",
@@ -47,34 +47,34 @@
      "icone": "pasta",
      "titulo": "Quadros",
      "sub": "JPEG",
-     "detalhe": "O clipe vira uma pasta de imagens, uma por quadro: f_0001.jpg, f_0002.jpg… São elas que o visitante baixa. É aqui que mora o peso."
+     "detalhe": "O clipe vira uma pasta de imagens, uma por quadro: f_0001.jpg, f_0002.jpg… Sêo elas que o visitante baixa. É aqui que mora o peso."
     },
     {
      "icone": "camadas",
      "titulo": "Canvas",
      "sub": "desenha",
-     "detalhe": "Um elemento canvas preso no topo da tela desenha um quadro de cada vez. Não é um vídeo tocando: buscar um ponto do vídeo a cada movimento da rolagem engasga; desenhar um quadro já decodificado não."
+     "detalhe": "Um elemento canvas preso no topo da tela desenha um quadro de cada vez. Nêo é um vídeo tocando: buscar um ponto do vídeo a cada movimento da rolagem engasga; desenhar um quadro já decodificado nêo."
     },
     {
      "icone": "seta",
      "titulo": "Rolagem",
      "sub": "escolhe",
-     "detalhe": "Uma seção alta (o trilho) passa por baixo do canvas. A posição da rolagem dentro do trilho vira um número de 0 a 1, e esse número escolhe o quadro: 0 = primeiro, 1 = último."
+     "detalhe": "Uma seçêo alta (o trilho) passa por baixo do canvas. A posiçêo da rolagem dentro do trilho vira um número de 0 a 1, e esse número escolhe o quadro: 0 = primeiro, 1 = último."
     },
     {
      "icone": "arquivo",
      "titulo": "Página",
      "sub": "texto e seções",
      "forte": true,
-     "detalhe": "Por cima do filme, frases curtas aparecem em pontos da rolagem; depois do filme vem a página comum: recursos, ficha, botão. O filme abre; quem vende é o texto."
+     "detalhe": "Por cima do filme, frases curtas aparecem em pontos da rolagem; depois do filme vem a página comum: recursos, ficha, botêo. O filme abre; quem vende é o texto."
     }
    ],
    "volta": "o peso decide se vale",
-   "legenda": "O efeito \"3D\" vem do clipe, não de um motor 3D. Profundidade desenhada em código é a aula 4."
+   "legenda": "O efeito \"3D\" vem do clipe, nêo de um motor 3D. Profundidade desenhada em código é a aula 4."
   },
   {
    "tipo": "passos",
-   "titulo": "Quando vale e quando não vale",
+   "titulo": "Quando vale e quando nêo vale",
    "sub": "O filme custa banda do visitante e tempo seu. Ele se paga em poucos casos.",
    "passos": [
     {
@@ -85,10 +85,10 @@
      ]
     },
     {
-     "titulo": "Não vale",
+     "titulo": "Nêo vale",
      "texto": [
       "Página que a pessoa lê com pressa: serviço, preço, artigo, painel. O filme atrasa o que ela veio buscar.",
-      "Quando o produto não muda nada ao girar ou se aproximar: um texto bem escrito vende melhor."
+      "Quando o produto nêo muda nada ao girar ou se aproximar: um texto bem escrito vende melhor."
      ]
     },
     {
@@ -102,7 +102,7 @@
      "titulo": "Com gerador",
      "texto": [
       "Clipes do seu gerador viram quadros. Quanto custa depende do gerador: o piloto do site-movimento gastou 300 créditos de Kling 3.0 (kling-video-v3_0) em 720p (README do projeto, 18/10/2026).",
-      "Qual gerador e qual versão: curso 1 da formação."
+      "Qual gerador e qual versêo: curso 1 da formaçêo."
      ]
     }
    ]
@@ -149,7 +149,7 @@
     "abas": [
      {
       "rot": "Saída capturada (19/10/2026)",
-      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nquadros: 144 (frames/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: não\nOK: 3 de 3 posições\nsaída: 0</pre><p>O verificador abre a página em três pontos da rolagem e confere o quadro e a tela. Para olhar com os seus olhos, rode só a 1ª linha do servidor e abra a URL no navegador.</p>"
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nquadros: 144 (frames/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: nêo\nOK: 3 de 3 posições\nsaída: 0</pre><p>O verificador abre a página em três pontos da rolagem e confere o quadro e a tela. Para olhar com os seus olhos, rode só a 1ª linha do servidor e abra a URL no navegador.</p>"
      }
     ]
    }
@@ -175,11 +175,11 @@
     "abas": [
      {
       "rot": "Saída capturada (19/10/2026)",
-      "html": "<pre>PESO: quadros-v 3,49 · quadros 1,50 · js 0,02 · html/css 0,01 (MB)\ncomputador: tudo 1,54 MB · primeira pintura 0,05 MB · rascunho (1 em 8) 0,22 MB\ncelular: tudo 3,52 MB · primeira pintura 0,06 MB · rascunho (1 em 8) 0,47 MB\nprimeira pintura 0,06 MB · teto 0,5 MB: DENTRO\nvisitante mais pesado 3,52 MB · orçamento 6,0 MB: DENTRO do orçamento\nsaída: 0</pre><p>Primeira pintura é um teto do que chega antes do primeiro quadro: conta todo arquivo da pasta que não é quadro. O celular pesa mais que o computador aqui: a aula 7 corrige.</p>"
+      "html": "<pre>PESO: quadros-v 3,49 · quadros 1,50 · js 0,02 · html/css 0,01 (MB)\ncomputador: tudo 1,54 MB · primeira pintura 0,05 MB · rascunho (1 em 8) 0,22 MB\ncelular: tudo 3,52 MB · primeira pintura 0,06 MB · rascunho (1 em 8) 0,47 MB\nprimeira pintura 0,06 MB · teto 0,5 MB: DENTRO\nvisitante mais pesado 3,52 MB · orçamento 6,0 MB: DENTRO do orçamento\nsaída: 0</pre><p>Primeira pintura é um teto do que chega antes do primeiro quadro: conta todo arquivo da pasta que nêo é quadro. O celular pesa mais que o computador aqui: a aula 7 corrige.</p>"
      },
      {
       "rot": "Erro comum: orçamento estourado",
-      "html": "<pre>visitante mais pesado 3,52 MB · orçamento 2,0 MB: ACIMA do orçamento\nsaída: 1</pre><p>Com orçamento de 2 MB, o celular passa do teto e o script sai com 1. É esse código que um portão automático lê.</p>"
+      "html": "<pre>visitante mais pesado 3,52 MB · orçamento 2,0 MB: ACIMA do orçamento\nsaída: 1</pre><p>Com orçamento de 2 MB, o celular passa do teto e o script sai com 1. É esse código que um portêo automático lê.</p>"
      }
     ]
    }
@@ -187,7 +187,7 @@
   {
    "tipo": "pratica",
    "titulo": "Prática",
-   "sub": "Do kit instalado à sua decisão escrita.",
+   "sub": "Do kit instalado à sua decisêo escrita.",
    "exercicios": [
     {
      "id": "e1",
@@ -205,25 +205,25 @@
     },
     {
      "id": "e3",
-     "titulo": "E3 · Sua decisão com número",
+     "titulo": "E3 · Sua decisêo com número",
      "min": "10 min",
-     "texto": "Escolha um produto seu. Num arquivo decisao.txt, escreva três linhas: <code>Produto: …</code>, <code>Visitante mais pesado: … MB</code> (o número do kit, ou o seu se já tiver quadros) e <code>Decisão: …</code> (filme, só código ou página comum, com o motivo).",
-     "pronto": "<code>grep -c -E \"^(Produto|Visitante mais pesado|Decisão):\" decisao.txt</code> responde <code>3</code>."
+     "texto": "Escolha um produto seu. Num arquivo decisao.txt, escreva três linhas: <code>Produto: …</code>, <code>Visitante mais pesado: … MB</code> (o número do kit, ou o seu se já tiver quadros) e <code>Decisêo: …</code> (filme, só código ou página comum, com o motivo).",
+     "pronto": "<code>grep -c -E \"^(Produto|Visitante mais pesado|Decisêo):\" decisao.txt</code> responde <code>3</code>."
     }
    ]
   },
   {
    "tipo": "quiz",
    "titulo": "Teste da aula",
-   "sub": "A explicação aparece depois da sua resposta.",
+   "sub": "A explicaçêo aparece depois da sua resposta.",
    "perguntas": [
     {
-     "p": "Por que o filme da rolagem é desenhado quadro a quadro num canvas, e não com um vídeo e currentTime?",
+     "p": "Por que o filme da rolagem é desenhado quadro a quadro num canvas, e nêo com um vídeo e currentTime?",
      "opcoes": [
-      "Porque o navegador não consegue tocar um arquivo MP4 dentro de uma página com rolagem longa.",
-      "Buscar um ponto do vídeo a cada passo engasga; desenhar um quadro pronto, não.",
+      "Porque o navegador nêo consegue tocar um arquivo MP4 dentro de uma página com rolagem longa.",
+      "Buscar um ponto do vídeo a cada passo engasga; desenhar um quadro pronto, nêo.",
       "Porque o canvas deixa o arquivo final menor que o vídeo.",
-      "Porque o vídeo não funciona no celular."
+      "Porque o vídeo nêo funciona no celular."
      ],
      "certa": 1,
      "explica": "A busca (seek) no vídeo tem atraso e o resultado engasga. O canvas desenha uma imagem já decodificada. O preço é o peso: uma imagem por quadro.",
@@ -238,7 +238,7 @@
       "A média, 2,5 MB."
      ],
      "certa": 2,
-     "explica": "Cada visitante baixa um filme só. O orçamento vale para quem paga mais, aqui o celular. Somar os dois conta um visitante que não existe.",
+     "explica": "Cada visitante baixa um filme só. O orçamento vale para quem paga mais, aqui o celular. Somar os dois conta um visitante que nêo existe.",
      "ref": "codigo"
     },
     {
@@ -257,12 +257,12 @@
      "p": "O que é a \"primeira pintura\" no peso.py?",
      "opcoes": [
       "O que chega antes do primeiro quadro aparecer: HTML, CSS, JS, imagens e o quadro 1.",
-      "O tamanho do primeiro quadro em alta resolução.",
+      "O tamanho do primeiro quadro em alta resoluçêo.",
       "O filme inteiro do computador.",
       "O tempo, em segundos, até a página abrir."
      ],
      "certa": 0,
-     "explica": "É um peso, não um tempo: o que precisa chegar para a tela deixar de ser preta. Tempo de carregamento e Core Web Vitals são da Formação ARCKHÉSEO.",
+     "explica": "É um peso, nêo um tempo: o que precisa chegar para a tela deixar de ser preta. Tempo de carregamento e Core Web Vitals sêo da Formaçêo ARCKHÉSEO.",
      "ref": "codigo"
     }
    ]
@@ -280,7 +280,7 @@
      "texto": "Peso por visitante: computador, celular e primeira pintura."
     },
     {
-     "t": "Decisão",
+     "t": "Decisêo",
      "texto": "Com um orçamento em MB, antes de gastar com gerador."
     }
    ]
@@ -290,7 +290,7 @@
    "titulo": "Para ir além",
    "links": [
     {
-     "t": "Curso 1 da formação: geradores de vídeo e versões (out/2026)",
+     "t": "Curso 1 da formaçêo: geradores de vídeo e versões (out/2026)",
      "href": "https://linnoff88-dev.github.io/
      "icone": "video"
     },

@@ -104,11 +104,11 @@
     "abas": [
      {
       "rot": "Captured output (10/19/2026)",
-      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nquadros: 144 (frames/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: não\nOK: 3 de 3 posições\nsaída: 0</pre><p>The verifier opens the page three times with <code>?jump=</code> at the start, middle, and end of the track and reads the engine's frame.</p>"
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nquadros: 144 (frames/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: nêo\nOK: 3 de 3 posições\nsaída: 0</pre><p>The verifier opens the page three times with <code>?jump=</code> at the start, middle, and end of the track and reads the engine's frame.</p>"
      },
      {
       "rot": "Common mistake: no contract",
-      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nFALHA: a página não marcou window.__ready em 15 s (falta o contrato ?jump + __ready)\nsaída: 1</pre><p>The copy <code>erro-sem-contrato.html</code> never calls <code>MotionEngine.ready</code>: the page works for someone scrolling by hand, but no test knows when to look.</p>"
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nFALHA: a página nêo marcou window.__ready em 15 s (falta o contrato ?jump + __ready)\nsaída: 1</pre><p>The copy <code>erro-sem-contrato.html</code> never calls <code>MotionEngine.ready</code>: the page works for someone scrolling by hand, but no test knows when to look.</p>"
      }
     ]
    }
@@ -210,7 +210,7 @@
      "titulo": "E2 · No contract",
      "min": "5 min",
      "texto": "Run the verifier against <code>erro-sem-contrato.html</code> (the \"common mistake: page without the contract\" block) and then open <code>kit/site/site.js</code> and find the line that calls <code>MotionEngine.ready</code>.",
-     "pronto": "<code>FALHA: a página não marcou window.__ready em 15 s</code> with <code>saída: 1</code>."
+     "pronto": "<code>FALHA: a página nêo marcou window.__ready em 15 s</code> with <code>saída: 1</code>."
     },
     {
      "id": "e3",

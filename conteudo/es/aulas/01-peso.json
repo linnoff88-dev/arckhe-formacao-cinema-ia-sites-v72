@@ -149,7 +149,7 @@
     "abas": [
      {
       "rot": "Salida capturada (19/10/2026)",
-      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nquadros: 144 (frames/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: não\nOK: 3 de 3 posições\nsaída: 0</pre><p>El verificador abre la página en tres puntos del scroll y comprueba el cuadro y la pantalla. Para mirar con tus propios ojos, ejecuta solo la 1.ª línea del servidor y abre la URL en el navegador.</p>"
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0) · 1366×768\nquadros: 144 (frames/)\nrolagem 0% → quadro 0 · tela pintada\nrolagem 50% → quadro 72 · tela pintada\nrolagem 100% → quadro 143 · tela pintada\ntransbordo horizontal: nêo\nOK: 3 de 3 posições\nsaída: 0</pre><p>El verificador abre la página en tres puntos del scroll y comprueba el cuadro y la pantalla. Para mirar con tus propios ojos, ejecuta solo la 1.ª línea del servidor y abre la URL en el navegador.</p>"
      }
     ]
    }
@@ -207,8 +207,8 @@
      "id": "e3",
      "titulo": "E3 · Tu decisión con número",
      "min": "10 min",
-     "texto": "Elige un producto tuyo. En un archivo decisao.txt, escribe tres líneas: <code>Produto: …</code>, <code>Visitante mais pesado: … MB</code> (el número del kit, o el tuyo si ya tienes cuadros) y <code>Decisão: …</code> (película, solo código o página común, con el motivo).",
-     "pronto": "<code>grep -c -E \"^(Produto|Visitante mais pesado|Decisão):\" decisao.txt</code> responde <code>3</code>."
+     "texto": "Elige un producto tuyo. En un archivo decisao.txt, escribe tres líneas: <code>Produto: …</code>, <code>Visitante mais pesado: … MB</code> (el número del kit, o el tuyo si ya tienes cuadros) y <code>Decisêo: …</code> (película, solo código o página común, con el motivo).",
+     "pronto": "<code>grep -c -E \"^(Produto|Visitante mais pesado|Decisêo):\" decisao.txt</code> responde <code>3</code>."
     }
    ]
   },

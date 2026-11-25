@@ -5,7 +5,7 @@
  "titulo": "Profundidade com Three.js sem travar a página",
  "titulo_curto": "Three.js sem travar",
  "minutos": 15,
- "lead": "Quadros de vídeo dão o filme; Three.js dá uma cena desenhada em código, que muda de ângulo conforme a rolagem. O risco é a cena desenhar sem parar, mesmo parada ou fora da tela, e esquentar o celular. Aqui você mede, num Chromium sem tela, quantas vezes a cena desenha em cada situação, e vê o erro comum falhar.",
+ "lead": "Quadros de vídeo dêo o filme; Three.js dá uma cena desenhada em código, que muda de ângulo conforme a rolagem. O risco é a cena desenhar sem parar, mesmo parada ou fora da tela, e esquentar o celular. Aqui você mede, num Chromium sem tela, quantas vezes a cena desenha em cada situaçêo, e vê o erro comum falhar.",
  "objetivo": "medir uma cena Three.js que só desenha quando a rolagem muda, para fora da tela e respeita reduzir movimento.",
  "competencias": [
   "desenhar-sob-demanda",
@@ -35,13 +35,13 @@
   {
    "tipo": "diagrama",
    "titulo": "Quando a cena desenha",
-   "sub": "Desenho sob demanda: cada pergunta é um motivo para NÃO desenhar. Clique em cada etapa.",
+   "sub": "Desenho sob demanda: cada pergunta é um motivo para NêO desenhar. Clique em cada etapa.",
    "nos": [
     {
      "icone": "seta",
      "titulo": "Rolagem",
      "sub": "evento",
-     "detalhe": "O evento de rolagem não desenha nada: só agenda uma checagem para o próximo quadro do navegador (requestAnimationFrame), e no máximo uma por quadro."
+     "detalhe": "O evento de rolagem nêo desenha nada: só agenda uma checagem para o próximo quadro do navegador (requestAnimationFrame), e no máximo uma por quadro."
     },
     {
      "icone": "lupa",
@@ -74,7 +74,7 @@
   },
   {
    "tipo": "codigo",
-   "titulo": "O coração da cena do kit",
+   "titulo": "O coraçêo da cena do kit",
    "sub": "Página kit/site-three/index.html: quatro anéis em profundidades diferentes; a câmera anda com a rolagem. Three.js 0.186.1 (npm, 19/10/2026), copiado em vendor/.",
    "blocos": [
     {
@@ -87,7 +87,7 @@
   {
    "tipo": "codigo",
    "titulo": "Medir os desenhos",
-   "sub": "O three-medir.mjs rola a página num Chromium sem tela e lê window.__renders em cada situação.",
+   "sub": "O three-medir.mjs rola a página num Chromium sem tela e lê window.__renders em cada situaçêo.",
    "blocos": [
     {
      "rot": "Terminal · medir a cena e o peso",
@@ -105,11 +105,11 @@
     "abas": [
      {
       "rot": "Saída capturada (19/10/2026)",
-      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0)\nparado 0 · rolando 30 · fora da tela 0 · reduzir 1 · DPR 1,5 (tela com densidade 3)\nOK: parado 0 · rolando 30 · fora da tela 0 · reduzir 1 · DPR 1,5\nsaída: 0\nPESO: js 2,12 · html/css 0,00 (MB)\nthree.js com gzip -9: 415205 bytes</pre><p>Parado e fora da tela: zero. Com reduzir movimento: um quadro só. As duas últimas linhas são o peso: 2,12 MB brutos (sem minificar), 0,42 MB com gzip -9. Servidores costumam comprimir JS; JPEG quase não comprime. Meça o que vai trafegar antes de comparar com o filme.</p>"
+      "html": "<pre>Chromium 156.0.8078.4 (Playwright 1.64.0)\nparado 0 · rolando 30 · fora da tela 0 · reduzir 1 · DPR 1,5 (tela com densidade 3)\nOK: parado 0 · rolando 30 · fora da tela 0 · reduzir 1 · DPR 1,5\nsaída: 0\nPESO: js 2,12 · html/css 0,00 (MB)\nthree.js com gzip -9: 415205 bytes</pre><p>Parado e fora da tela: zero. Com reduzir movimento: um quadro só. As duas últimas linhas sêo o peso: 2,12 MB brutos (sem minificar), 0,42 MB com gzip -9. Servidores costumam comprimir JS; JPEG quase nêo comprime. Meça o que vai trafegar antes de comparar com o filme.</p>"
      },
      {
       "rot": "Erro comum: desenhar sempre",
-      "html": "<pre>FALHA: desenhou 103 vezes parado (devia ser 0)\nFALHA: desenhou 81 vezes fora da tela (devia ser 0)\nFALHA: com reduzir movimento desenhou 83 vezes (devia ser 1)\nsaída: 1</pre><p>Com <code>?sempre=1</code> a página liga o laço do tutorial. Os números variam a cada execução; o que não varia é a falha.</p>"
+      "html": "<pre>FALHA: desenhou 103 vezes parado (devia ser 0)\nFALHA: desenhou 81 vezes fora da tela (devia ser 0)\nFALHA: com reduzir movimento desenhou 83 vezes (devia ser 1)\nsaída: 1</pre><p>Com <code>?sempre=1</code> a página liga o laço do tutorial. Os números variam a cada execuçêo; o que nêo varia é a falha.</p>"
      }
     ]
    }
@@ -123,7 +123,7 @@
      "titulo": "Quadros",
      "texto": [
       "Foto real, material, luz difícil: o que um gerador ou uma câmera fazem melhor que código.",
-      "O peso cresce com a duração do filme."
+      "O peso cresce com a duraçêo do filme."
      ]
     },
     {
@@ -136,7 +136,7 @@
     {
      "titulo": "Juntos",
      "texto": [
-      "Filme de quadros na abertura e uma peça Three.js numa seção abaixo. Cada um com a sua regra: quadros na janela de bitmaps, cena sob demanda.",
+      "Filme de quadros na abertura e uma peça Three.js numa seçêo abaixo. Cada um com a sua regra: quadros na janela de bitmaps, cena sob demanda.",
       "A biblioteca certa para cada peça de motion está no curso 3 (aula 6)."
      ]
     }
@@ -165,7 +165,7 @@
      "id": "e3",
      "titulo": "E3 · Sua cena",
      "min": "20 min",
-     "texto": "Copie kit/site-three para uma pasta sua e troque os anéis por outra forma (TorusKnotGeometry, por exemplo) e a cor do material. Mantenha a função talvez e o teto de densidade. Sirva a pasta e meça.",
+     "texto": "Copie kit/site-three para uma pasta sua e troque os anéis por outra forma (TorusKnotGeometry, por exemplo) e a cor do material. Mantenha a funçêo talvez e o teto de densidade. Sirva a pasta e meça.",
      "pronto": "O three-medir.mjs na sua pasta responde <code>OK: parado 0</code> … <code>reduzir 1</code> com <code>saída: 0</code>."
     }
    ]
@@ -173,15 +173,15 @@
   {
    "tipo": "quiz",
    "titulo": "Teste da aula",
-   "sub": "A explicação aparece depois da sua resposta.",
+   "sub": "A explicaçêo aparece depois da sua resposta.",
    "perguntas": [
     {
      "p": "A página está parada, com a cena Three.js na tela. Quantas vezes por segundo ela deve desenhar?",
      "opcoes": [
-      "Nenhuma: nada mudou, não há o que desenhar.",
+      "Nenhuma: nada mudou, nêo há o que desenhar.",
       "60, para ficar liso.",
       "30, metade do monitor.",
-      "Uma vez por segundo, para não perder nenhuma mudança."
+      "Uma vez por segundo, para nêo perder nenhuma mudança."
      ],
      "certa": 0,
      "explica": "Desenho sob demanda: só quando o progresso da rolagem mudou. Desenhar a mesma imagem 60 vezes por segundo gasta bateria e esquenta o celular.",
@@ -190,13 +190,13 @@
     {
      "p": "Num celular com devicePixelRatio 3, o kit desenha com densidade 1,5. Por quê?",
      "opcoes": [
-      "Porque o Three.js não aceita densidade maior que 1,5 em nenhum aparelho.",
-      "Porque o celular não mostra densidade 3.",
+      "Porque o Three.js nêo aceita densidade maior que 1,5 em nenhum aparelho.",
+      "Porque o celular nêo mostra densidade 3.",
       "Porque o canvas fica borrado acima de 1,5.",
       "Porque 3 dá quatro vezes os pixels de 1,5, sem ganho visível."
      ],
      "certa": 3,
-     "explica": "O trabalho da placa cresce com o quadrado da densidade: (3 ÷ 1,5)² = 4. O teto é escolha de engenharia, não limite da biblioteca.",
+     "explica": "O trabalho da placa cresce com o quadrado da densidade: (3 ÷ 1,5)² = 4. O teto é escolha de engenharia, nêo limite da biblioteca.",
      "ref": "diagrama"
     },
     {
@@ -216,7 +216,7 @@
      "opcoes": [
       "Desenha mais devagar, a 30 quadros por segundo, para cansar menos a vista.",
       "Esconde a cena.",
-      "Desenha um quadro só e a rolagem não mexe mais na cena.",
+      "Desenha um quadro só e a rolagem nêo mexe mais na cena.",
       "Mostra um aviso pedindo para desligar."
      ],
      "certa": 2,
@@ -248,7 +248,7 @@
    "titulo": "Para ir além",
    "links": [
     {
-     "t": "Three.js: documentação do WebGLRenderer",
+     "t": "Three.js: documentaçêo do WebGLRenderer",
      "href": "https://threejs.org/docs/#api/en/renderers/WebGLRenderer",
      "icone": "arquivo"
     },
@@ -258,7 +258,7 @@
      "icone": "lupa"
     },
     {
-     "t": "Curso 3 da formação: qual biblioteca para cada peça (aula 6)",
+     "t": "Curso 3 da formaçêo: qual biblioteca para cada peça (aula 6)",
      "href": "https://linnoff88-dev.github.io/
      "icone": "seta"
     }
