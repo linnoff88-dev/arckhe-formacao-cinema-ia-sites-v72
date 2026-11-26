@@ -1,4 +1,4 @@
-K=~/projetos/formacao-cinema-ia-sites-v72/kit
+K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit
 E=${TMPDIR:-/tmp}/ensaio-sites/a5; cd "$E/filmarca"
 export HYPERFRAMES_NO_TELEMETRY=1
 cp "$K/filmarca/roteiro.json" "$E/filme/"

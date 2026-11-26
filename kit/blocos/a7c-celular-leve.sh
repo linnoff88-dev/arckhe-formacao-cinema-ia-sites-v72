@@ -1,4 +1,4 @@
-K=~/projetos/formacao-cinema-ia-sites-v72/kit
+K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit
 E=${TMPDIR:-/tmp}/ensaio-sites/a7; rm -rf "$E/site"; cp -r "$K/site" "$E/site"
 python3 "$K/scripts/peso.py" "$E/site" --orcamento 3 | grep -E "^celular|orçamento"
 # o filme vertical de novo: 600 px de largura e JPEG -q:v 8 (era 720 px e 6)

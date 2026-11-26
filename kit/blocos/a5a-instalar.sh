@@ -1,5 +1,5 @@
 E=${TMPDIR:-/tmp}/ensaio-sites/a5; rm -rf "$E"; mkdir -p "$E"; cd "$E"
-git clone -q https://github.com/inematds/filmarca && cd filmarca && git checkout -q 0c0356c; echo "clone: $?"
+git clone -q https://github.com/linnoff88-dev/filmarca && cd filmarca && git checkout -q 0c0356c; echo "clone: $?"
 npm ci --no-audit --no-fund > npm.log 2>&1; echo "npm ci: $?"
 node -p "'hyperframes ' + require('hyperframes/package.json').version + ' · playwright ' + require('playwright/package.json').version"
 npx playwright install chromium > pw.log 2>&1; echo "chromium: $?"

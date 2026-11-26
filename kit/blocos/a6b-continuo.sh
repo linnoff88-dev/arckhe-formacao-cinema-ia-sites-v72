@@ -1,4 +1,4 @@
-K=~/projetos/formacao-cinema-ia-sites-v72/kit
+K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit
 E=${TMPDIR:-/tmp}/ensaio-sites/a6; SM=$E/site-movimento/skill/site-movimento/scripts
 # dois clipes encadeados: o 2º começa exatamente onde o 1º terminou (zoom 1,25)
 bash "$K/scripts/clipe.sh" "$K/exemplos/lente.jpg" "$E/c1.mp4" 4 1.0 1.25

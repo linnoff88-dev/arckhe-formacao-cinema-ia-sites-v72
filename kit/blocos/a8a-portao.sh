@@ -1,4 +1,4 @@
-K=~/projetos/formacao-cinema-ia-sites-v72/kit
+K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit
 E=${TMPDIR:-/tmp}/ensaio-sites/a8; rm -rf "$E"; mkdir -p "$E"
 # o seu site começa como cópia do modelo; troque a foto do produto pela sua (aqui: a lente deitada)
 cp -r "$K/site" "$E/meu-site"; rm -f "$E/meu-site"/erro-*.html

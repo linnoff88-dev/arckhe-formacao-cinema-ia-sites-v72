@@ -1,4 +1,4 @@
-K=~/projetos/formacao-cinema-ia-sites-v72/kit
+K=~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit
 E=${TMPDIR:-/tmp}/ensaio-sites/a3; rm -rf "$E/site"
 cp -r "$K/site" "$E/site"; rm -rf "$E/site/frames"
 cp -r "${TMPDIR:-/tmp}/ensaio-sites/a2/quadros" "$E/site/frames"

@@ -1,4 +1,4 @@
-cd ~/projetos/formacao-cinema-ia-sites-v72/kit
+cd ~/projetos/formacao-cARCKHÉ-ia-sites-v72/kit
 npm ci --no-audit --no-fund > ${TMPDIR:-/tmp}/npm-sites.log 2>&1; echo "npm ci: $?"
 npx playwright install chromium > ${TMPDIR:-/tmp}/pw-sites.log 2>&1; echo "chromium: $?"
 npx playwright --version
